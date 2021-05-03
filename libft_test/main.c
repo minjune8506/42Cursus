@@ -85,6 +85,10 @@ int	main(void)
 	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str), strlen(str));
 	str = "123ASdqweqzxc";
 	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str), strlen(str));
-}
+	//ft_strlcpy
+	char *dst;
 
-//printf("ft_toupper : %d , to_upper : %d\n", ft_toupper(index), toupper(index));
+	dst = 0;
+	ft_strlcpy(dst, "HELLO", 6);
+	printf("%s", dst);
+}
