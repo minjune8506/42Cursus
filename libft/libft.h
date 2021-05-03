@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 12:20:10 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/03 17:38:39 by minjkim2         ###   ########.fr       */
+/*   Created: 2021/05/03 17:39:16 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/05/03 17:48:09 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
-}
+size_t	ft_strlen(const char *s);
+int		ft_isalpha(int c);
+int		ft_toupper(int c);
+int		ft_tolower(int c);
+int		ft_isdigit(int c);
+int		ft_isalnum(int c);
+int		ft_isascii(int c);
+int		ft_isprint(int c);
+#endif

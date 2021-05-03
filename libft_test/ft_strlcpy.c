@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 12:20:10 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/03 17:38:39 by minjkim2         ###   ########.fr       */
+/*   Created: 2021/05/03 18:22:54 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/05/03 18:24:01 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isdigit(int c)
+size_t	ft_strlcpy(char * restrict dst, const char * restrict src, size_t dstsize)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+	
 }

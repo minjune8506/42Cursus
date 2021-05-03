@@ -6,13 +6,15 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:05:15 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/03 14:07:22 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/03 17:37:40 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_isalnum(int c)
 {
-	if (ft_isalpha(c) && ft_isdigit(c))
+	if (ft_isalpha(c) || ft_isdigit(c))
 		return (1);
 	return (0);
 }

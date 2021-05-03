@@ -6,11 +6,13 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:26:54 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/03 12:28:08 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/03 17:37:52 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_ascii(int c)
+#include "libft.h"
+
+int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)
 		return (1);

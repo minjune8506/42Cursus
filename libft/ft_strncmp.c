@@ -6,7 +6,7 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:21:44 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/03 14:35:41 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/03 17:38:07 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	while (*s1 && *s2 && n)
 	{
-
 		n--;
 	}
 }

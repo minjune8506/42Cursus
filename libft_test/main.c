@@ -1,6 +1,7 @@
 #include "libft.h"
 #include <ctype.h>
 #include <stdio.h>
+#include <string.h>
 
 int	main(void)
 {
@@ -76,6 +77,14 @@ int	main(void)
 		}
 		index++;
 	}
+	//strlen
+	char *str;
+	str = "Hello";
+	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str), strlen(str));
+	str = "";
+	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str), strlen(str));
+	str = "123ASdqweqzxc";
+	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str), strlen(str));
 }
 
 //printf("ft_toupper : %d , to_upper : %d\n", ft_toupper(index), toupper(index));
