@@ -13,7 +13,7 @@ int	main(void)
 	{
 		if (ft_toupper(index) != toupper(index))
 		{
-				printf("error\n"); break ;
+				printf("toupper_error\n"); break ;
 		}
 		index++;
 	}
@@ -23,7 +23,7 @@ int	main(void)
 	{
 		if (ft_tolower(index) != tolower(index))
 		{
-			printf("error\n"); break ;
+			printf("tolower_error\n"); break ;
 		}
 		index++;
 	}
@@ -33,7 +33,7 @@ int	main(void)
 	{
 		if (ft_isalpha(index) != isalpha(index))
 		{
-			printf("error\n"); break ;
+			printf("isalpha_error\n"); break ;
 		}
 		index++;
 	}
@@ -43,7 +43,7 @@ int	main(void)
 	{
 		if (ft_isdigit(index) != isdigit(index))
 		{
-			printf("error\n"); break ;
+			printf("isdigit_error\n"); break ;
 		}
 		index++;
 	}
@@ -53,7 +53,7 @@ int	main(void)
 	{
 		if (ft_isalnum(index) != isalnum(index))
 		{
-			printf("error\n"); break ;
+			printf("isalnum_error\n"); break ;
 		}
 		index++;
 	}
@@ -63,7 +63,7 @@ int	main(void)
 	{
 		if (ft_isascii(index) != isascii(index))
 		{
-			printf("error\n"); break ;
+			printf("isascii_error\n"); break ;
 		}
 		index++;
 	}
@@ -73,22 +73,41 @@ int	main(void)
 	{
 		if (ft_isprint(index) != isprint(index))
 		{
-			printf("error\n"); break ;
+			printf("isprint_error\n"); break ;
 		}
 		index++;
 	}
 	//strlen
-	char *str;
-	str = "Hello";
-	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str), strlen(str));
-	str = "";
-	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str), strlen(str));
-	str = "123ASdqweqzxc";
-	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str), strlen(str));
+	char *str1;
+	
+	str1 = "HELLO";
+	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str1), strlen(str1));
+	str1 = "";
+	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str1), strlen(str1));
+	str1 = "123ASdqweqzxc";
+	printf("ft_strlen : %zu, strlen : %zu\n", ft_strlen(str1), strlen(str1));
+	
 	//ft_strlcpy
-	char *dst;
+//	char *dst;
+//	dst = 0;
+//	ft_strlcpy(dst, "HELLO", 6);
+//	printf("%s", dst);
 
-	dst = 0;
-	ft_strlcpy(dst, "HELLO", 6);
-	printf("%s", dst);
+	//ft_memset
+	printf("-------memset-------\n");
+	char *str2;
+	int arr[5];
+	int i;
+
+	str2 = (char *)malloc(4*sizeof(char));
+	ft_memset(str2, 65, 4);
+	printf("%s\n", str2);
+	ft_memset(arr, 10, 5 * sizeof(int));
+	i = 0;
+	while (i <= 4)
+		printf("%d ", arr[i++]);
+	printf("\n-------bzero--------\n");
+	//ft_bzero
+	ft_bzero(str2, 4);
+	ft_bzero(arr, 5);
 }
