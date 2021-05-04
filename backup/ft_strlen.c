@@ -6,7 +6,7 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:03:25 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/03 18:16:03 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/03 17:46:53 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t index;
+	int index;
 
 	index = 0;
-	while (s[index])
+	while (*s)
 		index++;
 	return (index);
 }

@@ -112,6 +112,7 @@ int	main(void)
 	ft_bzero(str2, 4);
 	printf("%s", str2);
 	ft_bzero(arr, 5);
+	printf("%s", str2);
 
 	//ft_memcpy
 	printf("--------memcpy---------\n");
