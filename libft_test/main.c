@@ -110,6 +110,7 @@ int	main(void)
 	
 	//ft_bzero
 	ft_bzero(str2, 4);
+	printf("%s", str2);
 	ft_bzero(arr, 5);
 
 	//ft_memcpy
