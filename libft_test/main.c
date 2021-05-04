@@ -107,7 +107,19 @@ int	main(void)
 	while (i <= 4)
 		printf("%d ", arr[i++]);
 	printf("\n-------bzero--------\n");
+	
 	//ft_bzero
 	ft_bzero(str2, 4);
 	ft_bzero(arr, 5);
+
+	//ft_memcpy
+	printf("--------memcpy---------\n");
+	char src[] = "BLOCKDMASK";
+   	char dest1[] = "";
+ 	char dest2[] = "abcdefghijklmnop";
+	memcpy(dest1, src, 2);
+	ft_memcpy(dest2, src, sizeof(char) * 10);
+	printf("src : %s\n", src);
+	printf("dest1 : %s\n", dest1);
+	printf("dest2 : %s\n", dest2);
 }
