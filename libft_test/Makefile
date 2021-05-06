@@ -21,3 +21,5 @@ clean :
 
 fclean : clean
 	rm $(TARGET)
+
+re : fclean all
