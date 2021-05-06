@@ -6,7 +6,7 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:05:52 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/03 12:33:19 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/06 16:31:38 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_atoi(const char *str)
 	int	result;
 	int	sign;
 
-	sign = 0;
+	sign = 1;
 	result = 0;
 	while (*str && is_space(*str))
 		str++;
@@ -37,6 +37,7 @@ int		ft_atoi(const char *str)
 	{
 		result *= 10;
 		result += *str - '0';
+		str++;
 	}
 	return (result * sign);
 }

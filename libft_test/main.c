@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 int	main(void)
 {
@@ -122,6 +123,34 @@ int	main(void)
 	strchr3 = "AABBCCCDDEEE";
 	strchr3 = ft_strrchr(strchr3, '\0');
 	printf("%s\n", strchr3);
+	
+	//ft_strnstr
+	printf("--------ft_strrchr---------\n");
+	char *haystack;
+	char *needle;
+
+	haystack = "THIS HAYSTACK IS HAYSTACK";
+	needle = "IS";
+	haystack = strnstr(haystack, needle, 3);
+	printf("%s\n", haystack);
+
+	//ft_strncmp
+	printf("--------ft_strncmp---------\n");
+	char *cmp1;
+	char *cmp2;
+	int	ret_cmp;
+
+	cmp1 = "HI EVERYONE";
+	cmp2 = "HI FVERY";
+	ret_cmp = ft_strncmp(cmp1, cmp2, 4);
+	printf("%d\n", ret_cmp);
+
+	//ft_atoi
+	printf("--------ft_atoi---------\n");
+	printf("atoi : %d ft_atoi : %d\n",atoi("--1234"), ft_atoi("--1234"));
+	printf("atoi : %d ft_atoi : %d\n",atoi("-+1234"), ft_atoi("-+1234"));
+	printf("atoi : %d ft_atoi : %d\n",atoi("10000000000"), ft_atoi("10000000000"));
+	printf("atoi : %d ft_atoi : %d\n",atoi("2147483648"), ft_atoi("2147483648"));
 
 	//toupper
 	int	index;
@@ -194,4 +223,24 @@ int	main(void)
 		}
 		index++;
 	}
+	//calloc
+	printf("--------ft_calloc---------\n");
+	int	*cal;
+
+	cal = (int *)calloc(2, sizeof(int));
+	printf("%d\n", cal[1]);
+	printf("%d\n", cal[2]);
+	printf("%d\n", cal[3]);
+	printf("%d\n", cal[4]);
+	printf("%d\n", cal[5]);
+	printf("%d\n", cal[6]);
+	//strdup
+	printf("--------ft_strdup---------\n");
+	char *dup;
+	char *dup_ret;
+
+	dup = "Duplicate this";
+	dup_ret = ft_strdup(dup);
+	printf("%s\n", dup_ret);
+
 }
