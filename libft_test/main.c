@@ -131,7 +131,7 @@ int	main(void)
 
 	haystack = "THIS HAYSTACK IS HAYSTACK";
 	needle = "IS";
-	haystack = strnstr(haystack, needle, 3);
+	haystack = ft_strnstr(haystack, needle, 3);
 	printf("%s\n", haystack);
 
 	//ft_strncmp
