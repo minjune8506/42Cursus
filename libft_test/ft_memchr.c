@@ -1,5 +1,16 @@
-#include <stdio.h>
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/06 13:21:58 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/05/06 13:21:59 by minjkim2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
@@ -14,19 +25,4 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		str++;
 	}
 	return (NULL);
-}
-
-int main()
-{
-  char *pch;
-  char str[] = "Example String";
-  pch = (char*)ft_memchr(str, 'p', 100);
-
-  if (pch != NULL)
-    printf("'p' found at position %ld.\n", pch - str + 1);
-  else
-    printf("'p' not found.\n");
-  printf("%s\n", str);
-
-  return 0;
 }

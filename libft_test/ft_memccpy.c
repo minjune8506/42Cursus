@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/06 13:05:57 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/05/06 13:08:16 by minjkim2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
@@ -16,15 +28,4 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 		return (dest);
 	else
 		return (NULL);
-}
-
-#include <stdio.h>
-#include <string.h>
-int	main(void)
-{
-	char str[50] = "Test String";
-	printf("Before ft_memset(): %s\n", str);
-//	ft_memccpy(str, "duplicate String",'e', 10);
-	memccpy(str, "duplicate String", 'e', 10);
-	printf("After ft_memcpy(): %s\n", str);
 }
