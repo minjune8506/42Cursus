@@ -13,7 +13,7 @@ all : $(NAME)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME) : $(OBJS)
-	    ar rcs $@ $(OBJS)
+	    ar rcs $@ $<
 
 clean :
 	rm $(OBJS)
