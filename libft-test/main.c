@@ -3,6 +3,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <fcntl.h>
+
+char	f(unsigned int i, char c)
+{
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	if (i > 100)
+		printf(" ");
+	return (c);
+}
 
 int	main(void)
 {
@@ -125,14 +135,15 @@ int	main(void)
 	printf("%s\n", strchr3);
 	
 	//ft_strnstr
-	printf("--------ft_strrchr---------\n");
+	printf("--------ft_strnstr---------\n");
 	char *haystack;
 	char *needle;
+	char *strnstr_ret;
 
-	haystack = "THIS HAYSTACK IS HAYSTACK";
+	haystack = "THIS HAYSTACK";
 	needle = "IS";
-	haystack = ft_strnstr(haystack, needle, 3);
-	printf("%s\n", haystack);
+	strnstr_ret = ft_strnstr(haystack, needle, 5);
+	printf("%s\n", strnstr_ret);
 
 	//ft_strncmp
 	printf("--------ft_strncmp---------\n");
@@ -243,4 +254,63 @@ int	main(void)
 	dup_ret = ft_strdup(dup);
 	printf("%s\n", dup_ret);
 
+	//ft_substr
+	printf("--------ft_substr---------\n");
+	char *sub_str;
+
+	sub_str = "  abcdef  ";
+	sub_str = ft_substr(sub_str, 2, 3);
+	printf("%s\n", sub_str);
+	free (sub_str);
+
+	//ft_strjoin
+	printf("--------ft_strjoin---------\n");
+	char	*join1;
+	char	*join2;
+	char	*join_ret;
+
+	join1 = "ABC";
+	join2 = "DEF";
+	join_ret = ft_strjoin(join1, join2);
+	printf("%s\n", join_ret);
+	free(join_ret);
+	
+	//ft_strtrim
+	printf("--------ft_strtrim---------\n");
+	char *trim1;
+	char *trimset;
+	char *trim_ret;
+
+	trim1 = "";
+	trimset = "c";
+	trim_ret = ft_strtrim(trim1, trimset);
+	printf("ret : %s\n", trim_ret);
+
+	//ft_split
+	printf("--------ft_split---------\n");
+	char *split = "THIS IS SPLIT";
+	char c = ' ';
+	char **ret_split = ft_split(split, c);
+	int index_split = 0;
+	while (ret_split[index_split])
+		printf("%s\n", ret_split[index_split++]);
+	
+	//ft_itoa
+	printf("--------ft_itoa---------\n");
+	printf("%s\n", ft_itoa(-2147483648));
+
+	//ft_strmapi
+	printf("--------ft_strmapi---------\n");
+	char *s = "abcde";
+	printf("%s\n", ft_strmapi(s, f));
+	
+	//ft_putchar_fd
+	int fd;
+	fd = open("test", O_RDWR, S_IRWXU);
+	ft_putchar_fd('A', fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("test str\n", fd);
+	ft_putendl_fd("putendl_fd_test", fd);
+	ft_putnbr_fd(-1234, fd);
+	ft_putchar_fd('\n', fd);
 }

@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
 int	count_word(char const *s, char c)
 {
@@ -43,14 +43,14 @@ int	count_character(char const *s, char c)
 	return (count);
 }
 
-char	malloc_error(char **ret, int i)
+char	**malloc_error(char **ret, int i)
 {
 	int j;
 
 	j = 0;
 	while (j < i)
 		free(ret[j++]);
-	free (ret);
+	free(ret);
 	return (NULL);
 }
 
@@ -83,16 +83,4 @@ char	**ft_split(char const *s, char c)
 	}
 	ret[i] = NULL;
 	return (ret);
-}
-
-int	main(void)
-{
-	char *s = "THIS IS SPLIT";
-	char c = ' ';
-	char **ret;
-	int i = 0;
-	ret = ft_split(s, c);
-	while (ret[i])
-		printf("%s\n", ret[i++]);
-
 }

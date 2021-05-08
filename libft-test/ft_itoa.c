@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 int	num_length(long long n)
 {
@@ -29,8 +29,6 @@ char	*ft_itoa(int n)
 
 	nbr = n;
 	length = num_length(nbr);
-	printf("input number : %d\n", n);
-	printf("length : %d\n", length);
 	if (!(str = (char *)malloc(sizeof(char) *(length + 1))))
 		return (NULL);
 	str[length] = '\0';
@@ -52,10 +50,4 @@ char	*ft_itoa(int n)
 		length--;
 	}
 	return (str);
-}
-
-int	main(void)
-{
-	printf("%s\n", ft_itoa(-2147483648));
-	return (0);
 }

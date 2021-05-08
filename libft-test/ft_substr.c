@@ -1,14 +1,15 @@
-#include <stdio.h>
+#include "libft.h"
 #include <stdlib.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char *ret;
 	int index;
-
+	
+	if (!s)
+		return (NULL);
 	index = 0;
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	if (!ret)
+	if (!(ret = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	while (len > 0)
 	{
@@ -19,18 +20,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	ret[index] = '\0';
 	return (ret);
-}
-
-int	main(void)
-{
-	char *s;
-	int start;
-	size_t len;
-
-	s = "  abcdef  ";
-	start = 2;
-	len = 3;
-	s = ft_substr(s, start, len);
-	printf("%s\n", s);
-	free(s);
 }
