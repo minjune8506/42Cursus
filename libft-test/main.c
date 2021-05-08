@@ -311,6 +311,8 @@ int	main(void)
 	ft_putchar_fd('\n', fd);
 	ft_putstr_fd("test str\n", fd);
 	ft_putendl_fd("putendl_fd_test", fd);
-	ft_putnbr_fd(-1234, fd);
+	ft_putnbr_fd(-2147483648, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putnbr_fd(2147483647, fd);
 	ft_putchar_fd('\n', fd);
 }
