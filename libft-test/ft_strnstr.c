@@ -23,14 +23,14 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	haystack_len = ft_strlen(haystack);
 	needle_len = ft_strlen(needle);
 	if (haystack_len < needle_len || len < needle_len)
-		return (0);
+		return (NULL);
 	if (haystack_len > len)
 		size = len;
 	else
 		size = haystack_len;
 	while (size >= needle_len)
 	{
-		if (ft_memcmp(haystack, needle, haystack_len) == 0)
+		if (ft_memcmp(haystack, needle, needle_len) == 0)
 			return ((char *)haystack);
 		haystack++;
 		size--;

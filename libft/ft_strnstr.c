@@ -6,7 +6,7 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 15:36:51 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/06 16:01:11 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/08 20:19:45 by minjune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int index;
+	size_t size;
+	size_t haystack_len;
+	size_t needle_len;
 
 	if (*needle == '\0')
 		return ((char *)haystack);
-	while (*haystack && len > 0)
+	haystack_len = ft_strlen(haystack);
+	needle_len = ft_strlen(needle);
+	if (haystack_len < needle_len || len < needle_len)
+		return (NULL);
+	if (haystack_len > len)
+		size = len;
+	else
+		size = haystack_len;
+	while (size >= needle_len)
 	{
-		if (*haystack == needle[0])
-		{
-			index = 0;
-			while (needle[index])
-			{
-				if (*haystack != needle[index])
-					break ;
-				if (needle[index] == '\0')
-					return ((char *)haystack);
-				haystack++;
-				index++;
-				len--;
-			}
-		}
+		if (ft_memcmp(haystack, needle, needle_len) == 0)
+			return ((char *)haystack);
 		haystack++;
-		len--;
+		size--;
 	}
 	return (NULL);
 }

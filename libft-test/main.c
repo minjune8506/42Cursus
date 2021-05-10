@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <limits.h>
 
 char	f(unsigned int i, char c)
 {
@@ -38,11 +39,14 @@ int	main(void)
 
 	//ft_memcpy
 	printf("--------memcpy---------\n");
-	char src[] = "BLOCKDMASK";
-   	char dest1[] = "";
- 	char dest2[] = "abcdefghijklmnop";
+	char src[] = "srcstring";
+   	char dest1[] = "abc";
+ 	char dest2[] = "abc";
+	char *ret_memcpy;
 //	memcpy(dest1, src, 2); //always overflow(??)
-	ft_memcpy(dest2, src, sizeof(char) * 10);
+	ret_memcpy = memcpy(NULL, NULL,3);
+	//memcpy(dest2, src, 3);
+	printf("ret : %s\n", ret_memcpy);
 	printf("src : %s\n", src);
 	printf("dest1 : %s\n", dest1);
 	printf("dest2 : %s\n", dest2);
@@ -70,8 +74,8 @@ int	main(void)
 	printf("--------memchr---------\n");
 	char *pch;
 	char strchr[] = "Example String";
-
-	pch = (char*)ft_memchr(strchr, 'p', 100);
+	int tab[7] = {-49, 49, 1, 0, -1, -2, 2};
+	pch = (char*)ft_memchr(tab, -1 , 7);
 	if (pch != NULL)
 		printf("'p' found at position %ld.\n", pch - strchr + 1);
 	else
@@ -142,9 +146,14 @@ int	main(void)
 
 	haystack = "THIS HAYSTACK";
 	needle = "IS";
-	strnstr_ret = ft_strnstr(haystack, needle, 5);
+	strnstr_ret = ft_strnstr("lorem ipsum dolor sit amet", "lorem", 15);
 	printf("%s\n", strnstr_ret);
-
+	strnstr_ret = ft_strnstr("lorem ipsum dolor sit amet", "ipsum", 15);
+	printf("%s\n", strnstr_ret);
+	strnstr_ret = ft_strnstr("lorem ipsum dolor sit lorem ipsum dolor", "ipsum", 35);
+	printf("%s\n", strnstr_ret);
+	strnstr_ret = ft_strnstr("lorem ipsum dolor sit amet", "", 10);
+	printf("%s\n", strnstr_ret);
 	//ft_strncmp
 	printf("--------ft_strncmp---------\n");
 	char *cmp1;
@@ -258,8 +267,10 @@ int	main(void)
 	printf("--------ft_substr---------\n");
 	char *sub_str;
 
-	sub_str = "  abcdef  ";
-	sub_str = ft_substr(sub_str, 2, 3);
+	sub_str = "abcdef";	
+	sub_str = ft_substr(sub_str, 5, 3);
+	printf("%s\n", sub_str);
+	sub_str = ft_substr(sub_str, 6, 3);
 	printf("%s\n", sub_str);
 	free (sub_str);
 
@@ -288,12 +299,12 @@ int	main(void)
 
 	//ft_split
 	printf("--------ft_split---------\n");
-	char *split = "THIS IS SPLIT";
+	char *split = "          ";
 	char c = ' ';
 	char **ret_split = ft_split(split, c);
 	int index_split = 0;
 	while (ret_split[index_split])
-		printf("%s\n", ret_split[index_split++]);
+		printf("ret :%s\n", ret_split[index_split++]);
 	
 	//ft_itoa
 	printf("--------ft_itoa---------\n");
@@ -315,4 +326,8 @@ int	main(void)
 	ft_putchar_fd('\n', fd);
 	ft_putnbr_fd(2147483647, fd);
 	ft_putchar_fd('\n', fd);
+
+	//ft_atoi
+	printf("atoi : %d\n", atoi("9223372036854775807"));
+	printf("atoi : %d\n", atoi("-214748123123213123213648"));
 }

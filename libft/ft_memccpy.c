@@ -14,12 +14,12 @@
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	int flag;
+	size_t flag;
 
 	flag = 0;
 	while (n > 0 && !flag)
 	{
-		if (*(unsigned char *)src == c)
+		if (*(unsigned char *)src == (unsigned char)c)
 			flag = 1;
 		*(unsigned char *)dest++ = *(unsigned char *)src++;
 		n--;
