@@ -6,7 +6,7 @@
 #    By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 16:12:42 by minjkim2          #+#    #+#              #
-#    Updated: 2021/05/10 16:12:43 by minjkim2         ###   ########.fr        #
+#    Updated: 2021/05/10 16:31:09 by minjkim2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 	   ft_calloc.c ft_strdup.c\
 	   ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 	   ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-BONUS_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c
-#ft_lstclear.c
+BONUS_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c\
+ft_lstiter.c ft_lstmap.c
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 INCS = libft.h
 OBJS = $(SRCS:.c=.o)

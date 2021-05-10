@@ -6,14 +6,14 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 10:08:47 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/10 10:29:09 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/10 19:32:03 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-int			count_word(char const *s, char c)
+static int	count_word(char const *s, char c)
 {
 	int		count;
 	int		i;
@@ -40,7 +40,7 @@ int			count_word(char const *s, char c)
 	return (count);
 }
 
-int			count_ch(char const *s, char c)
+static int	count_ch(char const *s, char c)
 {
 	int		count;
 	int		i;
@@ -55,7 +55,7 @@ int			count_ch(char const *s, char c)
 	return (count);
 }
 
-char		**malloc_error(char **ret, int i)
+static char	**malloc_error(char **ret, int i)
 {
 	int		j;
 

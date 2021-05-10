@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-int				num_length(long long n)
+static int		num_length(long long n)
 {
 	int			length;
 
