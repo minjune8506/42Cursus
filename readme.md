@@ -18,7 +18,7 @@ libft.a 파일 생성
 
     make
 
-bonus 함수 libft.a에 추가
+bonus(list functions) libft.a에 추가
 
     make bonus
 
