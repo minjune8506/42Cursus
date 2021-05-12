@@ -6,7 +6,7 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:21:49 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/06 13:21:50 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/10 11:23:55 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		if (*str1 != *str2)
 			return (*str1 - *str2);
-		s1++;
-		s2++;
+		str1++;
+		str2++;
 		n--;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 10:09:31 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/10 10:09:33 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/10 16:44:57 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	while (*lst)
 	{
-		ft_lstdelone(*lst, (*lst)->content);
+		ft_lstdelone(*lst, del);
 		*lst = (*lst)->next;
 	}
-	free(lst);
 }

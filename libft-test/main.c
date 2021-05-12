@@ -41,15 +41,13 @@ int	main(void)
 	printf("--------memcpy---------\n");
 	char src[] = "srcstring";
    	char dest1[] = "abc";
- 	char dest2[] = "abc";
 	char *ret_memcpy;
 //	memcpy(dest1, src, 2); //always overflow(??)
-	ret_memcpy = memcpy(NULL, NULL,3);
+	ret_memcpy = memcpy(dest1, src,3);
 	//memcpy(dest2, src, 3);
 	printf("ret : %s\n", ret_memcpy);
 	printf("src : %s\n", src);
 	printf("dest1 : %s\n", dest1);
-	printf("dest2 : %s\n", dest2);
 
 	//ft_memccpy
 	printf("--------memccpy---------\n");
@@ -140,12 +138,8 @@ int	main(void)
 	
 	//ft_strnstr
 	printf("--------ft_strnstr---------\n");
-	char *haystack;
-	char *needle;
 	char *strnstr_ret;
 
-	haystack = "THIS HAYSTACK";
-	needle = "IS";
 	strnstr_ret = ft_strnstr("lorem ipsum dolor sit amet", "lorem", 15);
 	printf("%s\n", strnstr_ret);
 	strnstr_ret = ft_strnstr("lorem ipsum dolor sit amet", "ipsum", 15);
