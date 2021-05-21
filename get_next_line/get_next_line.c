@@ -6,13 +6,11 @@
 /*   By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 14:37:20 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/21 21:27:37 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/21 21:35:14 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
 
@@ -73,22 +71,4 @@ int	get_next_line(int fd, char **line)
 			return (sep_line(line, &store[fd], new_line));
 	}
 	return (remain_content(line, &store[fd], read_size));
-}
-
-int	main(void)
-{
-	char	*line;
-	int		fd;
-	int		ret;
-
-	fd = open("./test2", O_RDONLY);
-	while ((ret = (get_next_line(fd, &line))) > 0)
-	{
-		printf("line : %s\n", line);
-		printf("ret : %d\n", ret);
-	}
-	printf("line : %s\n", line);
-	printf("ret : %d\n", ret);
-	close(fd);
-	return (0);
 }
