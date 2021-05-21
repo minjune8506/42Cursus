@@ -6,14 +6,14 @@
 /*   By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 16:36:16 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/21 16:36:17 by minjkim2         ###   ########.fr       */
+/*   Updated: 2021/05/21 21:28:10 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdlib.h>
 
-char		*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ret;
 	size_t	s1_len;
@@ -49,7 +49,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*ret;
 	int		index;
@@ -75,7 +75,7 @@ size_t	ft_strlen(const char *s)
 	return (index);
 }
 
-size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	index;
 	size_t	length;
