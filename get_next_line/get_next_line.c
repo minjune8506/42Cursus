@@ -27,17 +27,32 @@ int check_newline(char *buff)
 			return (index);
 		index++;
 	}
-	return (0);
+	return (-1);
 }
 
-int	*sep_line(char *store, int new_line)
+int	sep_line(char **line, char **store, int new_line)
 {
 	char	*temp;
 
-	temp = store + new_line + 1;
-	// printf("sep_line : %s\n", temp);
-	free(store);
-	store = temp;
+	(*store)[new_line] = 0;
+	*line = ft_strdup(*store);
+	temp = ft_strdup(*store + new_line + 1);
+	free(*store);
+	*store = temp;
+	return (1);	
+}
+
+int remain_content(char **line, char **store, int read_size)
+{
+	if (read_size < 0)
+		return (-1);
+	else if (*store)
+	{
+		*line = *store;
+		*store = 0;
+		return (0);
+	}
+	*line = ft_strdup("");
 	return (0);
 }
 
@@ -46,23 +61,18 @@ int get_next_line(int fd, char **line)
 	char		buff[BUFFER_SIZE + 1];
 	static char	*store[OPEN_MAX];
 	int			new_line;
+	int			read_size;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
 		return (-1);
-	while (read(fd, buff, BUFFER_SIZE) > 0)
+	while ((read_size = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[BUFFER_SIZE] = '\0';
 		store[fd] = ft_strjoin(store[fd], buff);
-		// printf("store[%d] : %s\n", fd, store[fd]);
-		if ((new_line = check_newline(store[fd])))
-		{
-			*line = ft_substr(store[fd], 0, new_line);
-			// printf("*line : %s\n", *line);
-			sep_line(store[fd], new_line);
-			return (1);
-		}
+		if ((new_line = check_newline(store[fd])) > 0)
+			return (sep_line(line, &store[fd], new_line));
 	}
-	return (0);
+	return (remain_content(line, &store[fd], read_size));
 }
 
 int main(void)
@@ -70,12 +80,15 @@ int main(void)
 	char *line;
 	int fd;
 	int ret;
+
 	fd = open("./test2", O_RDONLY);
 	while ((ret = (get_next_line(fd, &line))) > 0)
 	{
 		printf("line : %s\n", line);
 		printf("ret : %d\n", ret);
 	}
+	printf("line : %s\n", line);
+	printf("ret : %d\n", ret);
 	close(fd);
 	return (0);
 }
