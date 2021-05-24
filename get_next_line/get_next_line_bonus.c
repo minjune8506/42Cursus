@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 #include <unistd.h>
-#include <limits.h>
+#define FD_MAX 256
 
 int	check_newline(char *buff)
 {
@@ -33,8 +33,10 @@ int	sep_line(char **line, char **store, int new_line)
 	char	*temp;
 
 	(*store)[new_line] = '\0';
-	*line = ft_strdup(*store);
-	temp = ft_strdup(*store + new_line + 1);
+	if (!(*line = ft_strdup(*store)))
+		return (-1);
+	if (!(temp = ft_strdup(*store + new_line + 1)))
+		return (-1);
 	free(*store);
 	*store = temp;
 	return (1);
@@ -45,7 +47,11 @@ int	remain_content(char **line, char **store, int read_size)
 	int i;
 
 	if (read_size < 0)
+	{
+		if (*store)
+			free(*store);
 		return (-1);
+	}
 	if (*store && (i = check_newline(*store)) >= 0)
 		return (sep_line(line, store, i));
 	else if (*store)
@@ -54,25 +60,27 @@ int	remain_content(char **line, char **store, int read_size)
 		*store = 0;
 		return (0);
 	}
-	*line = ft_strdup("");
+	if (!(*line = ft_strdup("")))
+		return (-1);
 	return (0);
 }
 
 int	get_next_line(int fd, char **line)
 {
 	char		*buff;
-	static char	*store[OPEN_MAX];
+	static char	*store[FD_MAX];
 	int			new_line;
 	int			read_size;
 
-	if ((fd < 0) || (BUFFER_SIZE <= 0) || !line || (OPEN_MAX <= fd))
+	if ((fd < 0) || (BUFFER_SIZE <= 0) || !line || (FD_MAX <= fd))
 		return (-1);
 	if (!(buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	while ((read_size = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[read_size] = '\0';
-		store[fd] = ft_strjoin(store[fd], buff);
+		if (!(store[fd] = ft_strjoin(store[fd], buff)))
+			return (-1);
 		new_line = check_newline(store[fd]);
 		if (new_line >= 0)
 		{
