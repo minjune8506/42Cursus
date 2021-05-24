@@ -57,7 +57,7 @@ int	remain_content(char **line, char **store, int read_size)
 	else if (*store)
 	{
 		*line = *store;
-		*store = 0;
+		*store = NULL;
 		return (0);
 	}
 	if (!(*line = ft_strdup("")))
