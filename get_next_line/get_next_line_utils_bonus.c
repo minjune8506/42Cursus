@@ -13,7 +13,7 @@
 #include "get_next_line_bonus.h"
 #include <stdlib.h>
 
-size_t	ft_strlen(const char *s)
+static size_t	ft_strlen(const char *s)
 {
 	size_t index;
 
@@ -23,7 +23,7 @@ size_t	ft_strlen(const char *s)
 	return (index);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+static void		*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t i;
 
@@ -38,7 +38,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char	*ft_strdup(const char *s1)
+char			*ft_strdup(const char *s1)
 {
 	char	*ret;
 	int		index;
@@ -57,7 +57,7 @@ char	*ft_strdup(const char *s1)
 	return (ret);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char			*ft_strjoin(char *s1, char *s2)
 {
 	char	*ret;
 	size_t	s1_len;

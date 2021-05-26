@@ -14,7 +14,7 @@
 #include <unistd.h>
 #define FD_MAX 256
 
-int	check_newline(char *buff)
+static int	check_newline(char *buff)
 {
 	int index;
 
@@ -28,7 +28,7 @@ int	check_newline(char *buff)
 	return (-1);
 }
 
-int	sep_line(char **line, char **store, int new_line)
+static int	sep_line(char **line, char **store, int new_line)
 {
 	char	*temp;
 
@@ -42,7 +42,7 @@ int	sep_line(char **line, char **store, int new_line)
 	return (1);
 }
 
-int	remain_content(char **line, char **store, int read_size)
+static int	remain_content(char **line, char **store, int read_size)
 {
 	int i;
 
@@ -65,7 +65,7 @@ int	remain_content(char **line, char **store, int read_size)
 	return (0);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	char		*buff;
 	static char	*store[FD_MAX];
