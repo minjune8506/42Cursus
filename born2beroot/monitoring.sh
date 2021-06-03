@@ -32,10 +32,10 @@ printf "#Connexions TCP : "
 CONNECTIONS=`ss -t | grep -v "State" | wc -l`
 echo "$CONNECTIONS ESTABLISHED"
 printf "#User log: "
-top -b -n1 | grep "user" | awk '{print $6}'
+top -b -n1 | grep "user" | awk '{print $7}'
 IP_ADDRESS=`hostname -I | tr -d " "`
 MAC_ADDRESS=`ip addr | grep "ether" | awk '{print $2}' | tr -d " "`
 echo "#Network: IP $IP_ADDRESS ($MAC_ADDRESS)"
 printf "#Sudo : "
-SUDO_CMD=`sudo ls -l /var/log/sudo/00/00 | wc -l`
+SUDO_CMD=`ls -l /var/log/sudo/00/00 | wc -l`
 echo "$SUDO_CMD cmd"
