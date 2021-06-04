@@ -37,5 +37,5 @@ IP_ADDRESS=`hostname -I | tr -d " "`
 MAC_ADDRESS=`ip addr | grep "ether" | awk '{print $2}' | tr -d " "`
 echo "#Network: IP $IP_ADDRESS ($MAC_ADDRESS)"
 printf "#Sudo : "
-SUDO_CMD=`ls -l /var/log/sudo/00/00 | wc -l`
+SUDO_CMD=`ls -l /var/log/sudo/00/00 | grep -v "total" | wc -l`
 echo "$SUDO_CMD cmd"
