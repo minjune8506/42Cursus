@@ -22,8 +22,8 @@ top -b -n1 | grep "Cpu(s)" | awk '{printf("%.1f%%\n",$2 + $4)}'
 printf "#Last boot: "
 who -b | awk '{print $3" "$4}'
 printf "#LVM use :"
-#LVM_DATA=`lsblk | grep "lvm" | wc -l`
-if [ ${LVM_DATA} ];
+LVM_DATA=`lsblk | grep "lvm" | wc -l`
+if [ ${LVM_DATA} == 0 ];
 then
 	echo "no"
 else
