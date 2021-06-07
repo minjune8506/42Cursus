@@ -100,16 +100,16 @@ int		ft_printf(const char *str, ...)
 	return (0);
 }
 
-// int	main(void)
-// {
-// 	printf("printf : %c %c %c\n", 'a', 'b', 'c');
-// 	ft_printf("ft_printf : %c\n", 'a');
-// 	ft_printf("%4c\n", 'a');
-// 	ft_printf("%-1c\n", 'a');
-// 	ft_printf("%-4c\n", 'a');
-// 	ft_printf("ft_printf : %c\n", 'a');
-// 	ft_printf("abc%-5c\n", 'a');
-// 	ft_printf("%3c\n", 'a');
-// 	ft_printf("%4c\n", 'a');
-// 	ft_printf("ft_printf\n");
-// }
+int	main(void)
+{
+	printf("printf : %c %c %c\n", 'a', 'b', 'c');
+	ft_printf("ft_printf : %c\n", 'a');
+	ft_printf("%4c\n", 'a');
+	ft_printf("%-1c\n", 'a');
+	ft_printf("%-4c\n", 'a');
+	ft_printf("ft_printf : %c\n", 'a');
+	ft_printf("abc%-5c\n", 'a');
+	ft_printf("%3c\n", 'a');
+	ft_printf("%4c\n", 'a');
+	ft_printf("ft_printf\n");
+}

@@ -12,7 +12,7 @@
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-NAME = libftprintf.a
+NAME = a.out
 SRCS = ft_printf.c flag.c width.c utils.c
 #BONUS_SRCS =
 #BONUS_OBJS = $(BONUS_SRCS:.c=.o)
@@ -25,7 +25,8 @@ all : $(NAME)
 	$(CC) $(FLAGS) -c $< -o $@
 	
 $(NAME) : $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	$(CC) $(FLAGS) -o $@ $(OBJS)
+	#ar rcs $(NAME) $(OBJS)
 
 #bonus : $(OBJS) $(BONUS_OBJS)
 #	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)

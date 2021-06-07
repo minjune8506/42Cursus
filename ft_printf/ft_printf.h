@@ -13,7 +13,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdarg.h>
+# include <stdarg.h>
+
 typedef struct	s_format
 {
 	int percentage;
@@ -23,21 +24,21 @@ typedef struct	s_format
 }				t_format;
 
 //utils.c
-void	ft_putchar(char c);
-void	ft_putstr(const char *str);
+void			ft_putchar(char c);
+void			ft_putstr(const char *str);
 //ft_printf.c
-int		check_percentage(const char *str, t_format *format);
-void	handle_percentage(const char *str, t_format *format);
-void	print_type_c(va_list ap, t_format *format);
-int		ft_printf(const char *str, ...);
-void	init_format(t_format *format);
+int				check_percentage(const char *str, t_format *format);
+void			handle_percentage(const char *str, t_format *format);
+void			print_type_c(va_list ap, t_format *format);
+int				ft_printf(const char *str, ...);
+void			init_format(t_format *format);
 // int		main(void);
 //flag.c
-void check_flag(const char *str, t_format *format);
-void	align(t_format *format);
-void	fill_zero(const char *str);
+void			check_flag(const char *str, t_format *format);
+void			align(t_format *format);
+void			fill_zero(const char *str);
 //width.c
-void check_width(const char *str, t_format *format);
-int		ft_strchr(const char *s, int c);
-int			ft_atoi(const char *str, t_format *format);
+void			check_width(const char *str, t_format *format);
+int				ft_strchr(const char *s, int c);
+int				ft_atoi(const char *str, t_format *format);
 #endif
