@@ -35,6 +35,7 @@ void	init_format(t_format *format)
 	format->width = 0;
 	format->result = 0;
 	format->dot = 0;
+	format->precision = -1;
 }
 
 int		ft_printf(const char *str, ...)
@@ -50,6 +51,7 @@ int		ft_printf(const char *str, ...)
 		check_flag(str, &format);
 		check_width(str, &format);
 		check_dot(str, &format);
+		check_precision(str, &format);
 		if (str[format.index] == 'c')
 			print_type_c(&format);
 		else if (str[format.index] == 's')
@@ -61,17 +63,21 @@ int		ft_printf(const char *str, ...)
 
 // int	main(void)
 // {
-// 	ft_printf("%-1s\n", "abc");
-// 	ft_printf("%-2s\n", "abc");
-// 	ft_printf("%-3s\n", "abc");
-// 	ft_printf("%-4s\n", "abc");
-// 	ft_printf("%-5s\n", "abc");
-// 	ft_printf("%-6s\n", "abc");
+// 	ft_printf("%-5.s\n", "abc");
+// 	ft_printf("%-5.0s\n", "abc");
+// 	ft_printf("%-5.1s\n", "abc");
+// 	ft_printf("%-5.2s\n", "abc");
+// 	ft_printf("%-5.3s\n", "abc");
+// 	ft_printf("%-5.4s\n", "abc");
+// 	ft_printf("%-5.5s\n", "abc");
+// 	ft_printf("%-5.6s\n", "abc");
 // 	printf("=====printf=====\n");
-// 	printf("%-1s\n", "abc");
-// 	printf("%-2s\n", "abc");
-// 	printf("%-3s\n", "abc");
-// 	printf("%-4s\n", "abc");
-// 	printf("%-5s\n", "abc");
-// 	printf("%-6s\n", "abc");
+// 	printf("%-5.s\n", "abc");
+// 	printf("%-5.0s\n", "abc");
+// 	printf("%-5.1s\n", "abc");
+// 	printf("%-5.2s\n", "abc");
+// 	printf("%-5.3s\n", "abc");
+// 	printf("%-5.4s\n", "abc");
+// 	printf("%-5.5s\n", "abc");
+// 	printf("%-5.6s\n", "abc");
 //  }

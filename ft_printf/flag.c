@@ -32,19 +32,6 @@ void	check_flag(const char *str, t_format *format)
 	}
 }
 
-void	align(t_format *format)
-{
-	int length;
-
-	length = 1;
-	while (length < format->width)
-	{
-		ft_putchar(' ');
-		length++;
-		format->result++;
-	}
-	return ;
-}
 //void	fill_zero(const char *str)
 //{
 

@@ -20,3 +20,11 @@ void	check_dot(const char *str, t_format *format)
 		format->index++;
 	}
 }
+
+void	check_precision(const char *str, t_format *format)
+{
+	if (!ft_strchr("cspduxX%", str[format->index] && is_digit(str, format) && format->dot == 1))
+	{
+		format->precision = ft_atoi(str, format);
+	}
+}

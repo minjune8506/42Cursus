@@ -11,27 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-
-int		is_digit(const char *str, t_format *format)
-{
-	if (str[format->index] >= '0' && str[format->index] <= '9')
-		return (1);
-	return (0);
-}
-
-int		ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)c)
-			return (1);
-		s++;
-	}
-	if (*s == (char)c)
-		return (1);
-	return (0);
-}
 
 int		ft_atoi(const char *str, t_format *format)
 {
