@@ -22,6 +22,8 @@ typedef struct	s_format
 	int	index;
 	int flag;
 	int	width;
+	int	result;
+	int dot;
 }				t_format;
 
 //utils.c
@@ -31,6 +33,7 @@ void			ft_putstr(const char *str);
 int				check_percentage(const char *str, t_format *format);
 void			handle_percentage(const char *str, t_format *format);
 void			print_type_c(t_format *format);
+void			print_type_s(t_format *format);
 int				ft_printf(const char *str, ...);
 void			init_format(t_format *format);
 // int		main(void);
@@ -42,4 +45,6 @@ void			fill_zero(const char *str);
 void			check_width(const char *str, t_format *format);
 int				ft_strchr(const char *s, int c);
 int				ft_atoi(const char *str, t_format *format);
+//dot.c
+void			check_dot(const char *str, t_format *format);
 #endif

@@ -1,41 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   dot.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/07 11:19:41 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/06/07 11:19:41 by minjkim2         ###   ########.fr       */
+/*   Created: 2021/06/08 09:44:28 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/06/08 09:44:29 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
 
-void	ft_putchar(char c)
+void	check_dot(const char *str, t_format *format)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putstr(const char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
+	if (str[format->index] == '.')
 	{
-		ft_putchar(str[i]);
-		i++;
+		format->dot = 1;
+		format->index++;
 	}
-}
-
-int		ft_strlen(const char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }

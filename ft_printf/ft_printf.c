@@ -46,6 +46,7 @@ void	handle_percentage(const char *str, t_format *format)
 		{
 			ft_putchar(str[format->index]);
 			format->index++;
+			format->result++;
 		}
 	}
 }
@@ -56,34 +57,52 @@ void	init_format(t_format *format)
 	format->index = 0;
 	format->flag = 0;
 	format->width = 0;
+	format->result = 0;
+	format->dot = 0;
 }
 
-void	print_type_c(t_format *format)
+void			print_type_c(t_format *format)
 {
 	if (format->flag == 1)
 	{
 		ft_putchar(va_arg(format->ap, int));
 		align(format);
-		format->width = 0;
-		format->flag = 0;
 	}
 	else if (format->flag == 0 || format->width != 0)
 	{
 		align(format);
 		ft_putchar(va_arg(format->ap, int));
-		format->width = 0;
 	}
 	else
 		ft_putchar(va_arg(format->ap, int));
+	format->width = 0;
+	format->flag = 0;
 	format->index++;
+	format->result++;
+}
+
+void	print_type_s(t_format *format)
+{
+	if (format->flag == 1)
+	{
+		ft_putstr(va_arg(format->ap, char *));
+		align(format);
+	}
+	else if (format->flag == 0 || format->width != 0)
+	{
+		align(format);
+		ft_putstr(va_arg(format->ap, char *));
+	}
+	format->width = 0;
+	format->flag = 0;
+	format->index++;
+	format->result++;
 }
 
 int		ft_printf(const char *str, ...)
 {
 	t_format	format;
-	int i;
 
-	i = 0;
 	va_start(format.ap, str);
 	init_format(&format);
 	while (str[format.index])
@@ -92,29 +111,31 @@ int		ft_printf(const char *str, ...)
 		handle_percentage(str, &format);
 		check_flag(str, &format);
 		check_width(str, &format);
+		check_dot(str, &format);
 		if (str[format.index] == 'c')
-		{
 			print_type_c(&format);
-			i++;
-		}
 		else if (str[format.index] == 's')
 		{
-			// print_type_s(&format);
+			print_type_s(&format);
 		}
 	}
 	va_end(format.ap);
-	return (i);
+	return (format.result);
 }
 
 // int	main(void)
 // {
-// 	ft_printf("printf : %-2c %3c %-2c\n", 'a', 'b', 'c');
-// 	ft_printf("ft_printf : %c\n", 'a');
-// 	ft_printf("%4c\n", 'a');
-// 	ft_printf("%-1c\n", 'a');
-// 	ft_printf("ft_printf : %c\n", 'a');
-// 	ft_printf("abc%-5c\n", 'a');
-// 	ft_printf("%3c %c", 'a', 'b');
-// 	ft_printf("%4c\n", 'a');
-// 	ft_printf("%c %2c %-2c %5c", 'a', 'b', 'c', 'd');
-// }
+// 	ft_printf("%-1s\n", "abc");
+// 	ft_printf("%-2s\n", "abc");
+// 	ft_printf("%-3s\n", "abc");
+// 	ft_printf("%-4s\n", "abc");
+// 	ft_printf("%-5s\n", "abc");
+// 	ft_printf("%-6s\n", "abc");
+// 	printf("=====printf=====\n");
+// 	printf("%-1s\n", "abc");
+// 	printf("%-2s\n", "abc");
+// 	printf("%-3s\n", "abc");
+// 	printf("%-4s\n", "abc");
+// 	printf("%-5s\n", "abc");
+// 	printf("%-6s\n", "abc");
+//  }

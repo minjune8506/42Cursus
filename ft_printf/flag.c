@@ -14,7 +14,7 @@
 
 void	check_flag(const char *str, t_format *format)
 {
-	if (str[format->index] == '-')
+	while (str[format->index] == '-')
 	{
 		format->flag = 1;
 		format->index++;
@@ -25,7 +25,7 @@ void	check_flag(const char *str, t_format *format)
 	//	blank(str);
 	// else if (str[format->index] == '#')
 	// 	nontation(str);
-	else if (str[format->index] == '0')
+	while (str[format->index] == '0')
 	{
 		format->flag = 2;
 		format->index++;
@@ -34,13 +34,14 @@ void	check_flag(const char *str, t_format *format)
 
 void	align(t_format *format)
 {
-	int i;
+	int length;
 
-	i = 1;
-	while (i < format->width)
+	length = 1;
+	while (length < format->width)
 	{
 		ft_putchar(' ');
-		i++;
+		length++;
+		format->result++;
 	}
 	return ;
 }

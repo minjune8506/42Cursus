@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int		is_digit(const char *str, t_format *format)
 {
@@ -51,5 +52,15 @@ void	check_width(const char *str, t_format *format)
 	if (!ft_strchr("cspduxX%", str[format->index] && is_digit(str, format)))
 	{
 		format->width = ft_atoi(str, format);
+	}
+	else if (str[format->index] == '*')
+	{
+		format->width = va_arg(format->ap, int);
+		if (format->width < 0)
+		{
+			format->flag = 1;
+			format->width *= -1;
+		}
+		format->index++;
 	}
 }
