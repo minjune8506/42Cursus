@@ -6,7 +6,7 @@
 #    By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:55:57 by minjkim2          #+#    #+#              #
-#    Updated: 2021/06/08 09:13:13 by minjkim2         ###   ########.fr        #
+#    Updated: 2021/06/08 12:43:03 by minjkim2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = libftprintf.a
 OUT = a.out
 #a.out
 #libftprintf.a
-SRCS = ft_printf.c flag.c width.c utils.c dot.c
+SRCS = ft_printf.c flag.c width.c utils.c dot.c percentage.c print.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)

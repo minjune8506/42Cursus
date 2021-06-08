@@ -27,30 +27,6 @@ malloc, free, write, va_start, va_arg, va_copy, va_end
 */
 // %[flag][width][.precision][length]서식지정자
 
-int		check_percentage(const char *str, t_format *format)
-{
-	if (str[format->index] == '%')
-	{
-		return (1);
-	}
-	return (0);
-}
-
-void	handle_percentage(const char *str, t_format *format)
-{
-	if (format->percentage)
-		format->index++;
-	else
-	{
-		while (str[format->index] != '%' && str[format->index])
-		{
-			ft_putchar(str[format->index]);
-			format->index++;
-			format->result++;
-		}
-	}
-}
-
 void	init_format(t_format *format)
 {
 	format->percentage = 0;
@@ -59,44 +35,6 @@ void	init_format(t_format *format)
 	format->width = 0;
 	format->result = 0;
 	format->dot = 0;
-}
-
-void			print_type_c(t_format *format)
-{
-	if (format->flag == 1)
-	{
-		ft_putchar(va_arg(format->ap, int));
-		align(format);
-	}
-	else if (format->flag == 0 || format->width != 0)
-	{
-		align(format);
-		ft_putchar(va_arg(format->ap, int));
-	}
-	else
-		ft_putchar(va_arg(format->ap, int));
-	format->width = 0;
-	format->flag = 0;
-	format->index++;
-	format->result++;
-}
-
-void	print_type_s(t_format *format)
-{
-	if (format->flag == 1)
-	{
-		ft_putstr(va_arg(format->ap, char *));
-		align(format);
-	}
-	else if (format->flag == 0 || format->width != 0)
-	{
-		align(format);
-		ft_putstr(va_arg(format->ap, char *));
-	}
-	format->width = 0;
-	format->flag = 0;
-	format->index++;
-	format->result++;
 }
 
 int		ft_printf(const char *str, ...)
@@ -115,9 +53,7 @@ int		ft_printf(const char *str, ...)
 		if (str[format.index] == 'c')
 			print_type_c(&format);
 		else if (str[format.index] == 's')
-		{
 			print_type_s(&format);
-		}
 	}
 	va_end(format.ap);
 	return (format.result);
