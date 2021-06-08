@@ -17,6 +17,7 @@
 
 typedef struct	s_format
 {
+	va_list ap;
 	int percentage;
 	int	index;
 	int flag;
@@ -29,7 +30,7 @@ void			ft_putstr(const char *str);
 //ft_printf.c
 int				check_percentage(const char *str, t_format *format);
 void			handle_percentage(const char *str, t_format *format);
-void			print_type_c(va_list ap, t_format *format);
+void			print_type_c(t_format *format);
 int				ft_printf(const char *str, ...);
 void			init_format(t_format *format);
 // int		main(void);

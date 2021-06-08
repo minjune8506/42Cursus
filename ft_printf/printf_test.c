@@ -19,4 +19,12 @@ int	main(void)
 	printf("%3c\n", 'a');
 	printf("%4c\n", 'a');
 	//printf("%0c\n", 'a');
+	printf("%s\n", "abc");
+	printf("%-s\n", "bcd");
+	printf("%-4s\n", "bcd");
+	printf("%5s\n", "bcd");
+	//서식 지정자 s의 경우 '0'flag 불가능
+	int i = 0;
+	i = printf("%c, %c", 'a', 'b');
+	printf("%d", i);
 }

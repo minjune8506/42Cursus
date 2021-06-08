@@ -6,13 +6,13 @@
 #    By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:55:57 by minjkim2          #+#    #+#              #
-#    Updated: 2021/06/07 18:55:58 by minjkim2         ###   ########.fr        #
+#    Updated: 2021/06/07 23:43:52 by minjune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-NAME = a.out
+NAME = libftprintf.a
 SRCS = ft_printf.c flag.c width.c utils.c
 #BONUS_SRCS =
 #BONUS_OBJS = $(BONUS_SRCS:.c=.o)
@@ -25,11 +25,11 @@ all : $(NAME)
 	$(CC) $(FLAGS) -c $< -o $@
 	
 $(NAME) : $(OBJS)
-	$(CC) $(FLAGS) -o $@ $(OBJS)
-	#ar rcs $(NAME) $(OBJS)
+#	$(CC) $(FLAGS) -o $@ $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 #bonus : $(OBJS) $(BONUS_OBJS)
-#	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+	#ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 clean :
 	rm -f $(OBJS) $(BONUS_OBJS)
