@@ -62,22 +62,23 @@ void	get_width(t_format *format, const char *str)
 
 void	get_prec(t_format *format, const char *str)
 {
-	check_prec(format, str);
+	check_dot(format, str);
 	if (format->dot)
 	{
 		if (!(ft_strchr("cspdiuxX%", str[format->index])) && is_digit(str, format))
 		{
-			format->precision = ft_atoi(str, format);
+			format->prec = ft_atoi(str, format);
 		}
 		else if (ft_strchr("cspdiuxX%", str[format->index]))
 		{
-			format->precision = 0;
+			format->prec = 0;
 		}
 		else if (str[format->index] == '*')
 		{
-			format->precision = va_arg(format->ap, int);
-			if (format->precision < 0)
-				format->precision = 0;
+			format->prec = va_arg(format->ap, int);
+			if (format->prec < 0)
+				format->prec = -1;
+			format->index++;
 		}
 	}
 }

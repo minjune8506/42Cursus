@@ -14,51 +14,52 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-void	*ft_memset(void *s, int c, size_t n)
-{
-	unsigned char *ptr;
-
-	ptr = s;
-	while (n)
-	{
-		*ptr++ = (unsigned char)c;
-		n--;
-	}
-	return (s);
-}
-
-char	*ft_malloc(t_format *format, int str_len)
-{
-	char *ret;
-
-	if (format->width >= str_len)
-	{
-		ret = (char *)malloc(format->width + 1);
-		ft_memset(ret, ' ', format->width + 1);
-		ret[format->width] = '\0';
-	}
-	else
-	{
-		ret = (char *)malloc(str_len + 1);
-		ft_memset(ret, ' ', str_len + 1);
-		ret[str_len] = '\0';
-	}
-	return (ret);
-}
-
 void	type_c(t_format *format)
 {
-	char *c_string;
+	char *ret;
 	int length;
 
-	c_string = ft_malloc(format, 1);
-	length = ft_strlen(c_string);
+	ret = ft_malloc(format, 1);
+	length = ft_strlen(ret);
 	if (format->flag == 0)
-		c_string[length - 1] = va_arg(format->ap, int);
+		ret[length - 1] = va_arg(format->ap, int);
 	else
-		c_string[0] = va_arg(format->ap, int);
-	ft_putstr(c_string, length);
-	free(c_string);
+		ret[0] = va_arg(format->ap, int);
+	ft_putstr(ret, length);
+	free(ret);
 	format->ret += length;
 	format->index++;
+}
+
+void	type_s(t_format *format)
+{
+	char *s_string;
+	char *ret;
+	int str_len;
+
+	s_string = va_arg(format->ap, char *);
+	if (!(s_string))
+		s_string = "(null)";
+	str_len = ft_strlen(s_string);
+	if (format->prec > -1 && format->prec < str_len)
+	{
+		s_string = ft_substr(s_string, 0, format->prec);
+		str_len = ft_strlen(s_string);
+	}
+	ret = ft_malloc(format, str_len);
+	if (format->flag == 0)
+		ft_memrcpy(ret, s_string, ft_strlen(ret), str_len);
+	else
+		ft_memcpy(ret, s_string, ft_strlen(s_string));
+	if (format->prec > -1 && format->prec < str_len)
+		free(s_string);
+	ft_putstr(ret, ft_strlen(ret));
+	free(ret);
+	format->index++;
+	format->ret += ft_strlen(ret);
+}
+
+void	type_d(t_format *format)
+{
+	
 }

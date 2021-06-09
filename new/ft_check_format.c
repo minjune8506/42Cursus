@@ -20,7 +20,7 @@ void check_per(t_format *format, const char *str)
 		format->per = 0;
 }
 
-void	check_prec(t_format *format, const char *str)
+void	check_dot(t_format *format, const char *str)
 {
 	if (str[format->index] == '.')
 	{

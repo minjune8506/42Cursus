@@ -18,7 +18,7 @@ void	init_format(t_format *format)
 	format->flag = 0;
 	format->width = 0;
 	format->dot = 0;
-	format->precision = -1;
+	format->prec = -1;
 	format->index = 0;
 	format->ret = 0;
 }
@@ -44,30 +44,51 @@ int	ft_printf(const char *str, ...)
 		get_format(&format, str);
 		if (str[format.index] == 'c')
 			type_c(&format);
+		else if (str[format.index] == 's')
+			type_s(&format);
+		else if (str[format.index] == 'd')
+			type_d(&format);
 	}
 	// printf("format->per : %d\n", format.per);
 	// printf("format->flag : %d\n", format.flag);
 	// printf("format->width : %d\n", format.width);
 	// printf("format->dot : %d\n", format.dot);
-	// printf("format->precision : %d\n", format.precision);
+	// printf("format->precision : %d\n", format.prec);
 	// printf("format->ret : %d\n", format.ret);
 	return (format.ret);
 }
 
-// 	int	main(void)
+// int	main(void)
 // 	{
-// 		ft_printf("-->|%-4.c|<--\n", -135);
-// 		ft_printf("-->|%-4.c|<--\n", -1);
-// 		ft_printf("-->|%-4.c|<--\n", 0);
-// 		ft_printf("-->|%-4.c|<--\n", 1);
-// 		ft_printf("-->|%-4.c|<--\n", 13);
-// 		ft_printf("-->|%-4.c|<--\n", 198);
-// 		printf("---------\n");
-// 		printf("-->|%-4.c|<--\n", -135);
-// 		printf("-->|%-4.c|<--\n", -1);
-// 		printf("-->|%-4.c|<--\n", 0);
-// 		printf("-->|%-4.c|<--\n", 1);
-// 		printf("-->|%-4.c|<--\n", 13);
-// 		printf("-->|%-4.c|<--\n", 198);
-		
-// 	}
+		// ft_printf("-->|%-1.s|<--\n", -135);
+		// ft_printf("-->|%-1.s|<--\n", -1);
+		// ft_printf("-->|%-1.s|<--\n", 0);
+		// ft_printf("-->|%-1.s|<--\n", 1);
+		// ft_printf("-->|%-1.s|<--\n", 13);
+		// ft_printf("-->|%-1.s|<--\n", 198);
+		// printf("---------\n");
+		// printf("-->|%-1.s|<--\n", -135);
+		// printf("-->|%-1.s|<--\n", -1);
+		// printf("-->|%-1.s|<--\n", 0);
+		// printf("-->|%-1.s|<--\n", 1);
+		// printf("-->|%-1.s|<--\n", 13);
+		// printf("-->|%-1.s|<--\n", 198);
+		// 	ft_printf("%s\n", "HELLO");
+		// 	ft_printf("%6.s\n", "HELLO");
+		// 	ft_printf("%3.s\n", "HELLO");
+		// 	ft_printf("%4.2s\n", "HELLO");
+		// 	ft_printf("%4.6s\n", "HELLO");
+		// 	printf("------------\n");
+		// 	printf("%s\n", "HELLO");
+		// 	printf("%6.s\n", "HELLO");
+		// 	printf("%3.s\n", "HELLO");
+		// 	printf("%4.2s\n", "HELLO");
+		// 	printf("%4.6s\n", "HELLO");
+	// 	ft_printf("%.*s\n", -4, "HELLO");
+	// 	printf("%.*s\n", -4, "HELLO");
+	// ft_printf("-->|%-16.*s|<--\n", -4, "abc");
+	// ft_printf("-->|%-16.*s|<--\n", -4, "");
+	// printf("--------------\n");
+	// printf("-->|%-16.*s|<--\n", -4, "abc");
+	// printf("-->|%-16.*s|<--\n", -4, "");
+	// }

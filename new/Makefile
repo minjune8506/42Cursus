@@ -16,7 +16,7 @@ NAME = libftprintf.a
 OUT = a.out
 #a.out
 #libftprintf.a
-SRCS = ft_printf.c ft_check_format.c ft_util.c ft_get_format.c ft_type.c
+SRCS = ft_printf.c ft_check_format.c ft_util.c ft_get_format.c ft_type.c ft_memory.c ft_util2.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -33,7 +33,7 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
-	rm -f $(LIB)
+	rm -f $(OUT)
 
 re : fclean all
 
