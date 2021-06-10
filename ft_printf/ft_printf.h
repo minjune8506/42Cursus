@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/07 09:16:00 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/06/07 09:16:01 by minjkim2         ###   ########.fr       */
+/*   Created: 2021/06/08 19:53:40 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/06/08 19:53:41 by minjkim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,53 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <stdlib.h>
 
-typedef struct	s_format
+typedef	struct s_format
 {
 	va_list ap;
-	int percentage;
-	int	index;
-	int flag;
-	int	width;
-	int	result;
+	int per;
+	int flag_minus;
+	int flag_zero;
+	int flag_plus;
+	int flag_blank;
+	int flag_sharp;
+	int width;
 	int dot;
-	int str_len;
-	int	precision;
+	int prec;
+	int index;
+	int ret;
 }				t_format;
 
-//utils.c
-void			ft_putchar(char c);
-void			ft_putstr(const char *str);
-int				ft_strlen(const char *str);
-int				is_digit(const char *str, t_format *format);
-int				ft_strchr(const char *s, int c);
 //ft_printf.c
-int				ft_printf(const char *str, ...);
-void			init_format(t_format *format);
-//flag.c
-void			check_flag(const char *str, t_format *format);
-//width.c
-int				ft_atoi(const char *str, t_format *format);
-void			check_width(const char *str, t_format *format);
-//dot.c
-void			check_dot(const char *str, t_format *format);
-void	check_precision(const char *str, t_format *format);
-//percentage.c
-int				check_percentage(const char *str, t_format *format);
-void			handle_percentage(const char *str, t_format *format);
-//print.c
-void			print_type_c(t_format *format);
-void			align_c(t_format *format);
-void			print_type_s(t_format *format);
-void			align_s(t_format *format);
-void	ft_putstr_s(t_format *format, const char *s_str);
+int		ft_printf(const char *str, ...);
+void	init_format(t_format *format);
+void	get_format(t_format *format, const char *str);
+//check_format.c
+void	check_per(t_format *format, const char *str);
+void	check_dot(t_format *format, const char *str);
+//get_format.c
+void	get_per(t_format *format, const char *str);
+void	get_flag(t_format *format, const char *str);
+void	get_width(t_format *format, const char *str);
+void	get_prec(t_format *format, const char *str);
+//type.c
+void	type_c(t_format *format);
+void	type_s(t_format *format);
+void	type_d(t_format *format);
+//memory.c
+void	*ft_memset(void *s, int c, size_t n);
+char	*ft_malloc(t_format *format, int str_len);
+void	*ft_memrcpy(void *dest, const void *src, size_t r_len, size_t s_len);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+//utils.c
+void	ft_putchar(char c);
+int		ft_atoi(const char *str, t_format *format);
+int		is_digit(const char *str, t_format *format);
+int		ft_strchr(const char *s, int c);
+void	ft_putstr(const char *str, int length);
+int		ft_strlen(const char *str);
+//utils2.c
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 #endif

@@ -30,14 +30,18 @@ void	get_per(t_format *format, const char *str)
 
 void	get_flag(t_format *format, const char *str)
 {
-	while (str[format->index] == '-')
+	while (ft_strchr("-+0 #", str[format->index]))
 	{
-		format->flag = 1;
-		format->index++;
-	}
-	while (str[format->index] == '0')
-	{
-		format->flag = 2;
+		if (str[format->index] == '-')
+			format->flag_minus = 1;
+		else if (str[format->index] == '0')
+			format->flag_zero = 1;
+		else if (str[format->index] == '+')
+			format->flag_plus = 1;
+		else if (str[format->index] == '#')
+			format->flag_sharp = 1;
+		else if (str[format->index] == ' ')
+			format->flag_blank = 1;
 		format->index++;
 	}
 }
@@ -53,7 +57,7 @@ void	get_width(t_format *format, const char *str)
 		format->width = va_arg(format->ap, int);
 		if (format->width < 0)
 		{
-			format->flag = 1;
+			format->flag_minus = 1;
 			format->width *= -1;
 		}
 		format->index++;

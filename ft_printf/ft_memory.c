@@ -33,13 +33,20 @@ char	*ft_malloc(t_format *format, int str_len)
 	if (format->width >= str_len)
 	{
 		ret = (char *)malloc(format->width + 1);
-		ft_memset(ret, ' ', format->width + 1);
+		//if (!format->flag_minus && format->flag_zero)
+		if (!format->flag_minus && format->flag_zero && format->prec == -1)
+			ft_memset(ret, '0', format->width + 1);
+		else
+			ft_memset(ret, ' ', format->width + 1);
 		ret[format->width] = '\0';
 	}
 	else
 	{
 		ret = (char *)malloc(str_len + 1);
-		ft_memset(ret, ' ', str_len + 1);
+		if (!format->flag_minus && format->flag_zero && format->prec == -1)
+			ft_memset(ret, '0', str_len + 1);
+		else
+			ft_memset(ret, ' ', str_len + 1);
 		ret[str_len] = '\0';
 	}
 	return (ret);
@@ -62,15 +69,12 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 void	*ft_memrcpy(void *dest, const void *src, size_t r_len, size_t s_len)
 {
-	size_t i;
-
 	if (!dest && !src)
 		return (NULL);
-	i = s_len;
-	while (i > 0)
-	{
-		((unsigned char *)dest)[r_len - 1] = ((unsigned char *)src)[i - 1];
-		i--;
+	while (s_len > 0)
+	{	
+		((unsigned char *)dest)[r_len - 1] = ((unsigned char *)src)[s_len - 1];
+		s_len--;
 		r_len--;
 	}
 	return (dest);
