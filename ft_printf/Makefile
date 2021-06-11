@@ -14,9 +14,9 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 OUT = a.out
-#a.out
-#libftprintf.a
-SRCS = ft_printf.c ft_check_format.c ft_util.c ft_get_format.c ft_type.c ft_memory.c ft_util2.c
+SRCS = ft_printf.c ft_check_format.c ft_get_format.c \
+ft_type.c ft_typed_utils.c ft_memory.c \
+ft_utils.c ft_utils2.c ft_utils3.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)

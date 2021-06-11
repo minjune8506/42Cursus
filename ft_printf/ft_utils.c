@@ -39,19 +39,6 @@ int		ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-int		ft_atoi(const char *str, t_format *format)
-{
-	int		result;
-
-	result = 0;
-	while (str[format->index] >= '0' && str[format->index] <= '9')
-	{
-		result *= 10;
-		result += str[format->index] - '0';
-		format->index++;
-	}
-	return (result);
-}
 
 int		is_digit(const char *str, t_format *format)
 {
