@@ -16,29 +16,28 @@
 char *check_sign(char *ret)
 {
 	int i;
+	char temp;
 
 	i = 0;
 	while (ret[i])
 	{
-		if (ret[i] == '-')
+		if (ft_strchr("-+ ", ret[i]))
 		{
+			temp = ret[i];
 			ret[i] = '0';
-			ret[0] = '-';
+			ret[0] = temp;
 		}
-		else if (ret[i] == '+')
+		else if (ft_strchr("xX", ret[i]))
 		{
+			temp = ret[i];
 			ret[i] = '0';
-			ret[0] = '+';
-		}
-		else if (ret[i] == ' ')
-		{
-			ret[i] = '0';
-			ret[0] = ' ';
+			ret[1] = temp;
 		}
 		i++;
 	}
 	return (ret);
 }
+
 char *create_pre_str(t_format *format, char *d_string, int num_len)
 {
 	char *ret;
@@ -76,8 +75,16 @@ char *control_flag(char *d_string, int num, t_format *format)
 		flag_str = ft_strjoin("+", d_string);
 		free(d_string);
 	}
+	else if (format->flag_sharp && num != 0)
+	{
+		if (format->type == 'x')
+			flag_str = ft_strjoin("0x", d_string);
+		if (format->type == 'X')
+			flag_str = ft_strjoin("0X", d_string);
+		free(d_string);
+	}
     else
-        flag_str = d_string;
+		flag_str = d_string;
     return (flag_str);
 }
 
@@ -89,7 +96,8 @@ char *minus_flag(char *ret, char *d_string, t_format *format)
 		{
 			ft_memset(ret, '0', ft_strlen(ret));
 			ft_memrcpy(ret, d_string, ft_strlen(ret), ft_strlen(d_string));
-			if (format->type == 'd')
+			//마지막에 d i x X 제외한 케이스로 변경
+			if (format->type == 'd' || format->type == 'i' || format->type == 'x' || format->type == 'X')
 				ret = check_sign(ret);
 		}
 		else

@@ -74,3 +74,53 @@ void type_d(t_format *format)
 	format->ret += ft_strlen(ret);
 	free_all(ret, d_string);
 }
+
+void type_u(t_format *format)
+{
+	char *u_string;
+	char *ret;
+	unsigned int num;
+
+	num = va_arg(format->ap, unsigned int);
+	u_string = ft_itoa_u(num);
+	if (format->prec > -1 && format->prec >= num_len_base(num, 10))
+		u_string = create_pre_str(format, u_string, num_len_base(num, 10));
+	else if (format->prec == 0 && num == 0)
+	{
+		free(u_string);
+		u_string = ft_strdup("");
+	}
+	ret = ft_malloc(format, ft_strlen(u_string));
+	ret = minus_flag(ret, u_string, format);
+	ft_putstr(ret, ft_strlen(ret));
+	format->index++;
+	format->ret += ft_strlen(ret);
+	free_all(ret, u_string);
+}
+
+void type_x(t_format *format)
+{
+	char *x_string;
+	char *ret;
+	unsigned int num;
+
+	num = va_arg(format->ap, unsigned int);
+	if (format->type == 'x')
+		x_string = ft_itoa_base(num, "0123456789abcdef");
+	else
+		x_string = ft_itoa_base(num, "0123456789ABCDEF");
+	if (format->prec == 0 && num == 0)
+	{
+		free(x_string);
+		x_string = ft_strdup("");
+	}
+	else if (format->prec >= -1 && format->prec >= ft_strlen(x_string))
+		x_string = create_pre_str(format, x_string, ft_strlen(x_string));
+	x_string = control_flag(x_string, num, format);	
+	ret = ft_malloc(format, ft_strlen(x_string));
+	ret = minus_flag(ret, x_string, format);
+	ft_putstr(ret, ft_strlen(ret));
+	format->index++;
+	format->ret += ft_strlen(ret);
+	free_all(ret, x_string);
+}

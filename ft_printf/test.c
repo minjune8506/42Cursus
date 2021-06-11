@@ -2,11 +2,11 @@
 
 int	main(void)
 {
-	printf("% 7.5d/% 7.5d\n", 1000, -1000);
-	printf("%+7.5d/%+7.5d\n", 1000, -1000);
-	printf("%07.5d/%07.5d\n", 1000, -1000);
-	printf("%-7.5d/%-7.5d\n", 1000, -1000);
-	printf("-----------------------------\n");
-	printf("%0 10d\n", 1000);
-	printf("%.d\n", 0);
+	printf("%l%\n"); //precision무시, width값 적용, flag안들어옴, lenngth무시
+	printf("%10.1%\n");
+	printf("%10.2%\n");
+	printf("%10.3%\n");
+	printf("%10.4%\n");
+
+	printf("i : %i\n", 010);
 }

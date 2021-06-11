@@ -48,7 +48,7 @@ void	get_flag(t_format *format, const char *str)
 
 void	get_width(t_format *format, const char *str)
 {
-	if (!(ft_strchr("cspduxX%", str[format->index])) && is_digit(str, format))
+	if (!(ft_strchr("cspdiuxX%", str[format->index])) && is_digit(str, format))
 	{
 		format->width = ft_atoi(str, format);
 	}
@@ -70,13 +70,9 @@ void	get_prec(t_format *format, const char *str)
 	if (format->dot)
 	{
 		if (!(ft_strchr("cspdiuxX%", str[format->index])) && is_digit(str, format))
-		{
 			format->prec = ft_atoi(str, format);
-		}
 		else if (ft_strchr("cspdiuxX%", str[format->index]))
-		{
 			format->prec = 0;
-		}
 		else if (str[format->index] == '*')
 		{
 			format->prec = va_arg(format->ap, int);

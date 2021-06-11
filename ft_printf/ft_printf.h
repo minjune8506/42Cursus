@@ -50,12 +50,19 @@ void			get_type(t_format *format, const char *str);
 void			type_c(t_format *format);
 void			type_s(t_format *format);
 void			type_d(t_format *format);
+void			type_u(t_format *format);
+void			type_x(t_format *format);
 //typed_utils.c
 char			*check_sign(char *ret);
 char			*create_pre_str(t_format *format, char *d_string, int num_len);
 char			*minus_flag(char *ret, char *d_string, t_format *format);
-void			free_all(char *ret, char *d_string);
 char			*control_flag(char *d_string, int num, t_format *format);
+void			free_all(char *ret, char *d_string);
+//typeu_utils.c
+int				num_len_base(unsigned int n, int base);
+char			*ft_itoa_u(unsigned int n);
+//typex_utils.c
+char			*ft_itoa_base(unsigned int num, char *str);
 //memory.c
 void			*ft_memset(void *s, int c, size_t n);
 char			*ft_malloc(t_format *format, int str_len);
