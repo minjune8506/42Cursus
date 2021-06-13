@@ -46,9 +46,9 @@ void type_s(t_format *format)
 	if (format->prec > -1 && format->prec < ft_strlen(s_string))
 		free(s_string);
 	ft_putstr(ret, ft_strlen(ret));
+	format->ret += ft_strlen(ret);
 	free(ret);
 	format->index++;
-	format->ret += ft_strlen(ret);
 }
 
 void type_d(t_format *format)
