@@ -23,6 +23,7 @@ void init_format(t_format *format)
 	format->width = 0;
 	format->dot = 0;
 	format->prec = -1;
+	format->type = ' ';
 }
 
 void get_format(t_format *format, const char *str)
@@ -55,6 +56,10 @@ int ft_printf(const char *str, ...)
 			type_u(&format);
 		else if (str[format.index] == 'x' || str[format.index] == 'X')
 			type_x(&format);
+		else if (str[format.index] == 'p')
+			type_p(&format);
+		else if (format.type == '%')
+			type_per(&format);
 	}
 	return (format.ret);
 }
@@ -70,13 +75,8 @@ int ft_printf(const char *str, ...)
 // printf("format->ret : %d\n", format.ret);
 // printf("format->type : %c\n", format.type);
 
+
 // int main(void)
 // {
-// 	int x = 0;
-//    ft_printf("-->|%-4.*x|<--\n", -1, x);
-//    ft_printf("-->|%-4.*x|<--\n", 0, x); 
-//    ft_printf("-->|%-4.*x|<--\n", 1, x); 
-//    ft_printf("-->|%-4.*x|<--\n", 2, x);  // %-4.2x
-//    ft_printf("-->|%-4.*x|<--\n", 3, x); 
-//    ft_printf("-->|%-4.*x|<--\n", 4, x); 
+// 	ft_printf("%+-10.5d\n", 125);
 // }

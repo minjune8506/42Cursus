@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_typeu_utils.c                                   :+:      :+:    :+:   */
+/*   ft_typep_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjune <minjkim2@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 15:24:29 by minjune           #+#    #+#             */
-/*   Updated: 2021/06/11 15:24:30 by minjune          ###   ########.fr       */
+/*   Created: 2021/06/13 13:05:08 by minjune           #+#    #+#             */
+/*   Updated: 2021/06/13 13:05:10 by minjune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int num_len_base(unsigned int n, int base)
+int num_len_base_p(unsigned long n, int base)
 {
 	int length;
 
@@ -27,30 +27,33 @@ int num_len_base(unsigned int n, int base)
 	return (length);
 }
 
-char *ft_itoa_u(unsigned int n)
+char *ft_itoa_base_p(unsigned long num, char *str)
 {
-	char *str;
-	unsigned long long nbr;
+	char *result;
 	int length;
 
-	nbr = n;
-	length = num_len_base(nbr, 10);
-	if (!(str = (char *)malloc(sizeof(char) * (length + 1))))
+	length = num_len_base_p(num, 16);
+	result = (char *)malloc(sizeof(char) * length + 1);
+	if (!result)
 		return (NULL);
-	str[length] = '\0';
-	length--;
-	if (nbr == 0)
-		str[0] = '0';
-	if (nbr < 0)
+	result[length] = '\0';
+	if (num == 0)
+		result[0] = '0';
+	while (num != 0)
 	{
-		str[0] = '-';
-		nbr *= -1;
-	}
-	while (nbr > 0)
-	{
-		str[length] = '0' + (nbr % 10);
-		nbr /= 10;
+		result[length - 1] = str[num % 16];
+		num /= 16;
 		length--;
 	}
-	return (str);
+	return (result);
+}
+
+char *add_p(char *p_string)
+{
+	char *tmp;
+
+	tmp = ft_strjoin("0x", p_string);
+	free(p_string);
+	p_string = tmp;
+	return (p_string);
 }

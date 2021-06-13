@@ -52,17 +52,19 @@ void			type_s(t_format *format);
 void			type_d(t_format *format);
 void			type_u(t_format *format);
 void			type_x(t_format *format);
+//type2.c
+void			type_p(t_format *format);
+void 			type_per(t_format *format);
 //typed_utils.c
 char			*check_sign(char *ret);
 char			*create_pre_str(t_format *format, char *d_string, int num_len);
 char			*minus_flag(char *ret, char *d_string, t_format *format);
 char			*control_flag(char *d_string, int num, t_format *format);
 void			free_all(char *ret, char *d_string);
-//typeu_utils.c
-int				num_len_base(unsigned int n, int base);
-char			*ft_itoa_u(unsigned int n);
-//typex_utils.c
-char			*ft_itoa_base(unsigned int num, char *str);
+//typep_utils.c
+int				num_len_base_p(unsigned long n, int base);
+char			*ft_itoa_base_p(unsigned long num, char *str);
+char			*add_p(char *p_string);
 //memory.c
 void			*ft_memset(void *s, int c, size_t n);
 char			*ft_malloc(t_format *format, int str_len);
@@ -81,6 +83,7 @@ char			*ft_strdup(const char *s1);
 char			*ft_strjoin(char const *s1, char const *s2);
 //utils3.c
 int				ft_atoi(const char *str, t_format *format);
-int				num_length(int n);
-char			*ft_itoa(int n);
+int				num_len_base(long long n, int base);
+char			*ft_itoa(long long n);
+char			*ft_itoa_base(unsigned int num, char *str);
 #endif

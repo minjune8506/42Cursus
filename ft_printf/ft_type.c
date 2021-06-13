@@ -59,8 +59,8 @@ void type_d(t_format *format)
 
 	num = va_arg(format->ap, int);
 	d_string = ft_itoa(num);
-	if (format->prec > -1 && format->prec >= num_length(num))
-		d_string = create_pre_str(format, d_string, num_length(num));
+	if (format->prec > -1 && format->prec >= ft_strlen(d_string))
+		d_string = create_pre_str(format, d_string, ft_strlen(d_string));
 	else if (format->prec == 0 && num == 0)
 	{
 		free(d_string);
@@ -82,9 +82,9 @@ void type_u(t_format *format)
 	unsigned int num;
 
 	num = va_arg(format->ap, unsigned int);
-	u_string = ft_itoa_u(num);
-	if (format->prec > -1 && format->prec >= num_len_base(num, 10))
-		u_string = create_pre_str(format, u_string, num_len_base(num, 10));
+	u_string = ft_itoa(num);
+	if (format->prec > -1 && format->prec >= ft_strlen(u_string))
+		u_string = create_pre_str(format, u_string, ft_strlen(u_string));
 	else if (format->prec == 0 && num == 0)
 	{
 		free(u_string);
@@ -116,7 +116,7 @@ void type_x(t_format *format)
 	}
 	else if (format->prec >= -1 && format->prec >= ft_strlen(x_string))
 		x_string = create_pre_str(format, x_string, ft_strlen(x_string));
-	x_string = control_flag(x_string, num, format);	
+	x_string = control_flag(x_string, num, format);
 	ret = ft_malloc(format, ft_strlen(x_string));
 	ret = minus_flag(ret, x_string, format);
 	ft_putstr(ret, ft_strlen(ret));

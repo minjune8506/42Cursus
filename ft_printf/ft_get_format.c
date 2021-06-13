@@ -85,5 +85,6 @@ void	get_prec(t_format *format, const char *str)
 
 void	get_type(t_format *format, const char *str)
 {
-	format->type = str[format->index];
+	if (format->per == 1)
+		format->type = str[format->index];
 }

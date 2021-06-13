@@ -15,7 +15,7 @@ FLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 OUT = a.out
 SRCS = ft_printf.c ft_check_format.c ft_get_format.c \
-ft_type.c ft_typed_utils.c ft_typeu_utils.c ft_typex_utils.c ft_memory.c \
+ft_type.c ft_type2.c ft_typed_utils.c ft_typep_utils.c ft_memory.c \
 ft_utils.c ft_utils2.c ft_utils3.c
 OBJS = $(SRCS:.c=.o)
 

@@ -75,7 +75,7 @@ char *control_flag(char *d_string, int num, t_format *format)
 		flag_str = ft_strjoin("+", d_string);
 		free(d_string);
 	}
-	else if (format->flag_sharp && num != 0)
+	else if (format->flag_sharp == 1 && num != 0 && ft_strchr("xX", format->type))
 	{
 		if (format->type == 'x')
 			flag_str = ft_strjoin("0x", d_string);
@@ -96,8 +96,7 @@ char *minus_flag(char *ret, char *d_string, t_format *format)
 		{
 			ft_memset(ret, '0', ft_strlen(ret));
 			ft_memrcpy(ret, d_string, ft_strlen(ret), ft_strlen(d_string));
-			//마지막에 d i x X 제외한 케이스로 변경
-			if (format->type == 'd' || format->type == 'i' || format->type == 'x' || format->type == 'X')
+			if (ft_strchr("dixX", format->type))
 				ret = check_sign(ret);
 		}
 		else
