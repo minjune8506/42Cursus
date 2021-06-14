@@ -12,12 +12,11 @@
 
 #include "ft_printf.h"
 
-
-void type_p(t_format *format)
+void	type_p(t_format *format)
 {
-	char *p_string;
-	char *ret;
-	unsigned long num;
+	char			*p_string;
+	char			*ret;
+	unsigned long	num;
 
 	num = va_arg(format->ap, unsigned long);
 	p_string = ft_itoa_base_p(num, "0123456789abcdef");
@@ -37,10 +36,10 @@ void type_p(t_format *format)
 	free_all(ret, p_string);
 }
 
-void type_per(t_format *format)
+void	type_per(t_format *format)
 {
-	char *ret;
-	int length;
+	char	*ret;
+	int		length;
 
 	ret = ft_malloc(format, 1);
 	length = ft_strlen(ret);

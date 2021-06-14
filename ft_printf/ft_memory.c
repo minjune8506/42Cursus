@@ -65,7 +65,7 @@ void	*ft_memrcpy(void *dest, const void *src, size_t r_len, size_t s_len)
 	if (!dest && !src)
 		return (NULL);
 	while (s_len > 0)
-	{	
+	{
 		((unsigned char *)dest)[r_len - 1] = ((unsigned char *)src)[s_len - 1];
 		s_len--;
 		r_len--;

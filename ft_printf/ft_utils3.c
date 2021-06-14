@@ -26,9 +26,9 @@ int		ft_atoi(const char *str, t_format *format)
 	return (result);
 }
 
-int num_len_base(long long n, int base)
+int		num_len_base(long long n, int base)
 {
-	int length;
+	int		length;
 
 	length = 0;
 	if (n == 0)
@@ -46,10 +46,10 @@ int num_len_base(long long n, int base)
 	return (length);
 }
 
-char *ft_itoa(long long n)
+char	*ft_itoa(long long n)
 {
-	char *str;
-	int length;
+	char	*str;
+	int		length;
 
 	length = num_len_base(n, 10);
 	if (!(str = (char *)malloc(sizeof(char) * (length + 1))))
@@ -72,11 +72,10 @@ char *ft_itoa(long long n)
 	return (str);
 }
 
-
-char *ft_itoa_base(unsigned int num, char *str)
+char	*ft_itoa_base(unsigned int num, char *str)
 {
-	int length;
-	char *result;
+	int		length;
+	char	*result;
 
 	length = num_len_base(num, 16);
 	result = (char *)malloc(sizeof(char) * length + 1);

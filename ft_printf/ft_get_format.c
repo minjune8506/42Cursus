@@ -39,14 +39,14 @@ void	get_flag(t_format *format, const char *str)
 		else if (str[format->index] == '+')
 			format->flag_plus = 1;
 		else if (str[format->index] == '#')
-			format->flag_sharp = 1;
+			format->sharp = 1;
 		else if (str[format->index] == ' ')
 			format->flag_blank = 1;
 		format->index++;
 	}
 }
 
-void	get_width(t_format *format, const char *str)
+int		get_width(t_format *format, const char *str)
 {
 	if (!(ft_strchr("cspdiuxX%", str[format->index])) && is_digit(str, format))
 	{
@@ -62,14 +62,18 @@ void	get_width(t_format *format, const char *str)
 		}
 		format->index++;
 	}
+	if (format->width > 2147483646)
+		return (-1);
+	return (0);
 }
 
-void	get_prec(t_format *format, const char *str)
+int		get_prec(t_format *format, const char *str)
 {
 	check_dot(format, str);
 	if (format->dot)
 	{
-		if (!(ft_strchr("cspdiuxX%", str[format->index])) && is_digit(str, format))
+		if (!(ft_strchr("cspdiuxX%", str[format->index]))
+			&& is_digit(str, format))
 			format->prec = ft_atoi(str, format);
 		else if (ft_strchr("cspdiuxX%", str[format->index]))
 			format->prec = 0;
@@ -81,6 +85,9 @@ void	get_prec(t_format *format, const char *str)
 			format->index++;
 		}
 	}
+	if (format->prec > 2147483646)
+		return (-1);
+	return (0);
 }
 
 void	get_type(t_format *format, const char *str)

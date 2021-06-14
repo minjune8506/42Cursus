@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void check_per(t_format *format, const char *str)
+void	check_per(t_format *format, const char *str)
 {
 	if (str[format->index] == '%')
 		format->per = 1;

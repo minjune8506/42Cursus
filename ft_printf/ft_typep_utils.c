@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-int num_len_base_p(unsigned long n, int base)
+int		num_len_base_p(unsigned long n, int base)
 {
-	int length;
+	int	length;
 
 	length = 0;
 	if (n == 0)
@@ -27,10 +27,10 @@ int num_len_base_p(unsigned long n, int base)
 	return (length);
 }
 
-char *ft_itoa_base_p(unsigned long num, char *str)
+char	*ft_itoa_base_p(unsigned long num, char *str)
 {
-	char *result;
-	int length;
+	char	*result;
+	int		length;
 
 	length = num_len_base_p(num, 16);
 	result = (char *)malloc(sizeof(char) * length + 1);
@@ -48,9 +48,9 @@ char *ft_itoa_base_p(unsigned long num, char *str)
 	return (result);
 }
 
-char *add_p(char *p_string)
+char	*add_p(char *p_string)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin("0x", p_string);
 	free(p_string);

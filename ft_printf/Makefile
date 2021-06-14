@@ -13,7 +13,6 @@
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
-OUT = a.out
 SRCS = ft_printf.c ft_check_format.c ft_get_format.c \
 ft_type.c ft_type2.c ft_typed_utils.c ft_typep_utils.c ft_memory.c \
 ft_utils.c ft_utils2.c ft_utils3.c
@@ -26,14 +25,14 @@ all : $(NAME)
 	
 $(NAME) : $(OBJS)
 	ar rcs $@ $(OBJS)
-	$(CC) $(FLAGS) -o $(OUT) $(OBJS)
+
+bonus : all
 
 clean :
 	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	rm -f $(NAME)
-	rm -f $(OUT)
 
 re : fclean all
 

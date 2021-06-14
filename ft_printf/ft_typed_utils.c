@@ -13,10 +13,10 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-char *check_sign(char *ret)
+char	*check_sign(char *ret)
 {
-	int i;
-	char temp;
+	int		i;
+	char	temp;
 
 	i = 0;
 	while (ret[i])
@@ -38,9 +38,9 @@ char *check_sign(char *ret)
 	return (ret);
 }
 
-char *create_pre_str(t_format *format, char *d_string, int num_len)
+char	*create_pre_str(t_format *format, char *d_string, int num_len)
 {
-	char *ret;
+	char	*ret;
 
 	if (*d_string == '-')
 	{
@@ -61,9 +61,9 @@ char *create_pre_str(t_format *format, char *d_string, int num_len)
 	return (ret);
 }
 
-char *control_flag(char *d_string, int num, t_format *format)
+char	*control_flag(char *d_string, int num, t_format *format)
 {
-    char *flag_str;
+	char	*flag_str;
 
 	if (format->flag_blank == 1 && num >= 0)
 	{
@@ -75,7 +75,7 @@ char *control_flag(char *d_string, int num, t_format *format)
 		flag_str = ft_strjoin("+", d_string);
 		free(d_string);
 	}
-	else if (format->flag_sharp == 1 && num != 0 && ft_strchr("xX", format->type))
+	else if (format->sharp == 1 && num != 0 && ft_strchr("xX", format->type))
 	{
 		if (format->type == 'x')
 			flag_str = ft_strjoin("0x", d_string);
@@ -83,12 +83,12 @@ char *control_flag(char *d_string, int num, t_format *format)
 			flag_str = ft_strjoin("0X", d_string);
 		free(d_string);
 	}
-    else
+	else
 		flag_str = d_string;
-    return (flag_str);
+	return (flag_str);
 }
 
-char *minus_flag(char *ret, char *d_string, t_format *format)
+char	*minus_flag(char *ret, char *d_string, t_format *format)
 {
 	if (format->flag_minus == 0)
 	{

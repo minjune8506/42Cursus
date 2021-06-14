@@ -14,10 +14,10 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-void type_c(t_format *format)
+void	type_c(t_format *format)
 {
-	char *ret;
-	int length;
+	char	*ret;
+	int		length;
 
 	ret = ft_malloc(format, 1);
 	length = ft_strlen(ret);
@@ -26,24 +26,26 @@ void type_c(t_format *format)
 	else
 		ret[0] = va_arg(format->ap, int);
 	ft_putstr(ret, length);
-	free(ret);
 	format->ret += length;
+	free(ret);
 	format->index++;
 }
 
-void type_s(t_format *format)
+void	type_s(t_format *format)
 {
-	char *s_string;
-	char *ret;
+	char	*s_string;
+	char	*ret;
+	int		length;
 
 	s_string = va_arg(format->ap, char *);
 	if (!(s_string))
 		s_string = "(null)";
-	if (format->prec > -1 && format->prec < ft_strlen(s_string))
+	length = ft_strlen(s_string);
+	if (format->prec > -1 && format->prec < length)
 		s_string = ft_substr(s_string, 0, format->prec);
 	ret = ft_malloc(format, ft_strlen(s_string));
 	ret = minus_flag(ret, s_string, format);
-	if (format->prec > -1 && format->prec < ft_strlen(s_string))
+	if (format->prec > -1 && format->prec < length)
 		free(s_string);
 	ft_putstr(ret, ft_strlen(ret));
 	format->ret += ft_strlen(ret);
@@ -51,11 +53,11 @@ void type_s(t_format *format)
 	format->index++;
 }
 
-void type_d(t_format *format)
+void	type_d(t_format *format)
 {
-	char *d_string;
-	char *ret;
-	int num;
+	char	*d_string;
+	char	*ret;
+	int		num;
 
 	num = va_arg(format->ap, int);
 	d_string = ft_itoa(num);
@@ -75,11 +77,11 @@ void type_d(t_format *format)
 	free_all(ret, d_string);
 }
 
-void type_u(t_format *format)
+void	type_u(t_format *format)
 {
-	char *u_string;
-	char *ret;
-	unsigned int num;
+	char			*u_string;
+	char			*ret;
+	unsigned int	num;
 
 	num = va_arg(format->ap, unsigned int);
 	u_string = ft_itoa(num);
@@ -98,11 +100,11 @@ void type_u(t_format *format)
 	free_all(ret, u_string);
 }
 
-void type_x(t_format *format)
+void	type_x(t_format *format)
 {
-	char *x_string;
-	char *ret;
-	unsigned int num;
+	char			*x_string;
+	char			*ret;
+	unsigned int	num;
 
 	num = va_arg(format->ap, unsigned int);
 	if (format->type == 'x')
