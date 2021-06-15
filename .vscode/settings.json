@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"limits.h": "c",
-		"unistd.h": "c",
-		"sstream": "cpp",
-		"chrono": "c"
-	},
-	"C_Cpp.errorSquiggles": "Disabled"
-}

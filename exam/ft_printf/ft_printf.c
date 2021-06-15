@@ -16,9 +16,6 @@ void	init_format(t_format *format)
 {
 	format->per = 0;
 	format->flag_zero = 0;
-	format->flag_plus = 0;
-	format->flag_blank = 0;
-	format->sharp = 0;
 	format->flag_minus = 0;
 	format->width = 0;
 	format->dot = 0;
@@ -32,16 +29,13 @@ void	init_other(t_format *format)
 	format->index = 0;
 }
 
-int		get_format(t_format *format, const char *str)
+void	get_format(t_format *format, const char *str)
 {
 	get_per(format, str);
 	get_flag(format, str);
-	if (get_width(format, str) == -1)
-		return (-1);
-	if (get_prec(format, str) == -1)
-		return (-1);
+	get_width(format, str);
+	get_prec(format, str);
 	get_type(format, str);
-	return (0);
 }
 
 int		ft_printf(const char *str, ...)
@@ -53,8 +47,7 @@ int		ft_printf(const char *str, ...)
 	while (str[format.index])
 	{
 		init_format(&format);
-		if (get_format(&format, str) == -1)
-			return (-1);
+		get_format(&format, str);
 		if (str[format.index] == 'c')
 			type_c(&format);
 		else if (str[format.index] == 's')
