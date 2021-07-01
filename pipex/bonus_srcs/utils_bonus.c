@@ -1,6 +1,28 @@
 #include "pipex_bonus.h"
 #include <stdlib.h>
 
+int				ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int				ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
+}
+
 static void		*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t i;

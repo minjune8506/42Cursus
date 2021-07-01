@@ -3,13 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*
-** ./pipex file1 cmd1 cmd2 file2
-** < file1 cmd1 | cmd2 > file2
-** ./pipex here_doc LIMITER cmd cmd1 file
-** cmd << LIMITER | cmd1 >> file
-*/
-
 static void	print_error(void)
 {
 	perror("error");
@@ -29,30 +22,6 @@ static void	child_process(char **av, int fd[], t_cmd *cmd)
 		redirect_in(av[1]);
 		pipe_connect(fd, STDOUT_FILENO);
 		exec_cmd(cmd, av[2]);
-	}
-}
-
-static void multi_pipe(int cmd_count, char **av, int fd[], t_cmd *cmd)
-{
-	pid_t pid;
-	int status;
-
-	pipe(fd);
-	pid = fork();
-	if (pid < 0)
-	{
-		perror("fork");
-		exit(1);
-	}
-	else if (pid > 0)
-	{
-		waitpid(pid, &status, 0);
-		pipe_connect(fd, 0);
-	}
-	else if (pid == 0)
-	{
-		pipe_connect(fd, 1);
-		exec_cmd(cmd, av[cmd_count]);
 	}
 }
 

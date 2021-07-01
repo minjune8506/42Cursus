@@ -3,9 +3,9 @@
 
 typedef struct	s_cmd
 {
-	char *cmd[5];
-	char *const *argv;
-	char *const *envp;
+	char		*cmd[5];
+	char *const	*argv;
+	char *const	*envp;
 }				t_cmd;
 
 /*

@@ -17,8 +17,8 @@ SRCS = ./srcs/ft_split.c ./srcs/ft_strjoin.c \
 ./srcs/pipex.c ./srcs/cmd.c ./srcs/redirect.c
 OBJS = $(SRCS:.c=.o)
 BONUS_SRCS = ./bonus_srcs/cmd_bonus.c ./bonus_srcs/pipex_bonus.c ./bonus_srcs/redirect_bonus.c \
-./bonus_srcs/here_doc_bonus.c \
-./bonus_srcs/libft/ft_split_bonus.c ./bonus_srcs/libft/ft_strjoin_bonus.c ./bonus_srcs/libft/utils_bonus.c\
+./bonus_srcs/here_doc_bonus.c ./bonus_srcs/multipipe.c\
+./bonus_srcs/ft_split_bonus.c ./bonus_srcs/utils_bonus.c\
 ./bonus_srcs/get_next_line/get_next_line_bonus.c ./bonus_srcs/get_next_line/get_next_line_utils_bonus.c
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 all : $(NAME)
