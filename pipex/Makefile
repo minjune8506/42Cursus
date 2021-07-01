@@ -6,12 +6,12 @@
 #    By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:55:57 by minjkim2          #+#    #+#              #
-#    Updated: 2021/06/15 12:45:12 by minjune          ###   ########.fr        #
+#    Updated: 2021/07/01 22:56:50 by minjune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 NAME = pipex
 SRCS = ./srcs/ft_split.c ./srcs/ft_strjoin.c \
 ./srcs/pipex.c ./srcs/cmd.c ./srcs/redirect.c

@@ -16,7 +16,7 @@ static void	print_error(void)
 	exit(1);
 }
 
-static void	child_process(int ac, char **av, int fd[], t_cmd *cmd)
+static void	child_process(char **av, int fd[], t_cmd *cmd)
 {
 	if (ft_strcmp(av[1], "here_doc") == 0)
 	{
@@ -32,14 +32,46 @@ static void	child_process(int ac, char **av, int fd[], t_cmd *cmd)
 	}
 }
 
+static void multi_pipe(int cmd_count, char **av, int fd[], t_cmd *cmd)
+{
+	pid_t pid;
+	int status;
+
+	pipe(fd);
+	pid = fork();
+	if (pid < 0)
+	{
+		perror("fork");
+		exit(1);
+	}
+	else if (pid > 0)
+	{
+		waitpid(pid, &status, 0);
+		pipe_connect(fd, 0);
+	}
+	else if (pid == 0)
+	{
+		pipe_connect(fd, 1);
+		exec_cmd(cmd, av[cmd_count]);
+	}
+}
+
 static void	parent_process(int ac, char **av, int fd[], t_cmd *cmd)
 {
+	int cmd_count;
+
+	cmd_count = ac - 5;
 	pipe_connect(fd, STDIN_FILENO);
+	while ((cmd_count < ac - 2) && (ac > 6))
+	{
+		multi_pipe(cmd_count, av, fd, cmd);
+		cmd_count++;
+	}
 	redirect_out(av[ac - 1], av);
 	if (ft_strcmp(av[1], "here_doc") == 0)
 		exec_cmd(cmd, av[4]);
 	else
-		exec_cmd(cmd, av[3]);
+		exec_cmd(cmd, av[ac - 2]);
 }
 
 static void	pipex(int ac, char **av)
@@ -55,7 +87,7 @@ static void	pipex(int ac, char **av)
 	if (pid < 0)
 		print_error();
 	else if (pid == 0)
-		child_process(ac, av, fd, &cmd);
+		child_process(av, fd, &cmd);
 	else if (pid > 0)
 	{
 		waitpid(pid, &status, 0);
