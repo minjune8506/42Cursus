@@ -1,0 +1,8 @@
+total 112
+-rw-r--r--@  1 minjkim2  2021_seoul   1726 Jul  2 11:46 Makefile
+drwxr-xr-x  10 minjkim2  2021_seoul    340 Jul  2 15:56 bonus_srcs
+drwxr-xr-x   4 minjkim2  2021_seoul    136 Jul  2 09:51 includes
+-rw-r--r--   1 minjkim2  2021_seoul      0 Jul  2 16:25 infile
+drwxr-xr-x   3 minjkim2  2021_seoul    102 Jul  2 09:48 markdown
+-rwxr-xr-x   1 minjkim2  2021_seoul  50600 Jul  2 16:24 pipex
+drwxr-xr-x  12 minjkim2  2021_seoul    408 Jul  2 16:24 srcs

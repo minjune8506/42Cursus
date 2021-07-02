@@ -27,9 +27,8 @@ static void		child_process(char **av, int fd[], t_cmd *cmd)
 	exec_cmd(cmd, av[2]);
 }
 
-static void		parent_process(int ac, char **av, int fd[], t_cmd *cmd)
+static void		parent_process(char **av, int fd[], t_cmd *cmd)
 {
-	redirect_out(av[ac - 1]);
 	pipe_connect(fd, STDIN_FILENO);
 	exec_cmd(cmd, av[3]);
 }
@@ -56,8 +55,9 @@ static void		pipex(int ac, char **av)
 		child_process(av, fd, &cmd);
 	else if (pid > 0)
 	{
+		redirect_out(av[ac - 1]);
 		waitpid(pid, &status, 0);
-		parent_process(ac, av, fd, &cmd);
+		parent_process(av, fd, &cmd);
 	}
 }
 

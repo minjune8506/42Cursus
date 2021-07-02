@@ -1,0 +1,11 @@
+total 136
+-rw-r--r--@  1 minjkim2  2021_seoul   1726  7  2 11:46 Makefile
+drwxr-xr-x  10 minjkim2  2021_seoul    340  7  2 15:56 bonus_srcs
+-rw-r--r--   1 minjkim2  2021_seoul      0  7  2 16:28 in
+drwxr-xr-x   4 minjkim2  2021_seoul    136  7  2 09:51 includes
+-rw-r--r--   1 minjkim2  2021_seoul    458  7  2 16:25 infile
+drwxr-xr-x   3 minjkim2  2021_seoul    102  7  2 09:48 markdown
+-rw-r--r--   1 minjkim2  2021_seoul      9  7  2 16:28 out
+-rw-r--r--   1 minjkim2  2021_seoul      9  7  2 16:26 outfile
+-rwxr-xr-x   1 minjkim2  2021_seoul  50600  7  2 16:28 pipex
+drwxr-xr-x  12 minjkim2  2021_seoul    408  7  2 16:28 srcs
