@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirect_bonus.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/02 09:50:12 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/07/02 09:50:13 by minjkim2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex_bonus.h"
 #include <fcntl.h>
 #include <stdlib.h>
@@ -25,10 +37,6 @@ void	redirect_in(const char *file)
 		exit(1);
 	}
 }
-
-/*
-** 0644 => -rw-r--r--
-*/
 
 void	redirect_out(const char *file, char **av)
 {

@@ -1,20 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_doc_bonus.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/02 09:49:48 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/07/02 09:49:48 by minjkim2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex_bonus.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 static void		remove_here_doc(void)
 {
 	char		*command;
 	char *const	argv[4] = {"rm", "-f", "./here_doc", 0};
 	char *const	envp[1] = {0};
+	pid_t		pid;
 
 	command = "/bin/rm";
-	if (fork() == 0)
+	pid = fork();
+	if (pid == 0)
 		execve(command, argv, envp);
-	else
+	else if (pid > 0)
 		return ;
-	exit(1);
+	else if (pid < 0)
+	{
+		perror("fork");
+		exit(1);
+	}
 }
 
 void			here_doc(char **av)
