@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ret;
 	size_t	new_len;
@@ -25,7 +25,8 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	new_len = ft_strlen(s + start);
 	if (new_len < len)
 		len = new_len;
-	if (!(ret = (char *)malloc(sizeof(char) * (len + 1))))
+	ret = (char *)malloc(sizeof(char) * (len + 1));
+	if (!ret)
 		return (NULL);
 	ft_strlcpy(ret, s + start, len + 1);
 	return (ret);

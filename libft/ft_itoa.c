@@ -13,7 +13,8 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static int		num_length(long long n)
+static int
+	num_length(long long n)
 {
 	int			length;
 
@@ -33,7 +34,8 @@ static int		num_length(long long n)
 	return (length);
 }
 
-char			*ft_itoa(int n)
+char
+	*ft_itoa(int n)
 {
 	char		*str;
 	long long	nbr;
@@ -41,10 +43,10 @@ char			*ft_itoa(int n)
 
 	nbr = n;
 	length = num_length(nbr);
-	if (!(str = (char *)malloc(sizeof(char) * (length + 1))))
+	str = (char *)malloc(sizeof(char) * (length + 1));
+	if (!str)
 		return (NULL);
-	str[length] = '\0';
-	length--;
+	str[length--] = '\0';
 	if (nbr == 0)
 		str[0] = '0';
 	if (nbr < 0)
@@ -54,9 +56,8 @@ char			*ft_itoa(int n)
 	}
 	while (nbr > 0)
 	{
-		str[length] = '0' + (nbr % 10);
+		str[length--] = '0' + (nbr % 10);
 		nbr /= 10;
-		length--;
 	}
 	return (str);
 }

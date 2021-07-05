@@ -13,15 +13,17 @@
 #include "libft.h"
 #include <limits.h>
 
-static int	is_space(char c)
+static int
+	is_space(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\r' || c == '\v'
-			|| c == '\n' || c == '\f')
+		|| c == '\n' || c == '\f')
 		return (1);
 	return (0);
 }
 
-static int	check_range(unsigned int result, int sign)
+static int
+	check_range(unsigned int result, int sign)
 {
 	if (result > 2147483648 && sign == -1)
 		return (0);
@@ -31,7 +33,8 @@ static int	check_range(unsigned int result, int sign)
 		return (sign * result);
 }
 
-int			ft_atoi(const char *str)
+int
+	ft_atoi(const char *str)
 {
 	int		result;
 	int		sign;

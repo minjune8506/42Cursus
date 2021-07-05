@@ -13,7 +13,8 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static int	count_word(char const *s, char c)
+static int
+	count_word(char const *s, char c)
 {
 	int		count;
 	int		i;
@@ -40,7 +41,8 @@ static int	count_word(char const *s, char c)
 	return (count);
 }
 
-static int	count_ch(char const *s, char c)
+static int
+	count_ch(char const *s, char c)
 {
 	int		count;
 	int		i;
@@ -55,18 +57,25 @@ static int	count_ch(char const *s, char c)
 	return (count);
 }
 
-static char	**malloc_error(char **ret, int i)
+static char
+	**malloc_error(char **ret, int i)
 {
-	int		j;
+	int	j;
 
-	j = 0;
-	while (j < i)
-		free(ret[j++]);
-	free(ret);
-	return (NULL);
+	if (!ret)
+	{
+		j = 0;
+		while (j < i)
+			free(ret[j++]);
+		free(ret);
+		return (NULL);
+	}
+	else
+		return (NULL);
 }
 
-char		**ft_split(char const *s, char c)
+char
+	**ft_split(char const *s, char c)
 {
 	char	**ret;
 	int		i;
@@ -74,7 +83,8 @@ char		**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	if (!(ret = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1))))
+	ret = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1));
+	if (!ret)
 		return (NULL);
 	i = 0;
 	while (*s)
@@ -84,8 +94,8 @@ char		**ft_split(char const *s, char c)
 			s++;
 		if (!count_ch(s, c))
 			break ;
-		if (!(ret[i] = (char *)malloc(sizeof(char) * (count_ch(s, c) + 1))))
-			return (malloc_error(ret, i));
+		ret[i] = (char *)malloc(sizeof(char) * (count_ch(s, c) + 1));
+		malloc_error(ret, i);
 		while (*s && *s != c)
 			ret[i][j++] = *s++;
 		ret[i++][j] = '\0';
