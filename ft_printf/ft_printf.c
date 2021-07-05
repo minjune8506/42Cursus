@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-void	init_format(t_format *format)
+void
+	init_format(t_format *format)
 {
 	format->per = 0;
 	format->flag_zero = 0;
@@ -26,13 +27,15 @@ void	init_format(t_format *format)
 	format->type = ' ';
 }
 
-void	init_other(t_format *format)
+void
+	init_other(t_format *format)
 {
 	format->ret = 0;
 	format->index = 0;
 }
 
-int		get_format(t_format *format, const char *str)
+int
+	get_format(t_format *format, const char *str)
 {
 	get_per(format, str);
 	get_flag(format, str);
@@ -44,9 +47,10 @@ int		get_format(t_format *format, const char *str)
 	return (0);
 }
 
-int		ft_printf(const char *str, ...)
+int
+	ft_printf(const char *str, ...)
 {
-	t_format format;
+	t_format	format;
 
 	va_start(format.ap, str);
 	init_other(&format);
@@ -72,8 +76,3 @@ int		ft_printf(const char *str, ...)
 	}
 	return (format.ret);
 }
-
-// int	main(void)
-// {
-// 	ft_printf("%d\n", 10);
-// }

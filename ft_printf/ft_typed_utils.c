@@ -13,7 +13,8 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-char	*check_sign(char *ret)
+char
+	*check_sign(char *ret)
 {
 	int		i;
 	char	temp;
@@ -38,7 +39,8 @@ char	*check_sign(char *ret)
 	return (ret);
 }
 
-char	*create_pre_str(t_format *format, char *d_string, int num_len)
+char
+	*create_pre_str(t_format *format, char *d_string, int num_len)
 {
 	char	*ret;
 
@@ -61,7 +63,8 @@ char	*create_pre_str(t_format *format, char *d_string, int num_len)
 	return (ret);
 }
 
-char	*control_flag(char *d_string, int num, t_format *format)
+char
+	*control_flag(char *d_string, int num, t_format *format)
 {
 	char	*flag_str;
 
@@ -88,7 +91,8 @@ char	*control_flag(char *d_string, int num, t_format *format)
 	return (flag_str);
 }
 
-char	*minus_flag(char *ret, char *d_string, t_format *format)
+char
+	*minus_flag(char *ret, char *d_string, t_format *format)
 {
 	if (format->flag_minus == 0)
 	{
@@ -107,7 +111,8 @@ char	*minus_flag(char *ret, char *d_string, t_format *format)
 	return (ret);
 }
 
-void	free_all(char *ret, char *d_string)
+void
+	free_all(char *ret, char *d_string)
 {
 	free(d_string);
 	free(ret);

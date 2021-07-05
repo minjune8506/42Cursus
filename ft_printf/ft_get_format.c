@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-void	get_per(t_format *format, const char *str)
+void
+	get_per(t_format *format, const char *str)
 {
 	check_per(format, str);
 	if (format->per)
@@ -28,7 +29,8 @@ void	get_per(t_format *format, const char *str)
 	}
 }
 
-void	get_flag(t_format *format, const char *str)
+void
+	get_flag(t_format *format, const char *str)
 {
 	while (ft_strchr("-+0 #", str[format->index]))
 	{
@@ -46,7 +48,8 @@ void	get_flag(t_format *format, const char *str)
 	}
 }
 
-int		get_width(t_format *format, const char *str)
+int
+	get_width(t_format *format, const char *str)
 {
 	if (!(ft_strchr("cspdiuxX%", str[format->index])) && is_digit(str, format))
 	{
@@ -67,7 +70,8 @@ int		get_width(t_format *format, const char *str)
 	return (0);
 }
 
-int		get_prec(t_format *format, const char *str)
+int
+	get_prec(t_format *format, const char *str)
 {
 	check_dot(format, str);
 	if (format->dot)
@@ -90,7 +94,8 @@ int		get_prec(t_format *format, const char *str)
 	return (0);
 }
 
-void	get_type(t_format *format, const char *str)
+void
+	get_type(t_format *format, const char *str)
 {
 	if (format->per == 1)
 		format->type = str[format->index];

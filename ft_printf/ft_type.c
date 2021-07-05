@@ -14,7 +14,8 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-void	type_c(t_format *format)
+void
+	type_c(t_format *format)
 {
 	char	*ret;
 	int		length;
@@ -31,7 +32,8 @@ void	type_c(t_format *format)
 	format->index++;
 }
 
-void	type_s(t_format *format)
+void
+	type_s(t_format *format)
 {
 	char	*s_string;
 	char	*ret;
@@ -53,7 +55,8 @@ void	type_s(t_format *format)
 	format->index++;
 }
 
-void	type_d(t_format *format)
+void
+	type_d(t_format *format)
 {
 	char	*d_string;
 	char	*ret;
@@ -77,7 +80,8 @@ void	type_d(t_format *format)
 	free_all(ret, d_string);
 }
 
-void	type_u(t_format *format)
+void
+	type_u(t_format *format)
 {
 	char			*u_string;
 	char			*ret;
@@ -100,7 +104,8 @@ void	type_u(t_format *format)
 	free_all(ret, u_string);
 }
 
-void	type_x(t_format *format)
+void
+	type_x(t_format *format)
 {
 	char			*x_string;
 	char			*ret;

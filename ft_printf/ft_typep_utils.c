@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-int		num_len_base_p(unsigned long n, int base)
+int
+	num_len_base_p(unsigned long n, int base)
 {
 	int	length;
 
@@ -27,7 +28,8 @@ int		num_len_base_p(unsigned long n, int base)
 	return (length);
 }
 
-char	*ft_itoa_base_p(unsigned long num, char *str)
+char
+	*ft_itoa_base_p(unsigned long num, char *str)
 {
 	char	*result;
 	int		length;
@@ -48,7 +50,8 @@ char	*ft_itoa_base_p(unsigned long num, char *str)
 	return (result);
 }
 
-char	*add_p(char *p_string)
+char
+	*add_p(char *p_string)
 {
 	char	*tmp;
 

@@ -13,14 +13,16 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void
+	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putstr(const char *str, int length)
+void
+	ft_putstr(const char *str, int length)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < length)
@@ -30,9 +32,10 @@ void	ft_putstr(const char *str, int length)
 	}
 }
 
-int		ft_strlen(const char *str)
+int
+	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -40,14 +43,16 @@ int		ft_strlen(const char *str)
 	return (i);
 }
 
-int		is_digit(const char *str, t_format *format)
+int
+	is_digit(const char *str, t_format *format)
 {
 	if (str[format->index] >= '0' && str[format->index] <= '9')
 		return (1);
 	return (0);
 }
 
-int		ft_strchr(const char *s, int c)
+int
+	ft_strchr(const char *s, int c)
 {
 	while (*s)
 	{

@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-void	type_p(t_format *format)
+void
+	type_p(t_format *format)
 {
 	char			*p_string;
 	char			*ret;
@@ -36,7 +37,8 @@ void	type_p(t_format *format)
 	free_all(ret, p_string);
 }
 
-void	type_per(t_format *format)
+void
+	type_per(t_format *format)
 {
 	char	*ret;
 	int		length;

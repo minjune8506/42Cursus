@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-void	check_per(t_format *format, const char *str)
+void
+	check_per(t_format *format, const char *str)
 {
 	if (str[format->index] == '%')
 		format->per = 1;
@@ -20,7 +21,8 @@ void	check_per(t_format *format, const char *str)
 		format->per = 0;
 }
 
-void	check_dot(t_format *format, const char *str)
+void
+	check_dot(t_format *format, const char *str)
 {
 	if (str[format->index] == '.')
 	{

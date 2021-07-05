@@ -13,9 +13,10 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-void	*ft_memset(void *s, int c, size_t n)
+void
+	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned char *ptr;
+	unsigned char	*ptr;
 
 	ptr = s;
 	while (n)
@@ -26,9 +27,10 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-char	*ft_malloc(t_format *format, int str_len)
+char
+	*ft_malloc(t_format *format, int str_len)
 {
-	char *ret;
+	char	*ret;
 
 	if (format->width >= str_len)
 	{
@@ -45,9 +47,10 @@ char	*ft_malloc(t_format *format, int str_len)
 	return (ret);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void
+	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	if (!dest && !src)
 		return (NULL);
@@ -60,7 +63,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-void	*ft_memrcpy(void *dest, const void *src, size_t r_len, size_t s_len)
+void
+	*ft_memrcpy(void *dest, const void *src, size_t r_len, size_t s_len)
 {
 	if (!dest && !src)
 		return (NULL);

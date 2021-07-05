@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-int		ft_atoi(const char *str, t_format *format)
+int
+	ft_atoi(const char *str, t_format *format)
 {
 	int		result;
 
@@ -26,7 +27,8 @@ int		ft_atoi(const char *str, t_format *format)
 	return (result);
 }
 
-int		num_len_base(long long n, int base)
+int
+	num_len_base(long long n, int base)
 {
 	int		length;
 
@@ -46,13 +48,15 @@ int		num_len_base(long long n, int base)
 	return (length);
 }
 
-char	*ft_itoa(long long n)
+char
+	*ft_itoa(long long n)
 {
 	char	*str;
 	int		length;
 
 	length = num_len_base(n, 10);
-	if (!(str = (char *)malloc(sizeof(char) * (length + 1))))
+	str = (char *)malloc(sizeof(char) * (length + 1));
+	if (!str)
 		return (NULL);
 	str[length] = '\0';
 	length--;
@@ -72,7 +76,8 @@ char	*ft_itoa(long long n)
 	return (str);
 }
 
-char	*ft_itoa_base(unsigned int num, char *str)
+char
+	*ft_itoa_base(unsigned int num, char *str)
 {
 	int		length;
 	char	*result;
