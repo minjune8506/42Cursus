@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+
 int
 	find_base(char target)
 {
@@ -101,11 +102,10 @@ void	fill_zvalue(char *line, int **value, t_data **data)
 	while (i < (*data)->width)
 	{
 		(*value)[i] = ft_atoi(temp[i]);
+		free(temp[i]);
 		i++;
 	}
 	i = 0;
-	while (temp[i])
-		free(temp[i++]);
 	free(temp);
 }
 
@@ -158,10 +158,12 @@ static int		**get_zvalue(char *map_name, t_data **data)
 	while (get_next_line(fd, &line) > 0)
 	{
 		fill_zvalue(line, &value[i], data);
-		i++;
 		free(line);
+		line = NULL;
+		i++;
 	}
 	free(line);
+	line = NULL;
 	close(fd);
 	return (value);
 }
@@ -170,24 +172,24 @@ void	fill_color(char *line, unsigned int **color)
 {
 	char **temp;
 	int i;
+	int	j;
 
 	temp = ft_split(line, ' ');
 	i = 0;
 	while (temp[i])
 	{
-		if (ft_strchr(temp[i], ','))
+		if (ft_strchr(temp[i], ',') > 0)
 		{
-			temp[i] = ft_strchr(temp[i], ',');
-			temp[i]++;
+			j = ft_strchr(temp[i], ',');
 			// temp[i] = ft_substr(temp[i], 2, ft_strlen(temp[i]) - 2);
-			temp[i]++;
-			temp[i]++;
-			(*color)[i] = ft_atoi_base(temp[i]);
+			(*color)[i] = ft_atoi_base(temp[i] + j + 3);
 		}
 		else
 			(*color)[i] = 0; // DEFAULT COLOR
+		free(temp[i]);
 		i++;
 	}
+	free(temp);
 }
 
 unsigned int		**get_color(char *map_name, t_data **data)
@@ -233,31 +235,33 @@ static void	read_map(char *map_name, t_data **data)
 	printf("data->width : %d\n", (*data)->width);
 	printf("data->height : %d\n", (*data)->height);
 	(*data)->z_value = get_zvalue(map_name, data);
-	int i = 0;
-	while (i < (*data)->height)
-	{
-		int j = 0;
-		while (j < (*data)->width)
-		{
-			printf("%3d", (*data)->z_value[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	printf("z_value clear\n");
+	// int i = 0;
+	// while (i < (*data)->height)
+	// {
+	// 	int j = 0;
+	// 	while (j < (*data)->width)
+	// 	{
+	// 		printf("%3d", (*data)->z_value[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
 	(*data)->color = get_color(map_name, data);
-	i = 0;
-	while (i < (*data)->height)
-	{
-		int j = 0;
-		while (j < (*data)->width)
-		{
-			printf("%d ", (*data)->color[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	printf("color clear\n");
+	// i = 0;
+	// while (i < (*data)->height)
+	// {
+	// 	int j = 0;
+	// 	while (j < (*data)->width)
+	// 	{
+	// 		printf("%d ", (*data)->color[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
 }
 
 int	main(int ac, char **av)
@@ -283,5 +287,4 @@ int	main(int ac, char **av)
 	}
 	free(data->color);
 	free(data);
-	while(1);
 }

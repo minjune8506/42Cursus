@@ -13,7 +13,7 @@
 #include "../libft/libft.h"
 #include <unistd.h>
 #define FD_MAX 256
-#define BUFFER_SIZE 100000
+#define BUFFER_SIZE 1000
 
 static int
 	check_newline(char *buff)
@@ -78,7 +78,7 @@ static int
 static char
 	*check_valid(char *store[], char *buff, int *new_line, int fd)
 {
-	store[fd] = ft_strjoin(store[fd], buff);
+	store[fd] = ft_strjoin_free(store[fd], buff);
 	if (!store[fd])
 		return (NULL);
 	else

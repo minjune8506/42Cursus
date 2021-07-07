@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -29,6 +28,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!ret)
 		return (NULL);
 	ft_strlcpy(ret, s + start, len + 1);
-	free(s);
 	return (ret);
 }
