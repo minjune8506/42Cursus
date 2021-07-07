@@ -9,7 +9,7 @@ int		is_empty(t_map **map)
 	return (0);
 }
 
-void	push(t_map **map, int z, unsigned int color)
+void	push(t_map **map, int z, unsigned int color, int count)
 {
 	t_map *new;
 
@@ -41,7 +41,6 @@ void	print_stack(t_map **map)
 	{
 		while (temp)
 		{
-			printf("z : %d color : %d\n", temp->z, temp->color);
 			temp = temp->next;
 		}
 	}

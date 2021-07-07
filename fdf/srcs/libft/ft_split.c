@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static int
+int
 	count_word(char const *s, char c)
 {
 	int		count;
