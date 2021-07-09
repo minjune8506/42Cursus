@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_find.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjkim2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: minjune <minjkim2@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/21 16:36:49 by minjkim2          #+#    #+#             */
-/*   Updated: 2021/05/21 21:26:25 by minjkim2         ###   ########.fr       */
+/*   Created: 2021/07/08 13:52:40 by minjune           #+#    #+#             */
+/*   Updated: 2021/07/08 13:52:42 by minjune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <stdlib.h>
+int	ft_find(const char *s, int c)
+{
+	int	i;
 
-int		get_next_line(int fd, char **line);
-#endif
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (i);
+		i++;
+	}
+	if (s[i] == (char)c)
+		return (i);
+	return (-1);
+}
