@@ -4,50 +4,44 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static int
-	get_width(char *map_name, t_data **data)
+static void
+	valid_width(char *map_name, t_data **data)
 {
-	char	*line;
-	int		*width;
-	int		fd;
-	int		i;
+	int fd;
+	int is_width;
+	char *line;
 
-	i = 0;
-	line = NULL;
-	width = (int *)malloc(sizeof(int) * (*data)->height);
-	fd = open(map_name, O_RDONLY, 0);
+	fd = open(map_name, O_RDONLY);
 	if (fd < 0)
 		print_error("open");
 	while (get_next_line(fd, &line) > 0)
 	{
-		width[i++] = count_word(line, ' ');
+		is_width = count_word(line, ' ');
 		free(line);
-		line = NULL;
+		if (is_width != (*data)->width)
+			print_error("Found wrong line length, Exiting");
 	}
-	width[i] = count_word(line, ' ');
 	free(line);
-	line = NULL;
 	close(fd);
-	return (valid_width(width, data));
 }
 
-static int
-	get_height(char *map_name)
+static void
+	get_size(char *map_name, t_data **data)
 {
 	char	*line;
 	int		fd;
 	int		height;
+	int		width;
 
 	height = 0;
-	line = NULL;
 	fd = open(map_name, O_RDONLY, 0);
 	if (fd < 0)
 		print_error("open");
 	while (get_next_line(fd, &line) > 0)
 	{
+		width = count_word(line, ' ');
 		height++;
 		free(line);
-		line = NULL;
 	}
 	if (!height)
 		print_error("No data found");
@@ -56,7 +50,8 @@ static int
 	free(line);
 	line = NULL;
 	close(fd);
-	return (height);
+	(*data)->height = height;
+	(*data)->width = width;
 }
 
 static int
@@ -118,35 +113,35 @@ static unsigned int
 void
 	read_map(char *map_name, t_data **data)
 {
-	(*data)->height = get_height(map_name);
-	(*data)->width = get_width(map_name, data);
+	get_size(map_name, data);
+	valid_width(map_name, data);
 	(*data)->z_value = get_zvalue(map_name, data);
 	(*data)->color = get_color(map_name, data);
 	printf("data->width : %d\n", (*data)->width);
 	printf("data->height : %d\n", (*data)->height);
-	int i = 0;
-	while (i < (*data)->height)
-	{
-		int j = 0;
-		while (j < (*data)->width)
-		{
-			printf("%3d", (*data)->z_value[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("----------------------------------------\n");
-	i = 0;
-	while (i < (*data)->height)
-	{
-		int j = 0;
-		while (j < (*data)->width)
-		{
-			printf("%d ", (*data)->color[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	// int i = 0;
+	// while (i < (*data)->height)
+	// {
+	// 	int j = 0;
+	// 	while (j < (*data)->width)
+	// 	{
+	// 		printf("%3d", (*data)->z_value[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
+	// printf("----------------------------------------\n");
+	// i = 0;
+	// while (i < (*data)->height)
+	// {
+	// 	int j = 0;
+	// 	while (j < (*data)->width)
+	// 	{
+	// 		printf("%d ", (*data)->color[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
 }

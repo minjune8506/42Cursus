@@ -6,14 +6,14 @@
 #    By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/05 13:39:23 by vbrazhni          #+#    #+#              #
-#    Updated: 2018/07/05 13:39:24 by vbrazhni         ###   ########.fr        #
+#    Updated: 2021/07/09 23:37:56 by minjune          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = fdf
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 LIBRARIES = -lmlx -lm -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
 
@@ -31,6 +31,8 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./srcs/
 SOURCES_LIST = fdf.c\
+	draw.c\
+	draw_utils.c\
 	read_map.c\
 	read_utils.c\
 	memory_utils.c\

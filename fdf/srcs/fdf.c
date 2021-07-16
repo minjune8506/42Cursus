@@ -1,14 +1,37 @@
 #include "fdf.h"
-#include <stdlib.h>
 #include "mlx.h"
-#include <math.h>
-#include <stdio.h>
+#include <stdlib.h>
 
-int	key_hook(int keycode, void *param)
+#include <stdio.h>
+// int	shutdown(int keycode, void *param)
+// {
+// 	param = NULL;
+// 	if (keycode == ESC)
+// 		exit(0);
+// 	return (0);
+// }
+
+int	print_key(int keycode, void *param)
 {
 	param = NULL;
+	printf("keycode : %d\n", keycode);
+	return (0);
+}
+
+void	zoom_control(int keycode, t_mlx *mlx)
+{
+	if (keycode == MINUS)
+		mlx->zoom--;
+	else if (keycode == PLUS)
+		mlx->zoom++;
+}
+
+int	key_control(int keycode, t_mlx *mlx)
+{
 	if (keycode == ESC)
 		exit(0);
+	else if (keycode == MINUS || keycode == PLUS)
+		zoom_control(keycode, mlx);
 	return (0);
 }
 
@@ -20,143 +43,66 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int		MAX(float a, float b)
+void	zoom(t_dda *com, t_mlx mlx)
 {
-	if (a > b)
-		return (a);
+	if (mlx.screen_w <= 100)
+		mlx.zoom = 5;
+	else if (mlx.screen_w <= 500)
+		mlx.zoom = 10;
+	else if (mlx.screen_w <= 800)
+		mlx.zoom = 30;
 	else
-		return (b);
+		mlx.zoom = 5;
+	com->x *= mlx.zoom;
+	com->y *= mlx.zoom;
+	com->x1 *= mlx.zoom;
+	com->y1 *= mlx.zoom;
+	com->z *= mlx.zoom;
+	com->z1 *= mlx.zoom;
 }
 
-int		MOD(float x)
+void	shift(int x_shift, int y_shift, t_mlx mlx, t_dda *com)
 {
-	if (x < 0)
-		return (-x);
+	com->x += x_shift;
+	com->y += mlx.screen_h - y_shift;
+	com->x1 += x_shift;
+	com->y1 += mlx.screen_h - y_shift;
+}
+
+void	set_screen_size(t_data *data, t_mlx *mlx)
+{
+	if (data->width <= 30)
+		mlx->screen_w = data->width * 30;
+	else if (data->width <= 50)
+		mlx->screen_w = data->width * 7;
 	else
-		return (x);
-}
-
-void drawline(int x, int y, int x1, int y1, t_mlx mlx)
-{
-    int dx, dy, p;
-	
-	x *= 20;
-	y *= 20;
-	x1 *= 20;
-	y1 *= 20;
-
-	dx = x1 - x;
-	dy = y1 - y;
-	p = 2 * (dy - dx);
-	while (x < x1)
-	{
-		if (p >= 0)
-		{
-			//  my_mlx_pixel_put(img->img, x, y, 0xFF0000);
-			mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, x, y, 0xff0000);
-			y++;
-			p = p + 2 * (dy - dx);
-		}
-		else
-		{
-			//  my_mlx_pixel_put(img->img, x, y, 0xFF0000);
-			mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, x, y, 0xff0000);
-			p = p + 2 * dy;
-		}
-		x++;
-	}
-}
-
-void	drawtest(int x, int y, int x1, int y1, t_mlx mlx)
-{
-	int dx;
-	int dy;
-
-	x *= 20;
-	y *= 20;
-	x1 *= 20;
-	y1 *= 20;
-
-	dx = x1 - x;
-	dy = y1 - y;
-	if (dx > 0)
-		while (x < x1)
-		{
-			mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, x, y, 0xff0000);
-			x++;
-		}
+		mlx->screen_w = 1200;
+	if (data -> height <= 50)
+		mlx->screen_h = data->height * 30;
+	else if (data->height <= 100)
+		mlx->screen_h = data->height * 7;
 	else
-		while (y < y1)
-		{
-			mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, x, y, 0xff0000);
-			y++;
-		}
-}
-
-void	bresenham(float x, float y, float x1, float y1, t_mlx mlx)
-{
-	float	delta_x;
-	float	delta_y;
-	int		big;
-
-	x *= 20;
-	y *= 20;
-	x1 *= 20;
-	y1 *= 20;
-
-	delta_x = x1 - x;
-	delta_y = y1 - y;
-
-	big = MAX(MOD(delta_x), MOD(delta_y));
-	delta_x /= big;
-	delta_y /= big;
-	while ((int)(x - x1) || (int)(y - y1))
-	{
-		mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, x, y, 0xff0000);
-		x += delta_x;
-		y += delta_y;
-	}
-
-}
-
-void	draw(t_data *data, t_mlx mlx)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (y < data->height)
-	{
-		x = 0;
-		while (x < data->width)
-		{
-			// bresenham(x, y, x + 1, y, mlx);
-			// bresenham(x, y, x, y + 1, mlx);
-			drawtest(x, y, x + 1, y, mlx);
-			drawtest(x, y, x, y + 1, mlx);
-			x++;
-		}
-		y++;
-	}
-	// mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img->img, 100, 100);
+		mlx->screen_h = 800;
 }
 
 void	mlx(t_data *data)
 {
 	t_mlx	mlx;
 	t_img	img;
-	void	*param;
 
-	param = NULL;
 	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 800, 600, "fdf");
-	img.img = mlx_new_image(mlx.mlx_ptr, 800, 600);
+	set_screen_size(data, &mlx);
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, mlx.screen_w, mlx.screen_h, "fdf");
+	img.img = mlx_new_image(mlx.mlx_ptr, mlx.screen_w, mlx.screen_h);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	printf("img.bits_per_pixel : %d\n", img.bits_per_pixel);
-	printf("img.line_length : %d\n", img.line_length);
-	printf("img.endian: %d\n", img.endian);
+	// printf("img.addr = %p\n", img.addr);
+	// printf("img.bits_per_pixel : %d\n", img.bits_per_pixel);
+	// printf("img.line_length : %d\n", img.line_length);
+	// printf("img.endian: %d\n", img.endian);
 	draw(data, mlx);
-	mlx_key_hook(mlx.win_ptr, key_hook, param);
+	mlx_key_hook(mlx.win_ptr, key_control, &mlx);
+	// up : 126 / down : 125 / left : 123 / right : 124
+	// - : 27 / + : 24
 	mlx_loop(mlx.mlx_ptr);
 }
 
@@ -170,6 +116,7 @@ int	main(int ac, char **av)
 	else
 	{
 		data = (t_data *)malloc(sizeof(t_data));
+		data->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 		map_name = av[1];
 		read_map(map_name, &data);
 		mlx(data);

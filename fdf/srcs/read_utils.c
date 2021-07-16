@@ -2,27 +2,6 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 
-int
-	valid_width(int *width, t_data **data)
-{
-	int	i;
-	int	ret;
-
-	i = 1;
-	ret = width[0];
-	while (i < (*data)->height)
-	{
-		if (width[0] != width[i])
-		{
-			free(width);
-			print_error("Found wrong line length. Exiting.");
-		}
-		i++;
-	}
-	free(width);
-	return (ret);
-}
-
 void
 	fill_zvalue(char *line, int **value, t_data **data)
 {

@@ -1,0 +1,21 @@
+10-2.fdf / width : 10 / height : 10
+10-70.fdf / width : 10 / height : 10
+100-6.fdf / width : 100 / hieght : 100
+20-60.fdf / width : 20 / height : 20
+42.fdf / width : 19 / heigth : 11
+50-4.fdf / width : 50 / heigth : 50
+basictest.fdf / width : 11 / height : 9
+elem-col.fdf / width : 10 / height : 10
+elem-frac.fdf / width : 500 / height : 500
+elem.fdf / width : 10 / height : 10
+elem2.fdf / width : 20 / height : 20
+julia.fdf / width : 500 / height : 500
+mars.fdf / width : 200 / height : 116
+pentenegpos.fdf / width : 21 / height : 9
+plat.fdf / width : 10 / height : 14
+pnp_flat.fdf / width : 21 / height : 9
+pylone.fdf / Found wrong line length
+pyra.fdf / width : 27 / height : 27
+pyramide.fdf / width : 27 / heigth : 34
+t1.fdf / width : 200 / height : 200
+t2.fdf / width : 100 / height : 100
