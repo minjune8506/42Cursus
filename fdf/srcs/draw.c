@@ -46,36 +46,92 @@ void	isometric(float *x, float *y, int z)
 }
 
 
-static void	dda(t_point point, t_data **data)
+static void	dda(t_data **data, t_dda *com)
 {
 	int i;
 
 	i = 0;
-	t_dda com;
-	init_dda(point, &com);
-	get_data(data, &com);
-	zoom(&com, data);
-	/*-----isometric-----*/
-	isometric(&com.x, &com.y, com.z);
-	isometric(&com.x1, &com.y1, com.z1);
-	/*-----shift-----*/
-	shift((*data)->shift_x, (*data)->shift_y, &com);
-	com.step = big(my_abs(com.x1 - com.x), my_abs(com.y1 - com.y));
-	com.xinc = (com.x1 - com.x) / com.step;
-	com.yinc = (com.y1 - com.y) / com.step;
-	while (i <= com.step)
+	// t_dda com;
+	// init_dda(point, &com);
+	// get_data(data, &com);
+	// zoom(&com, data);
+	// /*-----isometric-----*/
+	// isometric(&com.x, &com.y, com.z);
+	// isometric(&com.x1, &com.y1, com.z1);
+	// /*-----shift-----*/
+	// shift((*data)->shift_x, (*data)->shift_y, &com);
+	com->step = big(my_abs(com->x1 - com->x), my_abs(com->y1 - com->y));
+	com->xinc = (com->x1 - com->x) / com->step;
+	com->yinc = (com->y1 - com->y) / com->step;
+	while (i <= com->step)
 	{
-		mlx_pixel_put((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr, com.x, com.y, com.color);
-		// my_mlx_pixel_put(img, com.x, com.y, com.color);
-		com.x += com.xinc;
-		com.y += com.yinc;
+		mlx_pixel_put((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr, com->x, com->y, com->color);
+		// my_mlx_pixel_put(img, com->x, com->y, com->color);
+		com->x += com->xinc;
+		com->y += com->yinc;
 		i++;
 	}
+}
+
+void	rotate_x(t_dda *com, t_data **data)
+{
+	float pre_y;
+	float pre_y1;
+
+	pre_y = com->y;
+	pre_y1 = com->y1;
+	com->y = cos((*data)->alpha) * pre_y - sin((*data)->alpha) * com->z;
+	com->y1 = cos((*data)->alpha) * pre_y1 - sin((*data)->alpha) * com->z1;
+	com->z = sin((*data)->alpha) * pre_y + cos((*data)->alpha) * com->z;
+	com->z1 = sin((*data)->alpha) * pre_y1 + cos((*data)->alpha) * com->z1;
+}
+
+void	rotate_y(t_dda *com, t_data **data)
+{
+	float pre_x;
+	float pre_x1;
+
+	pre_x = com->x;
+	pre_x1 = com->x1;
+	com->x = pre_x * cos((*data)->beta) + com->z * sin((*data)->beta);
+	com->z = -pre_x * sin((*data)->beta) + com->z * cos((*data)->beta);
+	com->x1 = pre_x1 * cos((*data)->beta) + com->z1 * sin((*data)->beta);
+	com->z1 = -pre_x1 * sin((*data)->beta) + com->z1 * cos((*data)->beta);
+}
+
+void	rotate_z(t_dda *com, t_data **data)
+{
+	float pre_x;
+	float pre_x1;
+
+	pre_x = com->x;
+	pre_x1 = com->x1;
+
+	com->x = pre_x * cos((*data)->gamma) - com->y * sin((*data)->gamma);
+	com->y = pre_x * sin((*data)->gamma) + com->y * cos((*data)->gamma);
+	com->x1 = pre_x1 * cos((*data)->gamma) - com->y1 * sin((*data)->gamma);
+	com->y1 = pre_x1 * sin((*data)->gamma) + com->y1 * cos((*data)->gamma);
+}
+void	projection(t_point point, t_data ** data, t_dda *com)
+{
+	init_dda(point, com);
+	get_data(data, com);
+	zoom(com, data);
+	rotate_x(com, data);
+	rotate_y(com, data);
+	rotate_z(com, data);
+	/*-----isometric-----*/
+	isometric(&com->x, &com->y, com->z);
+	isometric(&com->x1, &com->y1, com->z1);
+	/*-----shift-----*/
+	shift((*data)->shift_x, (*data)->shift_y, com);
 }
 
 void	draw(t_data **data)
 {
 	t_point point;
+	t_dda com;
+
 	point.y = 0;
 	while (point.y < (*data)->height)
 	{
@@ -85,12 +141,14 @@ void	draw(t_data **data)
 				if (point.x + 1 < (*data)->width)
 				{
 					point.flag = 1;
-					dda(point, data);
+					projection(point, data, &com);
+					dda(data, &com);
 				}
 				if (point.y + 1 < (*data)->height)
 				{
 					point.flag = 2;
-					dda(point, data);
+					projection(point, data, &com);
+					dda(data, &com);
 				}
 			point.x++;
 		}

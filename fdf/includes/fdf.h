@@ -7,6 +7,13 @@
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
+# define NUM1 18
+# define NUM2 19
+# define NUM3 20
+# define NUM4 21
+# define NUM5 23
+# define NUM6 22
+
 # define PI 3.141592
 
 typedef struct s_data
@@ -22,6 +29,10 @@ typedef struct s_data
 	int				zoom;
 	int				shift_x;
 	int				shift_y;
+	float				alpha;
+	float				beta;
+	float				gamma;
+	struct s_projection *project;
 	struct s_mlx	*mlx;
 }t_data;
 
@@ -30,6 +41,16 @@ typedef struct	s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 }t_mlx;
+
+typedef struct s_projection
+{
+	int zoom;
+	int shift_x;
+	int shift_y;
+	float alpha;
+	float beta;
+	float gamma;
+}t_projection;
 
 typedef struct s_point
 {
@@ -52,15 +73,6 @@ typedef struct s_dda
 	unsigned int color;
 }t_dda;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length; 
-	int		endian;
-}t_img;
-
 void			read_map(char *map_name, t_data **data);
 void			fill_zvalue(char *line, int **value, t_data **data);
 void			fill_color(char *line, unsigned int **color);
@@ -77,6 +89,5 @@ float			big(float a, float b);
 void			isometric(float *x, float *y, int z);
 void			draw(t_data **data);
 void			zoom(t_dda *com, t_data **data);
-void			my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
 void			shift(int x_shift, int y_shift, t_dda *com);
 #endif

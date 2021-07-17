@@ -14,62 +14,85 @@ int	print_key(int keycode, void *param)
 
 int	zoom_control(int keycode, t_data **data)
 {
+	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == MINUS)
 	{
-		mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 		if ((*data)->zoom > 0)
 			(*data)->zoom--;
-		draw(data);
 	}
 	if (keycode == PLUS)
-	{
-		mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 			(*data)->zoom++;
-		draw(data);
-	}
+	draw(data);
 	return (0);
 }
 
 int	lr_control(int keycode, t_data **data)
 {
+	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == LEFT)
 	{
-		mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 		if ((*data)->shift_x > 0)
 			(*data)->shift_x -= 20;
-		draw(data);
 	}
 	if (keycode == RIGHT)
 	{
-		mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 		if ((*data)->shift_x < (*data)->win_width - (*data)->width * (*data)->zoom)
 			(*data)->shift_x += 20;
-		draw(data);
 	}
+	draw(data);
 	return (0);
 }
 
 int	ud_control(int keycode, t_data **data)
 {
+	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == UP)
 	{
-		mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 		if ((*data)->shift_y > 0)
 			(*data)->shift_y -= 20;
-		draw(data);
 	}
 	if (keycode == DOWN)
 	{
-		mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 		if ((*data)->shift_y < (*data)->win_height)
 			(*data)->shift_y += 20;
-		draw(data);
 	}
+	draw(data);
 	return (0);
+}
+
+void	control_x(int keycode, t_data **data)
+{
+	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
+	if (keycode == NUM1)
+			(*data)->alpha -= 0.1;
+	if (keycode == NUM2)
+			(*data)->alpha += 0.1;
+	draw(data);
+}
+
+void	control_y(int keycode, t_data **data)
+{
+	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
+	if (keycode == NUM3)
+		(*data)->beta -= 0.1;
+	if (keycode == NUM4)
+		(*data)->beta += 0.1;
+	draw(data);
+}
+
+void	control_z(int keycode, t_data **data)
+{
+	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
+	if (keycode == NUM5)
+		(*data)->gamma -= 0.1;
+	if (keycode == NUM6)
+		(*data)->gamma += 0.1;
+	draw(data);
 }
 
 int	key_control(int keycode, t_data **data)
 {
+	print_key(keycode, NULL);
 	if (keycode == ESC)
 		exit(0);
 	if (keycode == MINUS || keycode == PLUS)
@@ -78,15 +101,13 @@ int	key_control(int keycode, t_data **data)
 		lr_control(keycode, data);
 	if (keycode == UP || keycode == DOWN)
 		ud_control(keycode, data);
+	if (keycode == NUM1 || keycode == NUM2)
+		control_x(keycode, data);
+	if (keycode == NUM3 || keycode == NUM4)
+		control_y(keycode, data);
+	if (keycode == NUM5 || keycode == NUM6)
+		control_z(keycode, data);
 	return (0);
-}
-
-void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }
 
 void	zoom(t_dda *com, t_data **data)
@@ -137,12 +158,12 @@ void	get_z_range(t_data **data)
 
 void	mlx(t_data **data)
 {
-	t_img	img;
 	(*data)->mlx->mlx_ptr = mlx_init();
 	get_z_range(data);
 	(*data)->mlx->win_ptr = mlx_new_window((*data)->mlx->mlx_ptr, (*data)->win_width, (*data)->win_height, "fdf");
-	img.img = mlx_new_image((*data)->mlx->mlx_ptr, (*data)->win_width, (*data)->win_height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	(*data)->alpha = 0;
+	(*data)->beta = 0;
+	(*data)->gamma = 0;
 	draw(data);
 	mlx_key_hook((*data)->mlx->win_ptr, key_control, data);
 	mlx_loop((*data)->mlx->mlx_ptr);
@@ -231,6 +252,7 @@ int	main(int ac, char **av)
 	{
 		data = (t_data *)malloc(sizeof(t_data));
 		data->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+		data->project = (t_projection *)malloc(sizeof(t_projection));
 		map_name = av[1];
 		read_map(map_name, &data);
 		win_size(&data);
