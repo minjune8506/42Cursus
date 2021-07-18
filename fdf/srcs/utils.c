@@ -4,7 +4,8 @@
 #include <errno.h>
 #include <unistd.h>
 
-char	*ft_strjoin_free(char *s1, char *s2)
+char
+	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*ret;
 	size_t	s1_len;

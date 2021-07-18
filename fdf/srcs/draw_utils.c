@@ -3,7 +3,7 @@
 float	big(float a, float b)
 {
 	if (a > b)
-		return (a); 
+		return (a);
 	else
 		return (b);
 }

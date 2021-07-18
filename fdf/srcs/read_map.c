@@ -7,9 +7,9 @@
 static void
 	valid_width(char *map_name, t_data **data)
 {
-	int fd;
-	int is_width;
-	char *line;
+	int		fd;
+	int		is_width;
+	char	*line;
 
 	fd = open(map_name, O_RDONLY);
 	if (fd < 0)
@@ -108,8 +108,6 @@ static unsigned int
 	return (color);
 }
 
-#include <stdio.h>
-
 void
 	read_map(char *map_name, t_data **data)
 {
@@ -117,31 +115,5 @@ void
 	valid_width(map_name, data);
 	(*data)->z_value = get_zvalue(map_name, data);
 	(*data)->color = get_color(map_name, data);
-	printf("data->width : %d\n", (*data)->width);
-	printf("data->height : %d\n", (*data)->height);
-	// int i = 0;
-	// while (i < (*data)->height)
-	// {
-	// 	int j = 0;
-	// 	while (j < (*data)->width)
-	// 	{
-	// 		printf("%3d", (*data)->z_value[i][j]);
-	// 		j++;
-	// 	}
-	// 	printf("\n");
-	// 	i++;
-	// }
-	// printf("----------------------------------------\n");
-	// i = 0;
-	// while (i < (*data)->height)
-	// {
-	// 	int j = 0;
-	// 	while (j < (*data)->width)
-	// 	{
-	// 		printf("%d ", (*data)->color[i][j]);
-	// 		j++;
-	// 	}
-	// 	printf("\n");
-	// 	i++;
-	// }
+	get_z_range(data);
 }

@@ -3,6 +3,34 @@
 #include <stdlib.h>
 
 void
+	get_z_range(t_data **data)
+{
+	int	min;
+	int	max;
+	int	i;
+	int	j;
+
+	min = 0;
+	max = 0;
+	i = 0;
+	while (i < (*data)->height)
+	{
+		j = 0;
+		while (j < (*data)->width)
+		{
+			if ((*data)->z_value[i][j] > max)
+				max = (*data)->z_value[i][j];
+			if ((*data)->z_value[i][j] < min)
+				min = (*data)->z_value[i][j];
+			j++;
+		}
+		i++;
+	}
+	(*data)->z_max = max;
+	(*data)->z_min = min;
+}
+
+void
 	fill_zvalue(char *line, int **value, t_data **data)
 {
 	char	**temp;

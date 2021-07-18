@@ -6,14 +6,14 @@
 #    By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/05 13:39:23 by vbrazhni          #+#    #+#              #
-#    Updated: 2021/07/17 00:32:32 by minjune          ###   ########.fr        #
+#    Updated: 2021/07/17 22:15:52 by minjune          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = fdf
 
 CC = gcc
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -g -O3 -Wall -Werror -Wextra
 LIBRARIES = -lmlx -lm -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
 
@@ -37,7 +37,12 @@ SOURCES_LIST = fdf.c\
 	read_utils.c\
 	memory_utils.c\
 	utils.c\
-	get_next_line.c
+	get_next_line.c\
+	control.c\
+	control_utils.c\
+	init.c\
+	project.c\
+	project_utils.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY = objects/
