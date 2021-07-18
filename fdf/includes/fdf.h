@@ -111,6 +111,7 @@ void			control_projection(int keycode, t_data **data);
 ** init.c
 */
 void			init(t_data **data);
+void			zoom_init(t_data **data);
 void			shift_init(t_data **data);
 /*
 ** project.c

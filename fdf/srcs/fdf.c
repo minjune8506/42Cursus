@@ -5,6 +5,10 @@
 void
 	mlx(t_data **data)
 {
+	// void	*mlx_ptr;
+	// void	*win_ptr;
+	// mlx_ptr = mlx_init();
+	// win_ptr = mlx_new_window(mlx_ptr, (*data)->win_width, (*data)->win_height, "fdf");
 	(*data)->mlx->mlx_ptr = mlx_init();
 	(*data)->mlx->win_ptr = mlx_new_window((*data)->mlx->mlx_ptr, \
 	(*data)->win_width, (*data)->win_height, "fdf");
@@ -35,6 +39,7 @@ int
 		free(data->mlx);
 		free(data->project);
 		free(data);
+		// while(1);
 	}
 	return (0);
 }

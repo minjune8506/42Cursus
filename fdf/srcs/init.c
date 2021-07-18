@@ -39,7 +39,7 @@ static void
 		(*data)->win_height = 900;
 }
 
-static void
+void
 	zoom_init(t_data **data)
 {
 	float	zoom_x;

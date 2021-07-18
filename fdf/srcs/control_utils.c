@@ -40,11 +40,12 @@ void
 	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == ISO)
 	{
+		init(data);
 		(*data)->project->iso = 1;
-		shift_init(data);
 	}
 	if (keycode == PARALLEL)
 	{
+		init(data);
 		(*data)->project->iso = 0;
 		(*data)->project->shift_x = \
 		(*data)->win_width / 2 - (*data)->width * (*data)->project->zoom / 2;
