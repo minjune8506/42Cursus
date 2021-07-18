@@ -1,6 +1,5 @@
 #include "fdf.h"
 #include "mlx.h"
-#include <stdlib.h>
 
 void
 	mlx(t_data **data)
