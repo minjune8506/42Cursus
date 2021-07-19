@@ -42,11 +42,13 @@ int
 		mlx(&data);
 		mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
 		print_error("mlx");
-		// free_int(data->z_value, data->height);
-		// free_uint(data->color, data->height);
-		// free(data->mlx);
-		// free(data->project);
-		// free(data);
 	}
 	return (0);
 }
+/*
+** free_int(data->z_value, data->height);
+** free_uint(data->color, data->height);
+** free(data->mlx);
+** free(data->project);
+** free(data);
+*/
