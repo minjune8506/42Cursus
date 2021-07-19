@@ -1,43 +1,39 @@
 #include "fdf.h"
 #include "mlx.h"
 
-void
+int
 	control_x(int keycode, t_data **data)
 {
-	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == NUM1)
 		(*data)->project->alpha -= 0.1;
 	if (keycode == NUM2)
 		(*data)->project->alpha += 0.1;
-	draw(data);
+	return (1);
 }
 
-void
+int
 	control_y(int keycode, t_data **data)
 {
-	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == NUM3)
 		(*data)->project->beta -= 0.1;
 	if (keycode == NUM4)
 		(*data)->project->beta += 0.1;
-	draw(data);
+	return (1);
 }
 
-void
+int
 	control_z(int keycode, t_data **data)
 {
-	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == NUM5)
 		(*data)->project->gamma -= 0.1;
 	if (keycode == NUM6)
 		(*data)->project->gamma += 0.1;
-	draw(data);
+	return (1);
 }
 
-void
+int
 	control_projection(int keycode, t_data **data)
 {
-	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == ISO)
 	{
 		init(data);
@@ -52,5 +48,5 @@ void
 		(*data)->project->shift_y = \
 		(*data)->win_height / 2 - (*data)->height * (*data)->project->zoom / 2;
 	}
-	draw(data);
+	return (1);
 }

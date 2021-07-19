@@ -1,16 +1,17 @@
 #include "fdf.h"
 #include "mlx.h"
+#include <stdlib.h>
 
 void
 	mlx(t_data **data)
 {
-	// void	*mlx_ptr;
-	// void	*win_ptr;
-	// mlx_ptr = mlx_init();
-	// win_ptr = mlx_new_window(mlx_ptr, (*data)->win_width, (*data)->win_height, "fdf");
 	(*data)->mlx->mlx_ptr = mlx_init();
+	if (!(*data)->mlx->mlx_ptr)
+		print_error("mlx");
 	(*data)->mlx->win_ptr = mlx_new_window((*data)->mlx->mlx_ptr, \
 	(*data)->win_width, (*data)->win_height, "fdf");
+	if (!(*data)->mlx->win_ptr)
+		print_error("mlx");
 	draw(data);
 	mlx_key_hook((*data)->mlx->win_ptr, key_control, data);
 	mlx_loop((*data)->mlx->mlx_ptr);
@@ -27,18 +28,25 @@ int
 	else
 	{
 		data = (t_data *)malloc(sizeof(t_data));
+		if (!data)
+			print_error("malloc");
 		data->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+		if (!data->mlx)
+			print_error("malloc");
 		data->project = (t_projection *)malloc(sizeof(t_projection));
+		if (!data->project)
+			print_error("malloc");
 		map_name = av[1];
 		read_map(map_name, &data);
 		init(&data);
 		mlx(&data);
-		free_int(data->z_value, data->height);
-		free_uint(data->color, data->height);
-		free(data->mlx);
-		free(data->project);
-		free(data);
-		// while(1);
+		mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
+		print_error("mlx");
+		// free_int(data->z_value, data->height);
+		// free_uint(data->color, data->height);
+		// free(data->mlx);
+		// free(data->project);
+		// free(data);
 	}
 	return (0);
 }

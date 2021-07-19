@@ -103,10 +103,10 @@ int				key_control(int keycode, t_data **data);
 /*
 ** control_utils.c
 */
-void			control_x(int keycode, t_data **data);
-void			control_y(int keycode, t_data **data);
-void			control_z(int keycode, t_data **data);
-void			control_projection(int keycode, t_data **data);
+int				control_x(int keycode, t_data **data);
+int				control_y(int keycode, t_data **data);
+int				control_z(int keycode, t_data **data);
+int				control_projection(int keycode, t_data **data);
 /*
 ** init.c
 */

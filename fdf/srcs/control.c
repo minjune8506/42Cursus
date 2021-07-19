@@ -5,7 +5,6 @@
 static int
 	zoom_control(int keycode, t_data **data)
 {
-	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == MINUS)
 	{
 		if ((*data)->project->zoom > 0)
@@ -13,14 +12,12 @@ static int
 	}
 	if (keycode == PLUS)
 		(*data)->project->zoom++;
-	draw(data);
-	return (0);
+	return (1);
 }
 
 static int
 	lr_control(int keycode, t_data **data)
 {
-	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == LEFT)
 	{
 		if ((*data)->project->shift_x > 0)
@@ -32,14 +29,12 @@ static int
 			(*data)->win_width - (*data)->width * (*data)->project->zoom)
 			(*data)->project->shift_x += 20;
 	}
-	draw(data);
-	return (0);
+	return (1);
 }
 
 static int
 	ud_control(int keycode, t_data **data)
 {
-	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
 	if (keycode == UP)
 	{
 		if ((*data)->project->shift_y > 0)
@@ -50,28 +45,35 @@ static int
 		if ((*data)->project->shift_y < (*data)->win_height)
 			(*data)->project->shift_y += 20;
 	}
-	draw(data);
-	return (0);
+	return (1);
 }
 
 int
 	key_control(int keycode, t_data **data)
 {
+	int	ret;
+
+	ret = 0;
 	if (keycode == ESC)
 		exit(0);
 	if (keycode == MINUS || keycode == PLUS)
-		zoom_control(keycode, data);
+		ret = zoom_control(keycode, data);
 	if (keycode == LEFT || keycode == RIGHT)
-		lr_control(keycode, data);
+		ret = lr_control(keycode, data);
 	if (keycode == UP || keycode == DOWN)
-		ud_control(keycode, data);
+		ret = ud_control(keycode, data);
 	if (keycode == NUM1 || keycode == NUM2)
-		control_x(keycode, data);
+		ret = control_x(keycode, data);
 	if (keycode == NUM3 || keycode == NUM4)
-		control_y(keycode, data);
+		ret = control_y(keycode, data);
 	if (keycode == NUM5 || keycode == NUM6)
-		control_z(keycode, data);
+		ret = control_z(keycode, data);
 	if (keycode == ISO || keycode == PARALLEL)
-		control_projection(keycode, data);
+		ret = control_projection(keycode, data);
+	if (ret == 1)
+	{
+		mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
+		draw(data);
+	}
 	return (0);
 }

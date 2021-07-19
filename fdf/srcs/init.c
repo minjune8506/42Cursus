@@ -59,7 +59,6 @@ void
 		j += zoom_y;
 		(*data)->project->zoom++;
 	}
-	// printf("zoom : %d\n", (*data)->project->	zoom);
 }
 
 void
@@ -78,9 +77,6 @@ void
 	(*data)->win_width / 2 - center_x * (*data)->project->zoom;
 	(*data)->project->shift_y = \
 	(*data)->win_height - center_y * (*data)->project->zoom;
-	// printf("shift_x : %d\n", (*data)->project->shift_x);
-	// printf("shift_y : %d\n", (*data)->project->shift_y);
-	// printf("sreen_width : %d\nscreen_height : %d\n", (*data)->win_width, (*data)->win_height);
 }
 
 void

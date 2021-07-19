@@ -13,8 +13,7 @@
 NAME = fdf
 
 CC = gcc
-FLAGS = -g 
-#-O3 -Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 LIBRARIES = -lmlx -lm -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
 
@@ -23,7 +22,7 @@ LIBFT_DIRECTORY = ./srcs/libft/
 LIBFT_HEADERS = $(LIBFT_DIRECTORY)includes/
 
 MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
-MINILIBX_DIRECTORY = ./minilibx_macos/
+MINILIBX_DIRECTORY = ./minilibx
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 HEADERS_LIST = fdf.h
