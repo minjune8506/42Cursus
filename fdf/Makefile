@@ -1,15 +1,27 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: minjune <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/07/20 15:22:50 by minjune           #+#    #+#              #
+#    Updated: 2021/07/20 15:51:17 by minjune          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fdf
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra 
 LIBRARIES = -lmlx -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
 
 LIBFT = $(LIBFT_DIRECTORY)libft.a
-LIBFT_DIRECTORY = ./srcs/libft/
+LIBFT_DIRECTORY = ./libft/
 LIBFT_HEADERS = $(LIBFT_DIRECTORY)
 
 MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
-MINILIBX_DIRECTORY = ./minilibx
+MINILIBX_DIRECTORY = ./minilibx/
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 HEADERS_LIST = fdf.h
@@ -30,58 +42,59 @@ SOURCES_LIST = fdf.c\
 	init.c\
 	project.c\
 	project_utils.c
-SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
+SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST)
 
 OBJECTS_DIRECTORY = objects/
 OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
 OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
-# COLORS
 
-GREEN = \033[0;32m
 RED = \033[0;31m
+BLUE = \033[0;34m
 RESET = \033[0m
-
-.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MINILIBX) $(OBJECTS_DIRECTORY) $(OBJECTS)
+$(NAME): $(MINILIBX) $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) -o $(NAME)
-	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
-	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+	@echo "\n$(BLUE)$(NAME) : object files created$(RESET)"
+	@echo "$(BLUE)$(NAME) : $(NAME) created$(RESET)"
 
 $(OBJECTS_DIRECTORY):
 	@mkdir -p $(OBJECTS_DIRECTORY)
-	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+	@echo "$(BLUE)$(NAME) : $(OBJECTS_DIRECTORY) created$(RESET)"
 
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
 	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
-	@echo "$(GREEN).$(RESET)\c"
-
-$(LIBFT):
-	@echo "$(NAME): $(GREEN)Creating $(LIBFT)...$(RESET)"
-	@$(MAKE) -sC $(LIBFT_DIRECTORY)
+	@echo "$(BLUE).$(RESET)\c"
 
 $(MINILIBX):
-	@echo "$(NAME): $(GREEN)Creating $(MINILIBX)...$(RESET)"
 	@$(MAKE) -sC $(MINILIBX_DIRECTORY)
+	@echo "$(BLUE)$(NAME) : $(MINILIBX) created$(RESET)"
+	   
+$(LIBFT):
+	@$(MAKE) -sC $(LIBFT_DIRECTORY)
+	@echo "$(BLUE)$(NAME) : $(LIBFT) created$(RESET)"
+
+bonus: fclean all
 
 clean:
 	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
 	@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
+	@echo "$(RED)$(NAME) : object files deleted$(RESET)"
 	@rm -rf $(OBJECTS_DIRECTORY)
-	@echo "$(NAME): $(RED)$(OBJECTS_DIRECTORY) was deleted$(RESET)"
-	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
+	@echo "$(RED)$(NAME) : $(OBJECTS_DIRECTORY) deleted$(RESET)"
 
 fclean: clean
 	@rm -f $(MINILIBX)
-	@echo "$(NAME): $(RED)$(MINILIBX) was deleted$(RESET)"
+	@echo "$(RED)$(NAME) : $(MINILIBX) deleted$(RESET)"
 	@rm -f $(LIBFT)
-	@echo "$(NAME): $(RED)$(LIBFT) was deleted$(RESET)"
+	@echo "$(RED)$(NAME) : $(LIBFT) deleted$(RESET)"
 	@rm -f $(NAME)
-	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+	@echo "$(RED)$(NAME) : $(NAME) deleted$(RESET)"
 
 re:
 	@$(MAKE) fclean
 	@$(MAKE) all
+
+.PHONY: all clean fclean re

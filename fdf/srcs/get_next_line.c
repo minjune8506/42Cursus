@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft/libft.h"
+#include "libft.h"
 #include <unistd.h>
 #define FD_MAX 256
 #define BUFFER_SIZE 1000
