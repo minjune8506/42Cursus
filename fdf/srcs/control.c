@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 #include "mlx.h"
 #include <stdlib.h>
 
@@ -31,16 +32,9 @@ static int
 	lr_control(int keycode, t_data **data)
 {
 	if (keycode == LEFT)
-	{
-		if ((*data)->project->shift_x > 0)
-			(*data)->project->shift_x -= 20;
-	}
+		(*data)->project->shift_x -= 20;
 	if (keycode == RIGHT)
-	{
-		if ((*data)->project->shift_x < \
-			(*data)->win_width - (*data)->width * (*data)->project->zoom)
-			(*data)->project->shift_x += 20;
-	}
+		(*data)->project->shift_x += 20;
 	return (1);
 }
 
@@ -48,16 +42,22 @@ static int
 	ud_control(int keycode, t_data **data)
 {
 	if (keycode == UP)
-	{
-		if ((*data)->project->shift_y > 0)
-			(*data)->project->shift_y -= 20;
-	}
+		(*data)->project->shift_y -= 20;
 	if (keycode == DOWN)
-	{
-		if ((*data)->project->shift_y < (*data)->win_height)
-			(*data)->project->shift_y += 20;
-	}
+		(*data)->project->shift_y += 20;
 	return (1);
+}
+
+static void
+	redraw(t_data **data)
+{
+	mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
+	ft_bzero((*data)->img->addr, (*data)->win_width * (*data)->win_height \
+	* (*data)->img->bps / 8);
+	draw(data);
+	mlx_put_image_to_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr, \
+	(*data)->img->img_ptr, 0, 0);
+	menu(data);
 }
 
 int
@@ -83,9 +83,6 @@ int
 	if (keycode == ISO || keycode == PARALLEL)
 		ret = control_projection(keycode, data);
 	if (ret == 1)
-	{
-		mlx_clear_window((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr);
-		draw(data);
-	}
+		redraw(data);
 	return (0);
 }

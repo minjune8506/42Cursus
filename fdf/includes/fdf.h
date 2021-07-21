@@ -41,6 +41,7 @@ typedef struct s_data
 	int					win_height;
 	struct s_projection	*project;
 	struct s_mlx		*mlx;
+	struct s_img		*img;
 }t_data;
 
 typedef struct s_mlx
@@ -59,6 +60,15 @@ typedef struct s_projection
 	float	gamma;
 	int		iso;
 }t_projection;
+
+typedef struct s_img
+{
+	void	*img_ptr;
+	void	*addr;
+	int		bps;
+	int		line_size;
+	int		endian;
+}t_img;
 
 typedef struct s_point
 {
@@ -128,13 +138,13 @@ void			shift_init(t_data **data);
 /*
 ** project.c
 */
+void			isometric(float *x, float *y, int z);
 void			projection(t_point point, t_data **data, t_dda *com);
 /*
 ** draw.c
 */
 void			init_dda(t_point point, t_dda *com);
 void			get_data(t_data **data, t_dda *com);
-void			isometric(float *x, float *y, int z);
 void			draw(t_data **data);
 /*
 ** draw_utils.c
@@ -146,4 +156,8 @@ float			big(float a, float b);
 */
 void			zoom(t_dda *com, t_data **data);
 void			shift(t_data **data, t_dda *com);
+/*
+**fdf.c
+*/
+void			menu(t_data **data);
 #endif

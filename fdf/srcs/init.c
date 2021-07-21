@@ -27,28 +27,8 @@ static void
 static void
 	win_size_init(t_data **data)
 {
-	if ((*data)->width <= 11)
-	{
-		(*data)->win_width = 640;
-		(*data)->win_height = 480;
-	}
-	else if ((*data)->width <= 100)
-	{
-		(*data)->win_width = 960;
-		(*data)->win_height = 540;
-	}
-	else if ((*data)->width <= 200)
-	{
-		(*data)->win_width = 1280;
-		(*data)->win_height = 720;
-	}
-	else
-	{
-		(*data)->win_width = 1440;
-		(*data)->win_height = 900;
-	}
-	if ((*data)->z_max >= 30)
-		(*data)->win_height = 900;
+	(*data)->win_width = 1440;
+	(*data)->win_height = 840;
 }
 
 void

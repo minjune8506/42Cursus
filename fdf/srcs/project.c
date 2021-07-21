@@ -56,6 +56,18 @@ static void
 }
 
 void
+	isometric(float *x, float *y, int z)
+{
+	float	pre_x;
+	float	pre_y;
+
+	pre_x = *x;
+	pre_y = *y;
+	*x = pre_x * cos(0.4636 * -1) - pre_y * sin(1.1071 * -1);
+	*y = pre_x * sin(0.4636 * -1) + pre_y * cos(1.1071 * -1) - z;
+}
+
+void
 	projection(t_point point, t_data **data, t_dda *com)
 {
 	init_dda(point, com);

@@ -41,16 +41,14 @@ void
 		com->color = 0xFFFFFF;
 }
 
-void
-	isometric(float *x, float *y, int z)
+static void
+	my_pixel_put(t_data **data, int x, int y, int color)
 {
-	float	pre_x;
-	float	pre_y;
+	char	*dst;
 
-	pre_x = *x;
-	pre_y = *y;
-	*x = pre_x * cos(0.4636 * -1) - pre_y * sin(1.1071 * -1);
-	*y = pre_x * sin(0.4636 * -1) + pre_y * cos(1.1071 * -1) - z;
+	dst = (*data)->img->addr + \
+	(y * (*data)->img->line_size + x * (*data)->img->bps / 8);
+	*(unsigned int *)dst = color;
 }
 
 static void
@@ -64,8 +62,9 @@ static void
 	com->yinc = (com->y1 - com->y) / com->step;
 	while (i <= com->step)
 	{
-		mlx_pixel_put((*data)->mlx->mlx_ptr, (*data)->mlx->win_ptr, \
-		com->x, com->y, com->color);
+		if (com->x >= 0 && com->x <= (*data)->win_width && \
+		com->y >= 0 && com->y <= (*data)->win_height)
+			my_pixel_put(data, com->x, com->y, com->color);
 		com->x += com->xinc;
 		com->y += com->yinc;
 		i++;
