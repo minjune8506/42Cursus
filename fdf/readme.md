@@ -8,7 +8,8 @@
 
 > + [후기](#후기)
 
-![fdf](../../fdf_img.png)
+![image](./fdf_img.png)
+
 ### **Subject**
 ---
 MANDATORY   
