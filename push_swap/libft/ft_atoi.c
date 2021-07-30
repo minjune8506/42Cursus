@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <limits.h>
 
 static int
 	is_space(char c)
