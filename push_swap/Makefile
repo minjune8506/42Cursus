@@ -6,14 +6,13 @@
 #    By: minjune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/20 15:22:50 by minjune           #+#    #+#              #
-#    Updated: 2021/07/27 11:33:02 by minjkim2         ###   ########.fr        #
+#    Updated: 2021/08/06 12:45:47 by minjkim2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = gcc
-FLAGS = -g
-#-Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 LIBRARIES = -lft -L$(LIBFT_DIRECTORY)
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS)
 
@@ -34,8 +33,11 @@ SOURCES_LIST = push_swap.c\
 				parse.c\
 				sort_utils.c\
 				sort_utils2.c\
-				sort_utils3.c
-
+				sort_utils3.c \
+				get_pivot.c\
+				sort.c\
+				small_sort.c\
+				small_count_sort.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST)
 
 OBJECTS_DIRECTORY = ./objects/
