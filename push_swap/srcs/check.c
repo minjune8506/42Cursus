@@ -1,10 +1,11 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void check_valid(char **av)
+void
+	check_valid(char **av)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (av[i])
@@ -12,7 +13,8 @@ void check_valid(char **av)
 		j = 0;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]) && !(av[i][j] == ' ') && !(av[i][j] == '-'))
+			if (!ft_isdigit(av[i][j]) && \
+			!(av[i][j] == ' ') && !(av[i][j] == '-'))
 				print_error();
 			j++;
 		}
@@ -20,11 +22,20 @@ void check_valid(char **av)
 	}
 }
 
-void check_range(char **av)
+static void
+	range_util(char *str)
 {
-	char **temp;
-	int i;
-	int j;
+	if (ft_strlen(str) > 11 || ft_atoi_long(str) \
+		> 2147483647 || ft_atoi_long(str) < -2147483648)
+		print_error();
+}
+
+void
+	check_range(char **av)
+{
+	char	**temp;
+	int		i;
+	int		j;
 
 	i = 1;
 	while (av[i])
@@ -35,25 +46,22 @@ void check_range(char **av)
 			temp = ft_split(av[i], ' ');
 			while (temp[j])
 			{
-				if (ft_strlen(temp[j]) > 11 || ft_atoi_long(temp[j]) > 2147483647 || ft_atoi_long(temp[j]) < -2147483648)
-					print_error();
+				range_util(temp[j]);
 				j++;
 			}
 			split_free(temp);
 		}
 		else
-		{
-			if (ft_strlen(av[i]) > 11 || ft_atoi_long(av[i]) > 2147483647 || ft_atoi_long(av[i]) < -2147483648)
-				print_error();
-		}
+			range_util(av[i]);
 		i++;
 	}
 }
 
-void	check_overlap(int *arr, int size)
+void
+	check_overlap(int *arr, int size)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < size)

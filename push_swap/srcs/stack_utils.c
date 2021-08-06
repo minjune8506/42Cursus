@@ -3,10 +3,11 @@
 
 #include <stdio.h>
 
-void push(t_stack *stack, int data)
+void
+	push(t_stack *stack, int data)
 {
-	t_node *new_node;
-	t_node *temp;
+	t_node	*new_node;
+	t_node	*temp;
 
 	new_node = init_node(data);
 	if (stack->top == NULL)
@@ -24,10 +25,11 @@ void push(t_stack *stack, int data)
 	stack->size++;
 }
 
-void push_back(t_stack *stack, int data)
+void
+	push_back(t_stack *stack, int data)
 {
-	t_node *new_node;
-	t_node *temp;
+	t_node	*new_node;
+	t_node	*temp;
 
 	new_node = init_node(data);
 	if (stack->top == NULL)
@@ -45,9 +47,10 @@ void push_back(t_stack *stack, int data)
 	stack->size++;
 }
 
-t_node *pop(t_stack *stack)
+t_node
+	*pop(t_stack *stack)
 {
-	t_node *node;
+	t_node	*node;
 
 	if (stack->top == NULL)
 		return (NULL);
@@ -69,9 +72,10 @@ t_node *pop(t_stack *stack)
 	return (node);
 }
 
-t_node *pop_back(t_stack *stack)
+t_node
+	*pop_back(t_stack *stack)
 {
-	t_node *node;
+	t_node	*node;
 
 	if (stack->top == NULL)
 		return (NULL);
@@ -93,9 +97,10 @@ t_node *pop_back(t_stack *stack)
 	return (node);
 }
 
-void	destroy_stack(t_stack *stack)
+void
+	destroy_stack(t_stack *stack)
 {
-	t_node *node;
+	t_node	*node;
 
 	while (stack->size > 0)
 	{
@@ -103,30 +108,4 @@ void	destroy_stack(t_stack *stack)
 		free(node);
 	}
 	free(stack);
-}
-
-void	print_stack(t_stack *stack)
-{
-	t_node *temp;
-	int i;
-
-	i = 0;
-	if (stack->size == 0)
-	{
-		printf("empty\n");
-		return ;
-	}
-	temp = stack->top;
-	while (i < stack->size)
-	{
-		printf("%-3d", temp->data);
-		temp = temp->next;
-		i++;
-	}
-	printf("\n");
-	// printf("\nsize : %d\n", stack->size);
-	// if (stack->top)
-	// 	printf("top : %d\n", stack->top->data);
-	// if (stack->tail)
-	// 	printf("tail : %d\n", stack->tail->data);
 }

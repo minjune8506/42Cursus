@@ -2,9 +2,10 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void ra(t_stack **stack_a)
+void
+	ra(t_stack **stack_a)
 {
-	t_node *temp;
+	t_node	*temp;
 
 	if ((*stack_a)->size == 0)
 		return ;
@@ -14,19 +15,21 @@ void ra(t_stack **stack_a)
 	ft_putstr_fd("ra\n", 1);
 }
 
-void rb(t_stack **stack_b)
+void
+	rb(t_stack **stack_b)
 {
-	t_node *temp;
-	
+	t_node	*temp;
+
 	if ((*stack_b)->size == 0)
-	return ;
+		return ;
 	temp = pop(*stack_b);
 	push_back(*stack_b, temp->data);
 	free(temp);
 	ft_putstr_fd("rb\n", 1);
 }
 
-void rr(t_stack **stack_a, t_stack **stack_b)
+void
+	rr(t_stack **stack_a, t_stack **stack_b)
 {
 	ra(stack_a);
 	rb(stack_b);

@@ -2,10 +2,11 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int get_array_size(char **av)
+static int
+	get_array_size(char **av)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	i = 1;
 	count = 0;
@@ -20,12 +21,13 @@ static int get_array_size(char **av)
 	return (count);
 }
 
-static void to_array(char **av, int **arr)
+static void
+	to_array(char **av, int **arr)
 {
-	int i;
-	int j;
-	int k;
-	char **temp;
+	int		i;
+	int		j;
+	int		k;
+	char	**temp;
 
 	i = 1;
 	k = 0;
@@ -52,7 +54,8 @@ static void to_array(char **av, int **arr)
 	}
 }
 
-static void array_to_stack(int *arr, t_stack **stack_a, int size)
+static void
+	array_to_stack(int *arr, t_stack **stack_a, int size)
 {
 	while (size > 0)
 	{
@@ -61,10 +64,11 @@ static void array_to_stack(int *arr, t_stack **stack_a, int size)
 	}
 }
 
-void parse(char **av, t_stack **stack_a)
+void
+	parse(char **av, t_stack **stack_a)
 {
-	int *arr;
-	int size;
+	int	*arr;
+	int	size;
 
 	check_valid(av);
 	check_range(av);
