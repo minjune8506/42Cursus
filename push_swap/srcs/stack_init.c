@@ -15,6 +15,24 @@ t_stack
 	return (stack);
 }
 
+t_cmd
+	*init_cmd(int count)
+{
+	t_cmd	*cmd;
+
+	cmd = (t_cmd *)malloc(sizeof(t_cmd));
+	if (!cmd)
+		print_error();
+	cmd->count_pa = 0;
+	cmd->count_pb = 0;
+	cmd->count_ra = 0;
+	cmd->count_rb = 0;
+	cmd->pivot_b = 0;
+	cmd->pivot_s = 0;
+	cmd->count_origin = count;
+	return (cmd);
+}
+
 t_node
 	*init_node(int data)
 {

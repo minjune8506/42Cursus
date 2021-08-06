@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdlib.h>
 
 int
 	is_sorted(t_stack **stack, int count)
@@ -40,30 +41,29 @@ int
 
 void	five_count_sort(t_stack **stack_a, t_stack **stack_b)
 {
+	t_cmd		*cmd;
 	int			pivot;
-	int			pb_count;
-	int			ra_count;
 
+	cmd = init_cmd(5);
 	pivot = get_mid(stack_a, 5);
-	pb_count = 0;
-	ra_count = 0;
 	while (1)
 	{
 		if ((*stack_a)->top->data < pivot)
 		{
 			pb(stack_a, stack_b);
-			pb_count++;
+			cmd->count_pb++;
 		}
 		else
 		{
 			ra(stack_a);
-			ra_count++;
+			cmd->count_ra++;
 		}
-		if (pb_count == 2)
+		if (cmd->count_pb == 2)
 			break ;
 	}
-	while (ra_count-- && (*stack_a)->size != 3)
+	while (cmd->count_ra-- && (*stack_a)->size != 3)
 		rra(stack_a);
 	three_sort(stack_a);
 	two_sort_b(stack_a, stack_b);
+	free(cmd);
 }

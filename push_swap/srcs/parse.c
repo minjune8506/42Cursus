@@ -38,18 +38,11 @@ static void
 			j = 0;
 			temp = ft_split(av[i], ' ');
 			while (temp[j])
-			{
-				(*arr)[k] = ft_atoi(temp[j]);
-				k++;
-				j++;
-			}
+				(*arr)[k++] = ft_atoi(temp[j++]);
 			split_free(temp);
 		}
 		else
-		{
-			(*arr)[k] = ft_atoi(av[i]);
-			k++;
-		}
+			(*arr)[k++] = ft_atoi(av[i]);
 		i++;
 	}
 }

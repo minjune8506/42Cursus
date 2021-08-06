@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-#include <stdlib.h>
-
 int
 	get_max(t_stack **stack, int size)
 {
@@ -77,35 +75,4 @@ void
 	}
 	else
 		three_count_sort(stack);
-}
-
-void
-	five_sort(t_stack **stack_a, t_stack **stack_b)
-{
-	int	max;
-	int	min;
-
-	max = get_max(stack_a, (*stack_a)->size);
-	min = get_min(stack_a, (*stack_a)->size);
-	while ((*stack_a)->size != 3)
-	{
-		if ((*stack_a)->top->data == max || \
-		(*stack_a)->top->data == min)
-			pb(stack_a, stack_b);
-		else
-			ra(stack_a);
-	}
-	three_sort(stack_a);
-	if (!is_sorted(stack_b, (*stack_b)->size))
-	{
-		pa(stack_a, stack_b);
-		ra(stack_a);
-		pa(stack_a, stack_b);
-	}
-	else
-	{
-		pa(stack_a, stack_b);
-		pa(stack_a, stack_b);
-		ra(stack_a);
-	}
 }
