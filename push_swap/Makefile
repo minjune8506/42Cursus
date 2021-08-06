@@ -34,7 +34,7 @@ SOURCES_LIST = push_swap.c\
 				sort_utils.c\
 				sort_utils2.c\
 				sort_utils3.c \
-				get_pivot.c\
+				get_mid.c\
 				sort_a.c\
 				sort_b.c\
 				small_sort.c\

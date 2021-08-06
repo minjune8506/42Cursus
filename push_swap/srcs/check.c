@@ -13,8 +13,8 @@ void
 		j = 0;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]) && \
-			!(av[i][j] == ' ') && !(av[i][j] == '-'))
+			if (!ft_isdigit(av[i][j]) && !(av[i][j] == ' ') \
+			&& !(av[i][j] == '-') && !(av[i][j] == '+'))
 				print_error();
 			j++;
 		}
@@ -25,8 +25,7 @@ void
 static void
 	range_util(char *str)
 {
-	if (ft_strlen(str) > 11 || ft_atoi_long(str) \
-		> 2147483647 || ft_atoi_long(str) < -2147483648)
+	if (ft_atoi_long(str) > 2147483647 || ft_atoi_long(str) < -2147483648)
 		print_error();
 }
 

@@ -91,7 +91,7 @@ int			is_sorted(t_stack **stack, int count);
 int			is_b_sorted(t_stack **stack_a, t_stack **stack_b, int count);
 void		five_count_sort(t_stack **stack_a, t_stack **stack_b);
 /*
-get_pivot.c
+get_mid.c
 */
 void		insertion_sort(int *list, int n);
 int			get_mid(t_stack **stack, int size);
