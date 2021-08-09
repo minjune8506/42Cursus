@@ -88,6 +88,7 @@ void		parse(char **av, t_stack **stack);
 */
 void		print_error(void);
 void		split_free(char **str);
+int			is_space(char c);
 long long	ft_atoi_long(const char *str);
 /*
 small_sort.c

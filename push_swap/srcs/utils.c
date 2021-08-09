@@ -35,7 +35,7 @@ void
 	free(str);
 }
 
-static int
+int
 	is_space(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\r' \

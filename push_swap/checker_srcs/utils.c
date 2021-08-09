@@ -35,7 +35,7 @@ void
 	free(str);
 }
 
-static int
+int
 	is_space(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\r' \
@@ -60,10 +60,6 @@ long long
 			sign = -1;
 		str++;
 	}
-	while (*str == 0)
-		str++;
-	if (ft_strlen(str) >= 11)
-		print_error();
 	while (*str >= '0' && *str <= '9')
 	{
 		result *= 10;

@@ -39,6 +39,14 @@ static void
 {
 	if (ft_atoi_long(str) > 2147483647 || ft_atoi_long(str) < -2147483648)
 		print_error();
+	while (is_space(*str) && *str)
+		str++;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str == '0')
+		str++;
+	if (ft_strlen(str) >= 11)
+		print_error();
 }
 
 void

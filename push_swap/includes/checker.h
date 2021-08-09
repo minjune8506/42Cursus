@@ -35,6 +35,7 @@ void		check_range(char **av);
 void		check_overlap(int *arr, int size);
 void		print_error(void);
 void		split_free(char **str);
+int			is_space(char c);
 long long	ft_atoi_long(const char *str);
 void		push(t_stack *stack, int data);
 void		push_back(t_stack *stack, int data);
