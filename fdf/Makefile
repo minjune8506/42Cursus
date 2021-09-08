@@ -6,13 +6,13 @@
 #    By: minjune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/20 15:22:50 by minjune           #+#    #+#              #
-#    Updated: 2021/07/21 18:39:18 by minjune          ###   ########.fr        #
+#    Updated: 2021/08/23 12:10:51 by minjkim2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
-FLAGS = -Wall -Werror -Wextra 
+FLAGS = -g -Wall -Werror -Wextra 
 LIBRARIES = -lmlx -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
 
