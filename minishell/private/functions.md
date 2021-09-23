@@ -1,10 +1,9 @@
 # **minishell**
 
->본 프로젝트의 개요와 프로젝트를 진행하기 위한 개념 확립
-
 ## **minishell 허용 함수**
 
-**`readline`**<br>
+**`readline`**
+
 prompt를 출력하고 사용자로부터 한줄의 문자를 입력받고 리턴한다. `readline()` 리턴값은 `malloc()`에 의해 할당되어 있다. 반드시 `free()`해야함.
 * 헤더 : `#include <readline/readline.h>`
 * 형식 : `char *readline (char *prompt)`
@@ -13,29 +12,34 @@ prompt를 출력하고 사용자로부터 한줄의 문자를 입력받고 리�
 * 반환값 : 개행을 제거한 문자열을 리턴, `EOF`를 만날시 `(char *)NULL` 리턴
 * ex : char *line = readline ("Enter a line : ")
 
-**`rl_on_new_line`**<br>
+**`rl_on_new_line`**
+
 Tell the update functions that we have moved onto a new (empty) line, usually after outputting a newline.
 * 헤더 : `#include <readline/readline.h>`
 * 형식 : `int rl_on_new_line (void)`
 
-**`rl_replace_line`**<br>
+**`rl_replace_line`**
+
 Replace the contents of rl_line_buffer with text. The point and mark are preserved, if possible. If clear_undo is non-zero, the undo list associated with the current line is cleared.
 * 헤더 : `#include <readline/readline.h>`
-* 형식 : `void rl_replace_line (const char *text, int clear_undo`
+* 형식 : `void rl_replace_line (const char *text, int clear_undo)`
 
-**`rl_redisplay_function`**<br>
+**`rl_redisplay`**
+
 If non-zero, Readline will call indirectly through this pointer to update the display with the current contents of the editing buffer. By default, it is set to rl_redisplay, the default Readline redisplay function (see section 2.4.6 Redisplay).
 * 헤더 : `#include <realine/readline.h>`
-* 형식 : `l_voidfunc_t * rl_redisplay_function`
+* 형식 : `void rl_redisplay(void)`
   
 
-**`add_history`**<br>
+**`add_history`**
+
 Place string at the end of the history list. The associated data field (if any) is set to NULL. If the maximum number of history entries has been set using stifle_history(), and the new number of history entries would exceed that maximum, the oldest history entry is removed.
 string을 history list의 맨끝에 위치시킨다. 관련된 데이터 필드는 NULL로 셋팅된다. history 항목이 최대 개수를 넘을  경우, 오래된 항목들은 삭제된다.
 * 헤더 : `#include <readline/history.h>`
 * 형식 : `add_history(const char *string)`
 
-**`wait3`**<br>
+**`wait3`**
+
 자식 프로세스가 종료되는 것을 기다리며, 종료된 프로세스의 상태와 자원 사용량을 알려주는 함수.
 * 헤더 : `#include <sys/wait.h>`
 * 형식 : `pid_t wait3(int *statloc, int options, struct rusage *rusage)`
@@ -45,7 +49,8 @@ string을 history list의 맨끝에 위치시킨다. 관련된 데이터 필드�
   * rusage : 자식 프로세스의 리소스 사용량에 대한 정보가 담긴다.
 * 반환값 : 성공시 Process ID, 실패시 -1, WNOHANG 옵션으로 실행되고, 자식 프로세스가 아직 종료되지 않았으면 0 return
 
-**`wait4`**<br>
+**`wait4`**
+
 * 형식 : `pid_t wait4(pid_t pid, int *statloc, int options, struct rusage *rusage)`
 * 인자 : 
   * pid : pid에 해당하는 프로세스만 기다린다.
@@ -69,7 +74,8 @@ options
 |WNOHANG|종료 상태를 즉시 회수 할 수 없는 상황이라고 하여도 waitpid() 호출이 차단되지 않고 0 리턴|
 |WUNTRACED|중지되었으나 그 상태가 아직 보고되지 않은 자식도 리턴|
 
-**`signal`**<br>
+**`signal`**
+
 시그널 처리를 설정한다.
 * 헤더 : `#include <signal.h>`
 * 형식 : `void (*signal(int sig, void (*func)(int)))(int)`
@@ -85,7 +91,8 @@ options
 |SIG_IGN|시그널을 무시한다.|
 |함수 이름|시그널이 발생하면 지정된 함수 호출|
 
-**`kill`**<br>
+**`kill`**
+
 쉘에서 프로세스를 죽이는 kill명령과는 다르게 프로세스에 시그널을 전송한다.
 프로세스에 SIGKILL을 보내면 쉘 명령의 kill과 같은 역할을 한다.
 * 헤더 : `#include <signal.h>`
@@ -102,7 +109,8 @@ options
 |-1|함수를 호출하는 프로세스가 전송할 수 있는 권한을 가진 모든 프로세스에 시그널 전송|
 |음수|첫번째 pid의 절대값 프로세스 그룹에 속하는 모든 프로세스에 시그널 전송|
 
-**`getcwd`**<br>
+**`getcwd`**
+
 현재 작업중인 디렉토리의 절대 경로를 buf에 복사하고 buf의 포인터를 리턴한다.
 buf가 NULL이면 공백이 할당되고, size는 무시된다.
 버퍼가 작으면 에러가 발생할 수 있으므로 크게 잡는다.
@@ -114,7 +122,8 @@ buf가 NULL이면 공백이 할당되고, size는 무시된다.
   * size_t size : 버퍼의 크기
 * 반환값 : 성공시 현재 작업 디렉토리를, 실패시 NULL 포인터를 리턴, errno설정.
 
-**`chdir`**<br>
+**`chdir`**
+
 현재 작업 디렉토리를 변경한다. (change directory)
 디렉토리의 실행 권한이 있어야한다. path의 시작이 '\'이면 안된다.
 * 헤더 : `#include <unistd.h>`
@@ -123,7 +132,8 @@ buf가 NULL이면 공백이 할당되고, size는 무시된다.
   * const char *path : 경로
 * 반환값 : 성공시 0, 실패시 -1 리턴, errno에 저장.
 
-**`stat`**<br>
+**`stat`**
+
 파일의 크기, 권한, 생성일시, 최종 변경일등 파일의 상태나 정보를 얻는 함수. symbolic link인 파일을 path 로 넘기면 그 원본 파일의 정보를 얻는다. `lstat` 함수는 symbolic link 파일 자신의 정보를 얻는다.
 
 * 헤더 : `#include <sys/stat.h>`
@@ -134,12 +144,14 @@ buf가 NULL이면 공백이 할당되고, size는 무시된다.
 구조체 정보 : https://www.it-note.kr/173
 * 반환값 : 성공시 0, 실패시 -1 리턴, errno에 저장.
 
-**`lstat`**<br>
+**`lstat`**
+
 stat함수와 동작하는 기능이 같다.
 symbolic link인 파일을 path로 넘기면 symbolic link인 파일 자체의 정보를 얻는다.
 * 형식 : `int lstat(const char *path, struct stat * buf)`
 
-**`fstat`**<br>
+**`fstat`**
+
 열려진 파일의 크기, 파일의 권한, 파일의 생성일시, 최종 변경일 등 파일의 상태나 파일의 정보를 얻는 함수.
 * 형식 : `int fstat(int fd, struct stat *buf)`
 * 인자 :
@@ -172,7 +184,7 @@ symbolic link인 파일을 path로 넘기면 symbolic link인 파일 자체의 �
 
 **`unlink`**
 
-링크를 삭제하고, 링크 카운트를 감소한다.
+링크를 삭제한다.
 
 * 헤더 : `#include <unistd.h>`
 * 형식 : `int unlink(const char *path)`
@@ -313,56 +325,51 @@ execve함수를 호출한 프로세스를 새 프로세스로 바꿔준다.
 
 **`opendir`**
 
-full path나 현재 디렉토리의 상대 경로로 DIR *를 생성한다.<br>
+지정한 디렉토리 열기
 특정 디렉토리 안에 있는 파일과 디렉토리를 검색하기 위해 사용한다.
 * 헤더 : `#include <dirent.h>`
 * 형식 : `DIR *opendir(const char *filename)`
-* 인수
-  * const char *filename : 디렉토리 이름
-  * 디렉토리 이름은 절대 / 상대 경로
+* 인수 : 열기 대상 디렉토리
 * 반환 :
     * DIR 포인터 : 성공
-    * NULL : 실패 (filename에 접근 불가, malloc 불가)
+    * NULL : 실패
 
 **`readdir`**
 
-`opendir()`로 연 디렉토리에 대해, 그 안에 있는 모든 파일과 디텍토리 정보를 구한다. 정렬되어 있지 않다.
+`opendir()`로 연 디렉토리에 대해, 그 안에 있는 모든 파일과 디텍토리 정보를 구한다.
 * 헤더 : `#include <dirent.h>`
 * 형식 : `struct dirent *readdir(DIR *dirp)`
-* 인수 : 
-  * DIR *dirp : `opendir()` 이나 `fdopendir()`을 통하여 생성된 DIR *
+* 인수 : 열기한 디렉토리 정보
 * 반환 :
-    * 파일 또는 디렉토리 정보 리턴 : 성공
-    * struct dirent(반환한 구조체) 정보 : https://www.it-note.kr/14
-    * NULL : 더이상 읽을 정보가 없거나, 오류가 발생시, errno 저장
+    * 파일 또는 디렉토리 정보 : 성공
+    * NULL : 실패
 
 **`closedir`**
 
 `opendir()`로 연 디렉토리를 닫는다.
 * 헤더 : `#include <dirent.h>`
 * 형식 : `int closedir(DIR *dirp)`
-* 인수 : 
-  * DIR *dirp :  `opendir()` 이나 `fdopendir()`을 통하여 생성된 DIR *
+* 인수 : 열기한 디렉토리 정보
 * 반환 :
     * 0 : 성공
-    * -1 : 실패, errno에 오류 값 설정
+    * -1 : 실패
 
 **`isatty`**
 
-`fd`가 유효한 터미널 장치를 가리키고 있는지 확인한다.
+`fd`에 대하여 유효한 단말 타입 디바이스를 참조하고 있는지 판단
 * 헤더 : `#include <unistd.h>`
 * 형식 : `int isatty(int fd)`
 * 반환 :
     * 1 : 성공
-    * 0 : 실패 (errno에 오류 값 설정)
+    * 0 : 실패(errno에 오류 값 설정)
 
 **`ttyname`**
 
-`isatty`함수로 유효한 디바이스를 발견한 경우 `fd`가 가리키고 있는 디바이스 이름을 반환
+`isatty`함수로 유효한 디바이스를 발견한 경우 디바이스 이름을 반환
 * 헤더 : `#include <unistd.h>`
 * 형식 : `char *ttyname(int fd)`
 * 반환 :
-    * null로 끝나는 디바이스 이름(정적으로 할당 된)
+    * null로 끝나는 디바이스 이름
     * NULL : 실패
 
 **`ttyslot`**
@@ -397,8 +404,7 @@ full path나 현재 디렉토리의 상대 경로로 DIR *를 생성한다.<br>
 * 헤더 : `#include <termios.h>`
 * 형식 : `int tcgetattr(int fd, struct termios *termios_p)`
 * 인수 :
-    * int fd : terminal file descriptor
-    * struct termios *termios_p : 터미널 속성을 저장할 주소
+    * const struct termios *termios_p : 터미널 속성을 저장할 주소
 * 반환 :
     * 0 : 성공
     * -1 : 실패 (errno에 오류 값 설정)
@@ -409,8 +415,7 @@ full path나 현재 디렉토리의 상대 경로로 DIR *를 생성한다.<br>
 * 헤더 : `#include <termios.h>`
 * 형식 : `int tcsetattr(int fd, int optional_actions, const struct termios *termios_p)`
 * 인수 :
-    * int fd : terminal file descriptor
-    * int optional_action : 동작 선택
+    * int optional_actions이 갖을 수 있는 값 :
         * TCSANOW : 속성을 바로 변경
         * TCSADRAIN : 송신을 완료한 후 변경
         * TCSAFLUSH : 송수신 완료한 후 변경
@@ -477,7 +482,7 @@ full path나 현재 디렉토리의 상대 경로로 DIR *를 생성한다.<br>
 
 **`tputs`**
 
-`tgetstr`에서 반환된 ß문자열 출력
+`tgetstr`에서 반환된 문자열 출력
 * 헤더 :
     * `#include <curses.h>`
     * `#include <term.h>`
@@ -490,6 +495,10 @@ full path나 현재 디렉토리의 상대 경로로 DIR *를 생성한다.<br>
 ## **I/O Redirection**
 
 * **`<`** : input redirection
+    * 키보드로 연결된 표준 입력 방향을 파일로 변경한다.
+
+* **`<<`** : input redirection
+    * 구분자로 입력된 단어를 만날때 까지 입력을 받는다. 
 
 * **`>`** : output redirection
     * 파일이 존재하지 않을 경우 자동으로 생성되며, 만약 이미 존재할 경우에는 기존 파일에 덮어쓰게 된다.
@@ -497,8 +506,12 @@ full path나 현재 디렉토리의 상대 경로로 DIR *를 생성한다.<br>
 * **`>>`** : output redirection
     * 이미 파일이 존재하고 덮어쓰는 것이 아니라 기존 컨텐츠에 출력 데이터가 추가한다.
 
-* **`<<`** : Here Documents
-  * 구분자로 입력된 단어를 만날때 까지 입력을 받는다.
 &nbsp;
 
-> 참고 사이트 :
+## **File descriptor**
+
+|구분|장치|fd|
+|:--:|:--:|:--:|
+|표준 입력|키보드|0|
+|표준 출력|모니터|1|
+|표준 에러|모니터|2|

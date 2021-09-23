@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"signal.h": "c",
+		"minishell.h": "c",
+		"fcntl.h": "c",
+		"unistd.h": "c",
+		"stdio.h": "c",
+		"dirent.h": "c",
+		"stdlib.h": "c"
+	}
+}
