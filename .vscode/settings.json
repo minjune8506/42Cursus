@@ -5,6 +5,9 @@
 		"checker.h": "c",
 		"get_next_line_bonus.h": "c",
 		"stdio.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"__threading_support": "c",
+		"mutex": "cpp",
+		"locale": "c"
 	}
 }

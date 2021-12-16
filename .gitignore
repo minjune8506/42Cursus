@@ -1,5 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/c,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=c,macos
+
+# Created by https://www.toptal.com/developers/gitignore/api/macos,c++,c
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,c++,c
 
 ### C ###
 # Prerequisites
@@ -55,6 +56,25 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+### C++ ###
+# Prerequisites
+
+# Compiled Object files
+*.slo
+
+# Precompiled Headers
+
+# Compiled Dynamic libraries
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+
+# Executables
+
 ### macOS ###
 # General
 .DS_Store
@@ -84,4 +104,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# End of https://www.toptal.com/developers/gitignore/api/c,macos
+# End of https://www.toptal.com/developers/gitignore/api/macos,c++,c
