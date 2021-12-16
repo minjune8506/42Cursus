@@ -25,7 +25,7 @@ all : $(NAME)
 	
 $(NAME) : $(OBJS)
 	ar rcs $@ $(OBJS)
-	$(CC) $(FLAGS) -o a.out $(OBJS)
+# $(CC) $(FLAGS) -o a.out $(OBJS)
 
 bonus : all
 
