@@ -6,8 +6,6 @@
 
 > + [Makefile](#Makefile)
 
-![image](./tester_result.png)
-
 ### **Subject**
 ---
 MANDATORY   
