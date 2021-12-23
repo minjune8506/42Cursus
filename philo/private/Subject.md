@@ -1,0 +1,115 @@
+# Philosophers (Subject)
+
+- Rules
+    - Mandatory 한 프로그램, Bonus 한 프로그램 만들어야 한다.
+    - Norm을 따르고, C로 작성되어야 한다. leak, crash, undefined behavior, norm error는 0점이다.
+    - 한명 또는 여려명의 철학자들이 원형 테이블에 앉아 있다.
+    - 철학자들은 eating, thinking, sleeping 을 한다.
+    - 한 행동을 하는동안 다른 행동을 하지 않는다.
+    - 가운데에 스파게티가 놓여져있는 큰 원형 테이블에 앉아있다.
+    - 테이블에는 여러개의 포크가 있다.
+    - 철학자들은 오른쪽, 왼쪽손에 각각 1개의 포크를 들고 있어야 식사를 할 수 있다.
+    - 굶어 죽으면 안된다. (기아상태)
+    - 모든 철학자는 먹어야 한다.
+    - 철학자들은 서로 말을 하지 않는다.
+    - 철학자들은 다른 철학자가 죽을 것이라는 것을 모른다.
+    - 철학자는 먹는것을 끝내면 포크를 놓고, 잠을 자기 시작한다.
+    - 철학자는 자는것을 끝내면 생각을 한다.
+    - 철학자가 죽으면 시물레이션은 끝난다.
+    - 각 프로그램은 같은 옵션을 가져야 한다.
+        - number_of_philosophers
+            - 철학자들의 수, 포크들의 수이다.
+        - time_to_die
+            - milliseconds 단위
+            - 철학자는 마지막으로 식사를 시작 하거나 시뮬레이션이 시작을 한 후 'time_to_die' 시간이 지날때까지 식사를 하지 않으면 죽는다.
+        - time_to_eat
+            - milliseconds 단위
+            - 철학자가 식사를 하는데 걸리는 시간
+            - 식사하는 시간동안 2개의 포크를 가지고 있어야 한다.
+        - time_to_sleep
+            - milliseconds 단위
+            - 철학자가 자는데 보내는 시간
+        - [number_of_times_each_philosopher_must_eat]
+            - 이 인자는 선택적이다.
+            - 모든 철학자들이 적어도 (철학자들이 반드시 먹어야 할 횟수) 만큼 먹으면 시뮬레이션은 멈춘다.
+            - 명시되지 않으면, 시뮬레이션은 철학자가 죽어야 멈춘다.
+    - 각각 철학자는  1 ~ number_of_philosophers 의 수를 부여받는다.
+    - 철학자 N 은 N-1 and N+1 사이에 앉아있다.
+    - 철학자의 어떤 상태 변화도 아래와 같이 쓰여야 한다.
+        - X : 철학자에게 부여된 숫자.
+        - timestamp_in_ms : 현재 timestamp (millisecond 단위)
+        - timestamp_in_ms X has taken a fork
+        - timestamp_in_ms X is eating
+        - timestamp_in_ms X is sleeping
+        - timestamp_in_ms X is thinking
+        - timestamp_in_ms X died
+    - 상태 출력은 다른 철학자의 상태와 섞이거나, 뒤얽히면 안된다.
+    - 철학자의 죽음으로부터 10 ms 이상 출력이 늦춰져서는 안된다.
+    - Again, philosophers should avoid dying!
+- Mandatory
+    - Program name : philo
+    - Turn in files : philo
+    - Makefile : yes
+    - Arguments
+        - number_of_philosophers
+        - time_to_die
+        - time_to_eat
+        - time_to_sleep
+        - [number_of_times_each_philosopher_must_eat]
+    - External functs
+        - memset
+        - printf
+        - malloc
+        - free
+        - write
+        - usleep
+        - gettimeofday
+        - pthread_create
+        - pthread_detach
+        - pthread_join
+        - pthread_mutex_init
+        - pthread_mutex_destroy
+        - pthread_mutex_lock
+        - pthread_mutex_unlock
+    - Libft authorized : No
+    - Description : philosopher with threads and mutex
+    - Rules
+        - 포크는 각각 철학자들 사이에 있다. 그러므로 여려명의 철학자들이 있다면, 오른쪽, 왼쪽에 포크가 있을것이다.
+        - 철학자들이 포크를 복제하는것을 막으려면, 포크 상태를 mutex로 각각 보호해야 한다.
+        - 각 철학자들은  thread여야 한다.
+- Bonus
+    - Program name : philo_bonus
+    - Turn in files : philo_bonus/
+    - Makefile : yes
+    - Arguments
+        - number_of_philosophers
+        - time_to_die
+        - time_to_eat
+        - time_to_sleep
+        - [number_of_times_each_philosopher_must_eat]
+    - External functs
+        - memset
+        - printf
+        - malloc
+        - free
+        - wrote
+        - fork
+        - kill
+        - exit
+        - pthread_create
+        - pthread_detach
+        - pthread_join
+        - usleep
+        - gettimeofday
+        - waitpid
+        - sem_open
+        - sem_close
+        - sem_post
+        - sem_wait
+        - sem_unlink
+    - Libft authorized : No
+    - Description : Philosopher with processes and semaphore
+    - 모든 포크들은 테이블 중앙에 있다.
+    - 메모리에 상태가 없다. 사용가능한 포크들은 세마포어로 표현된다.
+    - 모든 철학자는 프로세스이다.
+    - 메인 프로세스는 철학자가 아니여야 한다.
