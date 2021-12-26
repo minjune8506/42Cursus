@@ -6,7 +6,7 @@
 
 ![minjkim2's 42 stats](https://badge42.herokuapp.com/api/stats/minjkim2)
 
-## **Inner Circle**
+## **Inner **Circle****
 
 | CIRCLE | PROJECT | LANGUAGE | TOPICS | EXPERIENCE | STATUS | Date of Completion |
 |---|---|---|---|---|---|---|
