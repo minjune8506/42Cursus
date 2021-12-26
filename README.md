@@ -1,6 +1,8 @@
 # 42_Cursus
 42Seoul - Cadet
 
+![minjkim2's 42 stats](https://badge42.herokuapp.com/api/stats/minjkim2)
+
 ### Inner Circle
 - [Libft](libft/)
 - [ft_printf](ft_printf/)
