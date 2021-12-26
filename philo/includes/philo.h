@@ -42,11 +42,11 @@ typedef struct s_philo
 
 typedef struct s_state
 {
-	int	num_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	must_eat;
+	int				num_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
 	short			running;
 	t_philo			*philos;
 	pthread_t		*th_id;
