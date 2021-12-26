@@ -115,4 +115,7 @@ minishell
 Norm.pdf
 Philo-correction.pdf
 .vscode
-# End of https://www.toptal.com/developers/gitignore/api/macos,c++,c
+
+# library
+libft.a
+#End of https://www.toptal.com/developers/gitignore/api/macos,c++,c
