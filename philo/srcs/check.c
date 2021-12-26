@@ -36,6 +36,8 @@ int check_av(char **av)
 			printf("Invalid Parameter\n");
 			return (EXIT_FAILURE);
 		}
+		if (ft_atoi(av[i]) <= 0)
+			return (EXIT_FAILURE);
 		i++;
 	}
 	return (EXIT_SUCCESS);
