@@ -6,14 +6,13 @@
 #    By: minjune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/20 15:22:50 by minjune           #+#    #+#              #
-#    Updated: 2021/09/20 00:33:12 by minjkim2         ###   ########.fr        #
+#    Updated: 2021/12/26 18:32:57 by minjkim2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc
-FLAGS = -g
-#-Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 LIBRARIES = -lpthread
 INCLUDES = -I$(HEADERS_DIRECTORY)
 
@@ -23,11 +22,12 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./srcs/
 SOURCES_LIST = main.c\
-				check.c\
-				init.c\
-				thread.c\
-				utils.c\
-				ft_atoi.c
+			check.c\
+			init.c\
+			thread.c\
+			monitor.c\
+			utils.c\
+			ft_atoi.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY = ./objects/
