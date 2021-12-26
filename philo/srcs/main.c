@@ -1,35 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minjkim2 <minjkim2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/26 18:28:13 by minjkim2          #+#    #+#             */
+/*   Updated: 2021/12/26 18:28:14 by minjkim2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
-#include <stdio.h>
 
-void		print_data(t_state state);
+void	free_all(t_state *state);
 
-int main(int ac, char **av)
+int
+	main(int ac, char **av)
 {
-	t_state state;
+	t_state	state;
 
 	if (check_args(ac, av))
 		return (EXIT_FAILURE);
-	init(ac, av, &state);
-	// print_data(state);
-	init_thread(&state);
+	if (init(ac, av, &state))
+		return (EXIT_FAILURE);
+	if (init_thread(&state))
+		return (EXIT_FAILURE);
+	free_all(&state);
 }
 
-void print_data(t_state state)
+void
+	free_all(t_state *state)
 {
-	printf("num_philo : %d\n", state.num_philo);
-	printf("time_to_die : %d\n", state.time_to_die);
-	printf("time_to_eat : %d\n", state.time_to_eat);
-	printf("time_to_sleep : %d\n", state.time_to_sleep);
-	printf("must_eat : %d\n", state.must_eat);
-	int i = 0;
-	while (i < state.num_philo)
-	{
-		printf("id : %d\n", state.philos[i].id);
-		printf("left_fork : %d\n", state.philos[i].left_fork);
-		printf("right_fork : %d\n", state.philos[i].right_fork);
-		printf("eat_count : %d\n", state.philos[i].eat_count);
-		printf("check_connect : %d\n", state.philos[i].state->num_philo);
-		i++;
-	}
-}
+	int	i;
 
+	i = 0;
+	free(state->philos);
+	free(state->th_id);
+	while (i < state->num_philo)
+		pthread_mutex_destroy(&state->forks_lock[i++]);
+	pthread_mutex_destroy(&state->display_lock);
+}
