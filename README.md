@@ -2,7 +2,7 @@
 
 <a href="https://42seoul.kr/seoul42/contents/view?contentsNo=13&level=2&menuNo=28&gclid=Cj0KCQiAwqCOBhCdARIsAEPyW9mEZno3M1OMooYEtrDmNdJ1on0RROdIJgbODp5RAtxfLtZMRvXhk3IaAoqeEALw_wcB" target="_blank"><img src="https://img.shields.io/badge/42Seoul-caa6fe?style=flat&logo=42&logoColor=000000"/></a>
 
-**Cadet** : **2021.05.03 ~**
+**Cadet** : 2021.05.03 ~
 
 ![minjkim2's 42 stats](https://badge42.herokuapp.com/api/stats/minjkim2)
 
