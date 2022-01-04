@@ -106,10 +106,10 @@ Temporary Items
 
 # Program
 fdf
-philo
 pipex
 push_swap
 minishell
+philo
 
 # pdf
 Norm.pdf
@@ -118,4 +118,6 @@ Philo-correction.pdf
 
 # library
 libft.a
+
+*/.DS_Store
 #End of https://www.toptal.com/developers/gitignore/api/macos,c++,c
