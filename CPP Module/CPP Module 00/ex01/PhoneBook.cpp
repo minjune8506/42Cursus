@@ -26,7 +26,7 @@ void PhoneBook::display() {
 	std::cout << std::setw(10) << "first name" << '|';
 	std::cout << std::setw(10) << "last name" << '|';
 	std::cout << std::setw(10) << "nickname" << '|' << std::endl;
-	for (int i = 0 ; i < size % 8; i++)
+	for (int i = 0 ; i < this->getSize() ; i++)
 	{
 		std::cout << std::setw(10) << i << '|';
 		printColumn(contacts[i].getFirstName());
@@ -45,5 +45,7 @@ void PhoneBook::searchContact(int index) {
 }
 
 int PhoneBook::getSize() {
-	return this->size;
+	if (this->size >= 8)
+		return 8;
+	return this->size % 8;
 }

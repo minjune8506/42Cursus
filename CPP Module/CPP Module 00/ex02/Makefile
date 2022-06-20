@@ -1,18 +1,16 @@
-NAME = phonebook
+NAME = account
 CC = clang++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 LIBRARIES = 
 INCLUDES = 
 
-HEADERS_LIST = Contact.hpp\
-				PhoneBook.hpp
+HEADERS_LIST = Account.hpp
 HEADERS_DIRECTORY = ./
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./
-SOURCES_LIST = Contact.cpp\
-				PhoneBook.cpp\
-				main.cpp
+SOURCES_LIST = Account.cpp\
+			tests.cpp
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY = objects/
