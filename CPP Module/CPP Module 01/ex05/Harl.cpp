@@ -4,9 +4,11 @@
 void Harl::complain(std::string level) {
 	void (Harl::*f[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string cmd[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	std::string *p = std::find(cmd, cmd + 4, level);
-	if (p != cmd + 4) {
-		(this->*f[p - cmd])();
+	for (int i = 0 ; i < 4 ; i++) {
+		if (cmd[i] == level) {
+			(this->*f[i])();
+			return ;
+		}
 	}
 }
 
