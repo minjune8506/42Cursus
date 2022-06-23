@@ -41,7 +41,7 @@ int main(int ac, char **av)
 	if (openFile(readFile, writeFile, fileName))
 		return (EXIT_FAILURE);
 	while (!readFile.eof()) {
-		std::getline(readFile, buffer, '.');
+		std::getline(readFile, buffer);
 		if (readFile.fail()) {
 			std::cout << "Read Error" << std::endl;
 			break ;
@@ -52,7 +52,9 @@ int main(int ac, char **av)
 			buffer.insert(found, s2);
 			found = buffer.find(s1, found + s2.length());
 		}
-		writeFile << buffer << std::endl;
+		writeFile << buffer;
+		if (!readFile.eof())
+			writeFile << std::endl;
 	}
 	readFile.close();
 	writeFile.close();
