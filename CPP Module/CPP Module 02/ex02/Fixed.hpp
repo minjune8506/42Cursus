@@ -20,16 +20,16 @@ public :
 	bool	operator!=(const Fixed &f) const;
 	
 	Fixed	operator+(const Fixed &f) const;
-	Fixed	operator+() const;
+	Fixed	&operator+();
 	Fixed	operator-(const Fixed &f) const;
-	Fixed	operator-() const;
+	Fixed	&operator-();
 	Fixed	operator*(const Fixed &f) const;
 	Fixed	operator/(const Fixed &f) const;
 
 	Fixed	&operator++();
 	const Fixed	operator++(int);
 	Fixed	&operator--();
-	Fixed	operator--(int);
+	const Fixed	operator--(int);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);

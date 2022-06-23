@@ -55,16 +55,17 @@ Fixed Fixed::operator+(const Fixed &f) const {
 	return Fixed(this->toFloat() + f.toFloat());
 }
 
-Fixed Fixed::operator+() const {
-	return Fixed(this->toFloat());
+Fixed &Fixed::operator+() {
+	return (*this);
 }
 
 Fixed Fixed::operator-(const Fixed &f) const {
 	return Fixed(this->toFloat() - f.toFloat());
 }
 
-Fixed Fixed::operator-() const {
-	return Fixed(-this->toFloat());
+Fixed &Fixed::operator-() {
+	fixedPointNumber_ *= -1;
+	return (*this);
 }
 
 Fixed Fixed::operator*(const Fixed &f) const {
@@ -76,13 +77,24 @@ Fixed Fixed::operator/(const Fixed &f) const {
 }
 
 Fixed &Fixed::operator++() {
-	this->fixedPointNumber_ += 1;
+	fixedPointNumber_ += 1;
 	return (*this);
 }
 
 const Fixed Fixed::operator++(int) {
 	Fixed temp = (*this);
-	this->fixedPointNumber_ += 1;
+	fixedPointNumber_ += 1;
+	return (temp);
+}
+
+Fixed &Fixed::operator--() {
+	fixedPointNumber_ -= 1;
+	return (*this);
+}
+
+const Fixed Fixed::operator--(int) {
+	Fixed temp = (*this);
+	fixedPointNumber_ -= 1;
 	return (temp);
 }
 
