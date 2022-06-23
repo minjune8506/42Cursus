@@ -12,19 +12,19 @@ public :
 	~Fixed();
 	Fixed	&operator=(const Fixed &f);
 
-	bool	operator>(const Fixed &f);
-	bool	operator<(const Fixed &f);
-	bool	operator>=(const Fixed &f);
-	bool	operator<=(const Fixed &f);
-	bool	operator==(const Fixed &f);
-	bool	operator!=(const Fixed &f);
+	bool	operator>(const Fixed &f) const;
+	bool	operator<(const Fixed &f) const;
+	bool	operator>=(const Fixed &f) const;
+	bool	operator<=(const Fixed &f) const;
+	bool	operator==(const Fixed &f) const;
+	bool	operator!=(const Fixed &f) const;
 	
-	Fixed	operator+(const Fixed &f);
-	Fixed	operator+();
-	Fixed	operator-(const Fixed &f);
-	Fixed	operator-();
-	Fixed	operator*(const Fixed &f);
-	Fixed	operator/(const Fixed &f);
+	Fixed	operator+(const Fixed &f) const;
+	Fixed	operator+() const;
+	Fixed	operator-(const Fixed &f) const;
+	Fixed	operator-() const;
+	Fixed	operator*(const Fixed &f) const;
+	Fixed	operator/(const Fixed &f) const;
 
 	Fixed	&operator++();
 	const Fixed	operator++(int);
@@ -35,14 +35,15 @@ public :
 	void	setRawBits(int const raw);
 	float	toFloat(void) const;
 	int		toInt(void) const;
+	
 	static Fixed &min(Fixed &x, Fixed &y);
 	static const Fixed &min(const Fixed &x, const Fixed &y);
 	static Fixed &max(Fixed &x, Fixed &y);
 	static const Fixed &max(const Fixed &x, const Fixed &y);
 
 private :
-	int					fixedPointNumber;
-	static const int	frac;
+	int					fixedPointNumber_;
+	static const int	frac_;
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &f);

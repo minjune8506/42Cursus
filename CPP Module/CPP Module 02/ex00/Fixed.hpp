@@ -11,8 +11,8 @@ public :
 	void setRawBits(int const raw);
 
 private :
-	int fixedPointNumber;
-	static const int frac;
+	int fixedPointNumber_;
+	static const int frac_;
 };
 
 #endif

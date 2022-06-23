@@ -17,8 +17,8 @@ public :
 	int		toInt(void) const;
 
 private :
-	int					fixedPointNumber;
-	static const int	frac;
+	int					fixedPointNumber_;
+	static const int	frac_;
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &f);
