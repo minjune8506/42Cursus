@@ -8,8 +8,8 @@ public :
 	HumanA(std::string name, Weapon &weapon);
 	void attack();
 private :
+	std::string name_;
 	Weapon &weapon_;
-	std::string name;
 };
 
 #endif

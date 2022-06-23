@@ -10,7 +10,7 @@ public :
 	void attack();
 private :
 	Weapon *weapon_;
-	std::string name;
+	std::string name_;
 };
 
 #endif
