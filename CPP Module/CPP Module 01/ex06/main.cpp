@@ -8,10 +8,6 @@ int main(int ac, char **av)
 		return (EXIT_SUCCESS);
 	}
 	Harl harl;
-	if (ac == 1) {
-		harl.complain("DEBUG");
-	} else {
-		harl.complain(av[1]);
-	}
+	harl.complain(av[1]);
 	return (EXIT_SUCCESS);
 }

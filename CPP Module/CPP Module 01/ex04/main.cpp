@@ -40,12 +40,8 @@ int main(int ac, char **av)
 	s2 = av[3];
 	if (openFile(readFile, writeFile, fileName))
 		return (EXIT_FAILURE);
-	while (!readFile.eof()) {
+	while (readFile.good()) {
 		std::getline(readFile, buffer);
-		if (readFile.fail()) {
-			std::cout << "Read Error" << std::endl;
-			break ;
-		}
 		std::size_t found = buffer.find(s1);
 		while (found != std::string::npos) {
 			buffer.erase(found, s1.size());

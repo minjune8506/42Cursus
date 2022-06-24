@@ -1,6 +1,6 @@
 NAME = Zombie
-CC = clang++
-FLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 LIBRARIES = 
 INCLUDES = 
 
@@ -26,7 +26,7 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
-	@$(CC) $(FLAGS) $(INCLUDES) $(OBJECTS) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) $(OBJECTS) -o $(NAME)
 	@echo "\n$(BLUE)$(NAME) : object files created$(RESET)"
 	@echo "$(BLUE)$(NAME) : $(NAME) created$(RESET)"
 
@@ -35,7 +35,7 @@ $(OBJECTS_DIRECTORY):
 	@echo "$(BLUE)$(NAME) : $(OBJECTS_DIRECTORY) created$(RESET)"
 
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp $(HEADERS)
-	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $(INCLUDES) $< -o $@
 	@echo "$(BLUE).$(RESET)\c"
 	   
 clean:

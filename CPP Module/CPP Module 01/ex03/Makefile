@@ -1,6 +1,6 @@
 NAME = Violence
-CC = clang++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 LIBRARIES = 
 INCLUDES = 
 
@@ -8,7 +8,7 @@ HEADERS_LIST = HumanA.hpp\
 				HumanB.hpp\
 				Weapon.hpp
 HEADERS_DIRECTORY = ./
-HEADERS = $(addprefix $(H hod EADERS_DIRECTORY), $(HEADERS_LIST))
+HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./
 SOURCES_LIST = HumanA.cpp\
@@ -28,7 +28,7 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
-	@$(CC) $(FLAGS) $(INCLUDES) $(OBJECTS) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) $(OBJECTS) -o $(NAME)
 	@echo "\n$(BLUE)$(NAME) : object files created$(RESET)"
 	@echo "$(BLUE)$(NAME) : $(NAME) created$(RESET)"
 
@@ -37,7 +37,7 @@ $(OBJECTS_DIRECTORY):
 	@echo "$(BLUE)$(NAME) : $(OBJECTS_DIRECTORY) created$(RESET)"
 
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp $(HEADERS)
-	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $(INCLUDES) $< -o $@
 	@echo "$(BLUE).$(RESET)\c"
 	   
 clean:
