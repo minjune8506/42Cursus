@@ -27,8 +27,8 @@ public :
 	Fixed	operator/(const Fixed &f) const;
 
 	Fixed	&operator++();
-	const Fixed	operator++(int);
 	Fixed	&operator--();
+	const Fixed	operator++(int);
 	const Fixed	operator--(int);
 
 	int		getRawBits(void) const;

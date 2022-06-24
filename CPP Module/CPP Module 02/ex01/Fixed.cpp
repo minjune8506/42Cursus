@@ -16,14 +16,13 @@ Fixed::Fixed(const float x) {
 	fixedPointNumber_ = roundf(x * (1 << Fixed::frac_));
 }
 
-
 Fixed::Fixed(const Fixed &f) {
 	std::cout << "Copy constructor called" << std::endl;
 	(*this) = f;
 }
 
 Fixed &Fixed::operator=(const Fixed &f) {
-	std::cout << "Copy assignment operator  called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	fixedPointNumber_ = f.getRawBits();
 	return (*this);
 }
