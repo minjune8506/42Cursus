@@ -2,6 +2,9 @@
 #include <iostream>
 
 ScavTrap::ScavTrap() : ClapTrap() {
+	hitPoints_ = 100;
+	energyPoints_ = 50;
+	attackDamage_ = 20;
 	std::cout << "ScavTrap " << name_ << " created" << std::endl;
 }
 

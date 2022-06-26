@@ -2,18 +2,19 @@
 #include <iostream>
 
 DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap(), name_("noName") {
-	std::cout << "DiamondTrap " << name_ << " created" << std::endl;
+	ClapTrap::name_ = name_ + "_clap_name";
 	hitPoints_ = 100;
 	energyPoints_ = 50;
 	attackDamage_ = 30;
+	std::cout << "DiamondTrap " << name_ << " created" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : FragTrap(name), ScavTrap(name), name_(name){
-	std::cout << "DiamondTrap " << name_ << " created" << std::endl;
-	ClapTrap::name_ = name + "_clap_name";
+	ClapTrap::name_ = name_ + "_clap_name";
 	hitPoints_ = 100;
 	energyPoints_ = 50;
 	attackDamage_ = 30;
+	std::cout << "DiamondTrap " << name_ << " created" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &obj) : FragTrap(obj), ScavTrap(obj) {

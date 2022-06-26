@@ -10,7 +10,7 @@ public:
 	FragTrap(const FragTrap &obj);
 	FragTrap &operator=(const FragTrap &obj);
 	~FragTrap();
-	void highFivesGuys(void);
+	void	highFivesGuys(void);
 };
 
 #endif
