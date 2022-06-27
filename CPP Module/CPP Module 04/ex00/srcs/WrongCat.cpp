@@ -1,0 +1,22 @@
+#include "WrongCat.hpp"
+#include <iostream>
+
+WrongCat::WrongCat() : WrongAnimal() {
+	std::cout << "WrongCat Constructor Called" << std::endl;
+	type_ = "WrongCat";
+}
+
+WrongCat::WrongCat(const WrongCat &obj) : WrongAnimal(obj) {
+	std::cout << "WrongCat Copy Constructor Called" << std::endl;
+	(*this) = obj;
+}
+
+WrongCat &WrongCat::operator=(const WrongCat &obj) {
+	std::cout << "WrongCat Copy Assignment Operator Called" << std::endl;
+	WrongAnimal::operator=(obj);
+	return (*this);
+}
+
+void WrongCat::makeSound() const {
+	std::cout << "Meow..." << std::endl;
+}
