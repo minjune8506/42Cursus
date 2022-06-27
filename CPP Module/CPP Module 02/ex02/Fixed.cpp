@@ -28,27 +28,27 @@ Fixed &Fixed::operator=(const Fixed &f) {
 }
 
 bool Fixed::operator>(const Fixed &f) const {
-	return (this->toFloat() > f.toFloat());
+	return (this->getRawBits() > f.getRawBits());
 }
 
 bool Fixed::operator<(const Fixed &f) const {
-	return (this->toFloat() < f.toFloat());
+	return (this->getRawBits() < f.getRawBits());
 }
 
 bool Fixed::operator>=(const Fixed &f) const {
-	return (this->toFloat() >= f.toFloat());
+	return (this->getRawBits() >= f.getRawBits());
 }
 
 bool Fixed::operator<=(const Fixed &f) const {
-	return (this->toFloat() <= f.toFloat());
+	return (this->getRawBits() <= f.getRawBits());
 }
 
 bool Fixed::operator==(const Fixed &f) const {
-	return (this->toFloat() == f.toFloat());
+	return (this->getRawBits() == f.getRawBits());
 }
 
 bool Fixed::operator!=(const Fixed &f) const {
-	return (this->toFloat() != f.toFloat());
+	return (this->getRawBits() != f.getRawBits());
 }
 
 Fixed Fixed::operator+(const Fixed &f) const {
@@ -115,25 +115,25 @@ int Fixed::toInt(void) const {
 }
 
 Fixed &Fixed::min(Fixed &x, Fixed &y) {
-	if (x.toFloat() >= y.toFloat())
+	if (x.getRawBits() >= y.getRawBits())
 		return (y);
 	return (x);
 }
 
 const Fixed &Fixed::min(const Fixed &x, const Fixed &y) {
-	if (x.toFloat() >= y.toFloat())
+	if (x.getRawBits() >= y.getRawBits())
 		return (y);
 	return (x);
 }
 
 Fixed &Fixed::max(Fixed &x, Fixed &y) {
-	if (x.toFloat() >= y.toFloat())
+	if (x.getRawBits() >= y.getRawBits())
 		return (x);
 	return (y);
 }
 
 const Fixed &Fixed::max(const Fixed &x, const Fixed &y) {
-	if (x.toFloat() >= y.toFloat())
+	if (x.getRawBits() >= y.getRawBits())
 		return (x);
 	return (y);
 }

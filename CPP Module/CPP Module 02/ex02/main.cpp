@@ -8,9 +8,14 @@ int main(void)
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
 	std::cout << a << std::endl;
+	Fixed c(a);
 	std::cout << a++ << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
+	std::cout << c << std::endl;
+	if (c < a) {
+		std::cout << "True" << std::endl;
+	}
 	std::cout << Fixed::max(a, b) << std::endl;
 	return 0;
 }
