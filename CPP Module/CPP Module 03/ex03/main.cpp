@@ -3,7 +3,8 @@
 
 int main(void)
 {
-	DiamondTrap d("test");
+	DiamondTrap d("test1");
+	DiamondTrap e = d;
 
 	d.attack("Foo");
 	d.whoAmI();
