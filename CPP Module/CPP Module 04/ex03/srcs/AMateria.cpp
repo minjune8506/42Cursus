@@ -12,7 +12,7 @@ AMateria::AMateria(std::string const &type) : type_(type) {
 
 AMateria::AMateria(const AMateria &obj) {
 	std::cout << "AMateria Copy Constructor Called" << std::endl;
-	type_ = obj.type_;
+	(*this) = obj;
 }
 
 AMateria &AMateria::operator=(const AMateria &obj) {

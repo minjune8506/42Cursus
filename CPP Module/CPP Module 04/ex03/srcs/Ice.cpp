@@ -1,19 +1,18 @@
 #include "Ice.hpp"
 #include <iostream>
 
-Ice::Ice() {
+Ice::Ice() : AMateria("ice") {
 	std::cout << "Ice Constructor Called" << std::endl;
-	type_ = "ice";
 }
 
-Ice::Ice(const Ice &obj) {
+Ice::Ice(const Ice &obj) : AMateria(obj) {
 	std::cout << "Ice Copy Constructor Called" << std::endl;
-	type_ = obj.type_;
 }
 
 Ice &Ice::operator=(const Ice &obj) {
+	AMateria::operator=(obj);
+	type_ = "ice";
 	std::cout << "Ice Copy Assignment Constructor Called" << std::endl;
-	type_ = obj.type_;
 	return (*this);
 }
 

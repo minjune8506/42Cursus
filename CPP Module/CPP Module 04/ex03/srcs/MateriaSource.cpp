@@ -14,8 +14,6 @@ MateriaSource::MateriaSource(const MateriaSource &obj) {
 	std::cout << "MateriaSource Constructor Called" << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		store_[i] = NULL;
-	}
-	for (int i = 0 ; i < 4 ; i++) {
 		if (obj.store_[i]) {
 			store_[i] = obj.store_[i]->clone();
 		}
@@ -24,6 +22,8 @@ MateriaSource::MateriaSource(const MateriaSource &obj) {
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &obj) {
 	for (int i = 0; i < 4; i++) {
+		delete store_[i];
+		store_[i] = NULL;
 		if (obj.store_[i]) {
 			store_[i] = obj.store_[i]->clone();
 		}

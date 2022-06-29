@@ -3,6 +3,7 @@
 
 Animal::Animal() {
 	std::cout << "Animal Constructor Called" << std::endl;
+	type_ = "Animal";
 }
 
 Animal::Animal(const Animal &obj) {
