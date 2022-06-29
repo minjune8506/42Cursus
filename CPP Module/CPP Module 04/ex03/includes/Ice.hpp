@@ -2,12 +2,11 @@
 # define ICE_HPP
 
 #include "AMateria.hpp"
-#include <string>
+#include "ICharacter.hpp"
 
 class Ice : public AMateria {
 public:
 	Ice();
-	Ice(const std::string name);
 	Ice(const Ice &obj);
 	Ice &operator=(const Ice &obj);
 	~Ice();

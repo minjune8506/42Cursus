@@ -2,7 +2,7 @@
 # define CURE_HPP
 
 #include "AMateria.hpp"
-#include <string>
+#include "ICharacter.hpp"
 
 class Cure : public AMateria {
 public:
@@ -10,8 +10,8 @@ public:
 	Cure(const Cure &obj);
 	Cure &operator=(const Cure &obj);
 	~Cure();
-private:
-	std::string type;
+	AMateria *clone() const;
+	void use(ICharacter &target);
 };
 
 #endif
