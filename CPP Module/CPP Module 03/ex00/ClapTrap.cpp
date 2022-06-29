@@ -2,16 +2,16 @@
 #include <iostream>
 
 ClapTrap::ClapTrap() : name_("noName"), hitPoints_(10), energyPoints_(10), attackDamage_(0) {
-	std::cout << name_ << " created" << std::endl;
+	std::cout << "ClapTrap " << name_ << " created" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : name_(name), hitPoints_(10), energyPoints_(10), attackDamage_(0) {
-	std::cout << name_ << " created" << std::endl;
+	std::cout << "ClapTrap " << name_ << " created" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &obj) {
 	(*this) = obj;
-	std::cout << name_ << " created" << std::endl;
+	std::cout << "ClapTrap " << name_ << " created" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &obj) {
@@ -23,7 +23,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &obj) {
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << name_ << " destroyed" << std::endl;
+	std::cout << "ClapTrap " << name_ << " destroyed" << std::endl;
 }
 
 void ClapTrap::setAttackDamage(int attackDamage) {
