@@ -9,4 +9,12 @@ int main(void)
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+	try {
+		Bureaucrat c("test3", 20);
+		std::cout << c << std::endl;
+		c.increment(10);
+		c.decrement(150); // Exception
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 }

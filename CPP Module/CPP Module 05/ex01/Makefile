@@ -1,15 +1,17 @@
-NAME = Bureaucrat
+NAME = Form
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 LIBRARIES = 
 INCLUDES = -I ./includes
 
 HEADERS_DIRECTORY = ./includes/
-HEADERS_LIST = Bureaucrat.hpp
+HEADERS_LIST = Bureaucrat.hpp\
+				Form.hpp
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./srcs/
 SOURCES_LIST = Bureaucrat.cpp\
+				Form.cpp\
 				main.cpp
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 

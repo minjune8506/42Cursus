@@ -12,21 +12,21 @@ public:
 	Bureaucrat(const Bureaucrat &obj);
 	Bureaucrat &operator=(const Bureaucrat &ojb);
 	~Bureaucrat();
-	std::string	getName();
-	int			getGrade();
+	std::string	getName() const;
+	int			getGrade() const;
 	void		increment(int amount);
 	void		decrement(int amount);
 	class GradeTooHighException : public std::exception {
 	public:
-		const char *what()  const throw();
+		const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception {
-		const char *what()  const throw();
+		const char *what() const throw();
 	};
 private:
 	const std::string	name_;
 	int					grade_;
 };
 
-std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj);
+std::ostream &operator<<(std::ostream &out, Bureaucrat &obj);
 #endif
