@@ -19,7 +19,6 @@ SOURCES_LIST = AMateria.cpp\
 			Character.cpp\
 			Cure.cpp\
 			Ice.cpp\
-			IMateriaSource.cpp\
 			MateriaSource.cpp\
 			main.cpp
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))

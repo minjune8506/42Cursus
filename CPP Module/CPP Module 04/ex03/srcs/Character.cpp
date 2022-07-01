@@ -51,7 +51,6 @@ Character::~Character() {
 		delete slot_[i];
 		slot_[i] = NULL;
 	}
-
 }
 
 std::string const &Character::getName() const {

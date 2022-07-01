@@ -3,6 +3,7 @@
 
 WrongAnimal::WrongAnimal() {
 	std::cout << "WrongAnimal Constructor Called" << std::endl;
+	type_ = "WrongAnimal";
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &obj) {

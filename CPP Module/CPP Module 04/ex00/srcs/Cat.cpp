@@ -12,8 +12,8 @@ Cat::Cat(const Cat &obj) : Animal(obj) {
 }
 
 Cat &Cat::operator=(const Cat &obj) {
-	std::cout << "Cat Copy Assignment Operator Called" << std::endl;
 	Animal::operator=(obj);
+	std::cout << "Cat Copy Assignment Operator Called" << std::endl;
 	return (*this);
 }
 

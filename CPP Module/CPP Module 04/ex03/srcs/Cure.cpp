@@ -1,19 +1,18 @@
 #include "Cure.hpp"
 #include <iostream>
 
-Cure::Cure() {
+Cure::Cure() : AMateria("cure") {
 	std::cout << "Cure Constructor Called" << std::endl;
-	type_ = "cure";
 }
 
-Cure::Cure(const Cure &obj) {
+Cure::Cure(const Cure &obj) : AMateria(obj) {
 	std::cout << "Cure Copy Constructor Called" << std::endl;
-	type_ = obj.type_;
 }
 
 Cure &Cure::operator=(const Cure &obj) {
+	AMateria::operator=(obj);
+	type_ = "cure";
 	std::cout << "Cure Copy Assignment Constructor Called" << std::endl;
-	type_ = obj.type_;
 	return (*this);
 }
 
