@@ -4,14 +4,12 @@
 #include <iostream>
 
 MateriaSource::MateriaSource() {
-	std::cout << "MateriaSource Constructor Called" << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		store_[i] = NULL;
 	}
 }
 
 MateriaSource::MateriaSource(const MateriaSource &obj) {
-	std::cout << "MateriaSource Constructor Called" << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		store_[i] = NULL;
 		if (obj.store_[i]) {

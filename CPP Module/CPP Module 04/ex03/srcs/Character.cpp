@@ -4,21 +4,18 @@
 #include <iostream>
 
 Character::Character() {
-	std::cout << "Character Constructor Called" << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		slot_[i] = NULL;
 	}
 }
 
 Character::Character(const std::string name) : name_(name) {
-	std::cout << "Character Constructor Called" << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		slot_[i] = NULL;
 	}
 }
 
 Character::Character(const Character &obj) {
-	std::cout << "Character Copy Constructor Called" << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		slot_[i] = NULL;
 	}
@@ -32,7 +29,6 @@ Character::Character(const Character &obj) {
 }
 
 Character &Character::operator=(const Character &obj) {
-	std::cout << "Character Copy Assignment Constructor Called" << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		delete slot_[i];
 		slot_[i] = NULL;
@@ -46,7 +42,6 @@ Character &Character::operator=(const Character &obj) {
 }
 
 Character::~Character() {
-	std::cout << "Character Destructor Called" << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		delete slot_[i];
 		slot_[i] = NULL;
@@ -58,7 +53,6 @@ std::string const &Character::getName() const {
 }
 
 void Character::equip(AMateria *m) {
-	std::cout << name_ << " equipped " << m->getType() << std::endl;
 	for (int i = 0 ; i < 4 ; i++) {
 		if (!slot_[i]) {
 			slot_[i] = m;

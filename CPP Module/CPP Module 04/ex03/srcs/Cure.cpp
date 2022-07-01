@@ -2,22 +2,18 @@
 #include <iostream>
 
 Cure::Cure() : AMateria("cure") {
-	std::cout << "Cure Constructor Called" << std::endl;
 }
 
 Cure::Cure(const Cure &obj) : AMateria(obj) {
-	std::cout << "Cure Copy Constructor Called" << std::endl;
 }
 
 Cure &Cure::operator=(const Cure &obj) {
 	AMateria::operator=(obj);
 	type_ = "cure";
-	std::cout << "Cure Copy Assignment Constructor Called" << std::endl;
 	return (*this);
 }
 
 Cure::~Cure() {
-	std::cout << "Cure Destructor Called" << std::endl;
 }
 
 AMateria *Cure::clone() const {
