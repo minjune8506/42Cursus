@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+#include "../includes/Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : name_("anonymous"), grade_(150) {
 	std::cout << "Not Used Constructor" << std::endl;
@@ -6,11 +6,11 @@ Bureaucrat::Bureaucrat() : name_("anonymous"), grade_(150) {
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name_(name), grade_(grade) {
 	std::cout << "Bureaucrat Constructor Called" << std::endl;
-	if (grade < 1) {
-		throw Bureaucrat::GradeTooHighException();
+	if (grade < HIGHEST_GRADE) {
+		throw GradeTooHighException();
 	}
-	if (grade > 150) {
-		throw Bureaucrat::GradeTooLowException();
+	if (grade > LOWEST_GRADE) {
+		throw GradeTooLowException();
 	}
 }
 
@@ -38,26 +38,25 @@ int Bureaucrat::getGrade() const {
 
 void Bureaucrat::increment(int amount) {
 	grade_ -= amount;
-	if (grade_ < 1) {
-		throw Bureaucrat::GradeTooHighException();
+	if (grade_ < HIGHEST_GRADE) {
+		throw GradeTooHighException();
 	}
 }
 
 void Bureaucrat::decrement(int amount) {
 	grade_ += amount;
-	if (grade_ > 150) {
-		throw Bureaucrat::GradeTooLowException();
+	if (grade_ > LOWEST_GRADE) {
+		throw GradeTooLowException();
 	}
 }
 
-int	Bureaucrat::signForm(Form &obj) {
+void Bureaucrat::signForm(Form &obj) {
 	if (grade_ <= obj.getSignGrade()) {
 		obj.beSigned(*this);
 		std::cout << name_ << " signed " << obj.getName() << std::endl;
-		return (EXIT_SUCCESS);
+		return ;
 	}
 	std::cout << name_ << " couldn't sign " << obj.getName() << " because grade is too low" << std::endl;
-	return (EXIT_FAILURE);
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() {

@@ -1,13 +1,13 @@
-#include "ShrubberyCreationForm.hpp"
+#include "../includes/ShrubberyCreationForm.hpp"
 #include <iostream>
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("noName", 1, 1) {
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("Shrubbery", SHRUBBERY_SIGN_GRADE, SHRUBBERY_EXEC_GRADE) {
 	std::cout << "Not Used" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) 
-: Form("Shrubbery", 145, 137), target_(target) {
+: Form("Shrubbery", SHRUBBERY_SIGN_GRADE, SHRUBBERY_EXEC_GRADE), target_(target) {
 	std::cout << "ShrubberyCreationForm Constructor Called" << std::endl;
 }
 
@@ -25,7 +25,6 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
 	std::cout << "ShrubberyCreationForm Destructor Called" << std::endl;
-
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
@@ -43,7 +42,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 		std::ofstream ofs;
 		ofs.open(target_ + "_shrubbery");
 		if (ofs.fail()) {
-			return ;
+			throw OpenFailException();
 		}
 		ofs.write(shrubbery.c_str(), shrubbery.size());
 		ofs.close();
@@ -54,4 +53,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 	} else {
 		throw GradeTooLowException();
 	}
+}
+
+const char *ShrubberyCreationForm::OpenFailException::what() const throw() {
+	return "Ofstream Open Failed";
 }

@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "../includes/Form.hpp"
 
 Form::Form() : signed_(false), signGrade_(1), executeGrade_(1) {
 	std::cout << "Not Used Constructor" << std::endl;
@@ -6,10 +6,10 @@ Form::Form() : signed_(false), signGrade_(1), executeGrade_(1) {
 
 Form::Form(std::string name, int signGrade, int executeGrade) : name_(name), signed_(false), signGrade_(signGrade), executeGrade_(executeGrade) {
 	std::cout << "Form Constructor Called" << std::endl;
-	if (signGrade_ < 1 || executeGrade_ < 1) {
+	if (signGrade_ < HIGHEST_GRADE || executeGrade_ < HIGHEST_GRADE) {
 		throw GradeTooHighException();
 	}
-	if (signGrade_ > 150 || executeGrade_ > 150) {
+	if (signGrade_ > LOWEST_GRADE || executeGrade_ > LOWEST_GRADE) {
 		throw GradeTooLowException();
 	}
 }

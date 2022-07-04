@@ -5,6 +5,9 @@
 #include <iostream>
 #include "Form.hpp"
 
+#define HIGHEST_GRADE 1
+#define LOWEST_GRADE 150
+
 class Form;
 
 class Bureaucrat {
@@ -18,7 +21,7 @@ public:
 	int			getGrade() const;
 	void		increment(int amount);
 	void		decrement(int amount);
-	int			signForm(Form &obj);
+	void		signForm(Form &obj);
 	class GradeTooHighException : public std::exception {
 	public:
 		const char *what() const throw();

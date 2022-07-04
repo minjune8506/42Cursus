@@ -6,7 +6,6 @@
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
-
 class Form {
 public:
 	Form(std::string name, int signGrade, int executeGrade);

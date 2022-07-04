@@ -33,13 +33,13 @@ Form *Intern::makeForm(std::string name, std::string target) {
 	switch (i)
 	{
 	case 0:
-		std::cout << "Intern creates " << form_name[i] << std::endl;
+		std::cout << "Intern creates " << form_name[i] << "form" << std::endl;
 		return new PresidentialPardonForm(target);
 	case 1:
-		std::cout << "Intern creates " << form_name[i] << std::endl;
+		std::cout << "Intern creates " << form_name[i] << "form" << std::endl;
 		return new RobotomyRequestForm(target);
 	case 2:
-		std::cout << "Intern creates " << form_name[i] << std::endl;
+		std::cout << "Intern creates " << form_name[i] << "form" << std::endl;
 		return new ShrubberyCreationForm(target);
 	default:
 		std::cout << "name does not match any Form" << std::endl;

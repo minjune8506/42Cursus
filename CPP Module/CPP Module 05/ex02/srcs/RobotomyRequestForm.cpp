@@ -1,12 +1,12 @@
-#include "RobotomyRequestForm.hpp"
+#include "../includes/RobotomyRequestForm.hpp"
 #include <cstdlib>
 
-RobotomyRequestForm::RobotomyRequestForm() : Form("Robotomy", 1, 1) {
+RobotomyRequestForm::RobotomyRequestForm() : Form("Robotomy", ROBOTOMY_SIGN_GRADE, ROBOTOMY_EXEC_GRADE) {
 	std::cout << "Not Used" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) 
-: Form("Robotomy", 72, 45), target_(target) {
+: Form("Robotomy", ROBOTOMY_SIGN_GRADE, ROBOTOMY_EXEC_GRADE), target_(target) {
 	std::cout << "RobotomyRequestForm Constructor Called" << std::endl;
 }
 
@@ -16,7 +16,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj)
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &obj) {
-	std::cout << "RobotomyRequestForm Copt Assignment Operator Called" << std::endl;
+	std::cout << "RobotomyRequestForm Copy Assignment Operator Called" << std::endl;
 	Form::operator=(obj);
 	target_ = obj.target_;
 	return (*this);

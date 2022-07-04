@@ -1,11 +1,11 @@
-#include "PresidentialPardonForm.hpp"
+#include "../includes/PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : Form("Presidential", 1, 1) {
+PresidentialPardonForm::PresidentialPardonForm() : Form("Presidential", PRESIDENTIAL_SIGN_GRADE, PRESIDENTIAL_EXEC_GRADE) {
 	std::cout << "Not Used" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-: Form("Presidential", 25, 5), target_(target) {
+: Form("Presidential", PRESIDENTIAL_SIGN_GRADE, PRESIDENTIAL_EXEC_GRADE), target_(target) {
 	std::cout << "PresidentialPardonForm Constructor Called" << std::endl;
 }
 
