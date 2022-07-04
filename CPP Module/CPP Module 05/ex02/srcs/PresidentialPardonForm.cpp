@@ -14,6 +14,13 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj
 	std::cout << "PresidentialPardonForm Copy Constructor Called" << std::endl;
 }
 
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &obj) {
+	std::cout << "PresidentialPardonForm Copy Assignment Operator Called" << std::endl;
+	Form::operator=(obj);
+	target_ = obj.target_;
+	return (*this);
+}
+
 PresidentialPardonForm::~PresidentialPardonForm() {
 	std::cout << "PresidentialPardonForm Destructor Called" << std::endl;
 }
