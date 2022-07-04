@@ -11,11 +11,21 @@ int main(void) {
 	}
 
 	try {
-		Form test3("test3Form", 10, 10);
-		Bureaucrat a("test3", 5);
-		Bureaucrat b("test3", 100);
-		test3.beSigned(a);
-		test3.beSigned(b);
+		Form test1("testForm", 10, 10);
+		Bureaucrat a("t1", 5);
+		Bureaucrat b("t2", 100);
+		test1.beSigned(a);
+		test1.beSigned(b);
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	try {
+		Form test1("testForm", 10, 10);
+		Bureaucrat a("t1", 5);
+		Bureaucrat b("t2", 100);
+		a.signForm(test1);
+		b.signForm(test1);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}

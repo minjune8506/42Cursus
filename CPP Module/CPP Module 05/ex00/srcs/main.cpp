@@ -4,11 +4,19 @@ int main(void)
 {
 	try {
 		Bureaucrat a("test1", 10);
-		Bureaucrat b("test2", -1); // Exception
+		Bureaucrat b("test2", -1); // GradeTooHigh Exception
 		std::cout << "Next Line" << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
+	try {
+		Bureaucrat b("test2", 151); // GradeTooLow Exception
+		std::cout << "Next Line" << std::endl;
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
 	try {
 		Bureaucrat c("test3", 20);
 		std::cout << c << std::endl;

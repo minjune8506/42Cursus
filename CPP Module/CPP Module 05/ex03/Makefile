@@ -1,6 +1,6 @@
-NAME = Form
+NAME = Intern
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 LIBRARIES = 
 INCLUDES = -I ./includes
 
@@ -9,7 +9,8 @@ HEADERS_LIST = Bureaucrat.hpp\
 				Form.hpp\
 				PresidentialPardonForm.hpp\
 				RobotomyRequestForm.hpp\
-				ShrubberyCreationForm.hpp
+				ShrubberyCreationForm.hpp\
+				Intern.hpp
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./srcs/
@@ -18,6 +19,7 @@ SOURCES_LIST = Bureaucrat.cpp\
 				PresidentialPardonForm.cpp\
 				RobotomyRequestForm.cpp\
 				ShrubberyCreationForm.cpp\
+				Intern.cpp\
 				main.cpp
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 

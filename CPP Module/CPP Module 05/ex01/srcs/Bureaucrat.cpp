@@ -10,7 +10,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name_(name), grade_(grade)
 		throw Bureaucrat::GradeTooHighException();
 	}
 	if (grade > 150) {
-		throw Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooLowException();
 	}
 }
 
@@ -52,6 +52,7 @@ void Bureaucrat::decrement(int amount) {
 
 int	Bureaucrat::signForm(Form &obj) {
 	if (grade_ <= obj.getSignGrade()) {
+		obj.beSigned(*this);
 		std::cout << name_ << " signed " << obj.getName() << std::endl;
 		return (EXIT_SUCCESS);
 	}

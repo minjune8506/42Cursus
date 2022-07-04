@@ -31,7 +31,7 @@ Form::~Form() {
 }
 
 void Form::beSigned(Bureaucrat &obj) {
-	if (obj.signForm(*this)) {
+	if (obj.getGrade() > signGrade_) {
 		throw GradeTooLowException();
 	}
 	signed_ = true;
