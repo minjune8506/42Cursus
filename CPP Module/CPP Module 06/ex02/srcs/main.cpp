@@ -16,22 +16,26 @@ Base *generate(void) {
 }
 
 void identify(Base* p) {
-	A *ptr_A = dynamic_cast<A *>(p);
-	B *ptr_B = dynamic_cast<B *>(p);
-	C *ptr_C = dynamic_cast<C *>(p);
+	try {
+ 		A &ref_A = dynamic_cast<A &>(*p);
+ 		std::cout << "type is A" << std::endl;
+ 		(void)ref_A;
+ 	} catch (std::exception &e) {
+	 }
 
-	std::cout << "type is ";
-	if (ptr_A) { 
-		std::cout << "A" << std::endl;
-		return ;
-	} else if (ptr_B) {
-		std::cout << "B" << std::endl;
-		return ;
-	} else if (ptr_C) {
-		std::cout << "C" << std::endl;
-		return ;
-	}
-	std::cout << "Undefined" << std::endl;
+ 	try {
+ 		B &ref_B = dynamic_cast<B &>(*p);
+ 		std::cout << "type is B" << std::endl;
+ 		(void)ref_B;
+ 	} catch (std::exception &e) {
+	 }
+
+ 	try {
+ 		C &ref_C = dynamic_cast<C &>(*p);
+ 		std::cout << "type is C" << std::endl;
+ 		(void)ref_C;
+ 	} catch (std::exception &e) {
+	 }
 }
 
 void identify(Base& p) {
