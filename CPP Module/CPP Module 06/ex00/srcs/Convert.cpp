@@ -5,7 +5,7 @@
 #include <cmath>
 
 Convert::Convert() {
-	std::cout << "Forbidden" << std::endl;
+	std::cout << "Unused Constructor" << std::endl;
 }
 
 Convert::Convert(std::string str) : str_(str) {
@@ -56,11 +56,6 @@ void Convert::checkType() {
 
 	// Float, Double ('.', 'f')
 	if (dot_pos != std::string::npos || f_pos != std::string::npos) {
-		// if (f_pos != std::string::npos) {
-		// 	// type_ = FLOAT;
-		// 	type_ = DOUBLE;
-		// 	return ;
-		// }
 		type_ = DOUBLE;
 		return ;
 	}
@@ -103,8 +98,7 @@ void Convert::convertChar() {
 
 void Convert::convertInt() {
 	long long temp = atoll(str_.c_str());
-	if (str_.size() > 11 || temp > std::numeric_limits<int>::max()
-	 || temp < std::numeric_limits<int>::min()) { // int overflow
+	if (temp > std::numeric_limits<int>::max() || temp < std::numeric_limits<int>::min()) { // int overflow
 		intErr_ = "impossible";
 		charErr_ = "impossible";
 	}

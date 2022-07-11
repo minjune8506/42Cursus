@@ -22,33 +22,35 @@ void identify(Base* p) {
 
 	std::cout << "type is ";
 	if (ptr_A) { 
-		std::cout << "A";
+		std::cout << "A" << std::endl;
+		return ;
 	} else if (ptr_B) {
-		std::cout << "B";
+		std::cout << "B" << std::endl;
+		return ;
 	} else if (ptr_C) {
-		std::cout << "C";
+		std::cout << "C" << std::endl;
+		return ;
 	}
-	std::cout << std::endl;
+	std::cout << "Undefined" << std::endl;
 }
 
 void identify(Base& p) {
-	try {
-		A &ref_A = dynamic_cast<A &>(p);
-		std::cout << "type is A" << std::endl;
-		(void)ref_A;
-	} catch (std::bad_cast) {}
+	A *ptr_A = dynamic_cast<A *>(&p);
+	B *ptr_B = dynamic_cast<B *>(&p);
+	C *ptr_C = dynamic_cast<C *>(&p);
 
-	try {
-		B &ref_B = dynamic_cast<B &>(p);
-		std::cout << "type is B" << std::endl;
-		(void)ref_B;
-	} catch (std::bad_cast) {}
-	
-	try {
-		C &ref_C = dynamic_cast<C &>(p);
-		std::cout << "type is C" << std::endl;
-		(void)ref_C;
-	} catch (std::bad_cast) {}
+	std::cout << "type is ";
+	if (ptr_A) { 
+		std::cout << "A" << std::endl;
+		return ;
+	} else if (ptr_B) {
+		std::cout << "B" << std::endl;
+		return ;
+	} else if (ptr_C) {
+		std::cout << "C" << std::endl;
+		return ;
+	}
+	std::cout << "Undefined" << std::endl;
 }
 
 int main(void) {
