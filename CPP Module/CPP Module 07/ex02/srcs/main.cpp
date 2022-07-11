@@ -1,53 +1,53 @@
-#include "Array.hpp"
 #include <iostream>
+#include <Array.hpp>
 
-class Test { // Test Class
-public:
-	Test &operator=(int data) {
-		data_ = data;
-		return (*this);
-	}
-	int getData() const {
-		return data_;
-	}
-private:
-	int data_;
-};
+#define MAX_VAL 750
+int main(int, char**)
+{
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
-int main(void) {
-	std::cout << "=====Default Constructor Test=====" << std::endl;
-	Array<char> test;
-	std::cout << "size : " << test.size() << std::endl;
-	try {
-		test[0] = 1;
-	} catch (std::exception &e) { // Exception
-		std::cerr << e.what() << std::endl;
-	}
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-	std::cout << "=====Copy Constructor Test=====" << std::endl;
-	Array<int> a(10);
-	for (int i = 0 ; i < 10 ; i++) {
-		a[i] = i; // Subscript overloading test
-	}
-	Array<int> copy = a; // Copy Constructor
-	for (int i = 0 ; i < 10 ; i++) {
-		std::cout << copy[i] << ' ';
-	}
-	std::cout << std::endl;
-	std::cout << "size : " << copy.size() << std::endl;
-
-	std::cout << "=====Different Type Test=====" << std::endl;
-	Array<char> c(10);
-	// c = a; // Error
-
-	std::cout << "=====Class Array Test=====" << std::endl;
-	Array<Test> t(5);
-	Test temp;
-	for (int i = 0 ; i < 5 ; i++) {
-		t[i] = temp;
-	}
-	for (int i = 0 ; i < 5 ; i++) {
-		std::cout << t[i].getData() << ' ';
-	}
-	std::cout << std::endl;
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;
 }

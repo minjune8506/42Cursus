@@ -43,6 +43,7 @@ Array<T>::Array(const Array &rhs) : ary_(new T[rhs.size_]), size_(rhs.size_) {
 template<class T>
 Array<T> &Array<T>::operator=(const Array &rhs) {
 	delete ary_;
+	ary_ = NULL;
 	ary_ = new T[rhs.size_];
 	for (int i = 0 ; i < rhs.size_ ; i++) {
 		ary_[i] = rhs.ary_[i];
