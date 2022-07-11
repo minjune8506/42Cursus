@@ -8,7 +8,7 @@ bool checkArgument(std::string str) {
 	int cntMinus = 0;
 	int cntPlus = 0;
 
-	for (int i = 0 ; i < str.size() ; i++) {
+	for (int i = 0 ; i < static_cast<int>(str.size()) ; i++) {
 		if (str[i] == '.') {
 			cntDot++;
 		} else if (str[i] == 'f') {

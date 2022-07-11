@@ -15,12 +15,10 @@ public:
 	Convert(const Convert &obj);
 	Convert &operator=(const Convert &obj);
 	~Convert();
-	void charType();
-	void intType();
-	void doubleType();
-	void floatType();
 	void checkType();
-	void specialType();
+	void convertChar();
+	void convertInt();
+	void convertDouble();
 	void print();
 
 private:
