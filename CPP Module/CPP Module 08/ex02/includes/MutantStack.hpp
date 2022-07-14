@@ -18,13 +18,13 @@ public:
 };
 
 template <typename T>
-MutantStack<T>::MutantStack() : MutantStack<T>::stack() {
+MutantStack<T>::MutantStack() {
 	
 }
 
 template <typename T>
 MutantStack<T>::MutantStack(const MutantStack &rhs) : MutantStack<T>::stack(rhs) {
-
+	*this = rhs;
 }
 
 template <typename T>
