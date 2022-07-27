@@ -10,7 +10,8 @@ HEADERS_LIST = type_traits.hpp\
 				random_access_iterator.hpp\
 				algorithm.hpp\
 				utility.hpp\
-				vector.hpp
+				vector.hpp\
+				stack.hpp
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./srcs/
