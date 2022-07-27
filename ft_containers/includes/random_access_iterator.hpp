@@ -8,46 +8,56 @@
 #ifndef RANDOM_ACCESS_ITERATOR_HPP
 # define RANDOM_ACCESS_ITERATOR_HPP
 
-#include "iterator_base.hpp"
+#include "iterator.hpp"
 
 namespace ft
 {
 /**
  * @brief random_access_iterator
- * 
  * @tparam Iterator 
- * @tparam Container 
  */
-template <typename Iterator, typename Container>
+template <typename Iterator>
 class random_access_iterator : public ft::iterator<typename ft::iterator_traits<Iterator>::iterator_category,
 										typename ft::iterator_traits<Iterator>::value_type,
 										typename ft::iterator_traits<Iterator>::difference_type,
 										typename ft::iterator_traits<Iterator>::pointer,
 										typename ft::iterator_traits<Iterator>::reference>
 {
-protected:
-	Iterator current;
 public:
 	typedef typename ft::iterator_traits<Iterator>::difference_type difference_type;
 	typedef typename ft::iterator_traits<Iterator>::reference reference;
 	typedef typename ft::iterator_traits<Iterator>::pointer pointer;
+	typedef Iterator iterator_type;
 
+protected:
+	iterator_type current;
+
+public:
+	// Constructors
 	random_access_iterator() : current(Iterator()) {}
 	explicit random_access_iterator(const Iterator &i) : current(i) {}
-	template <typename Iter>
-	random_access_iterator(const random_access_iterator<Iter, Container> &i) : current(i.base()) {}
 
-	// Forward iterator
+	// Copy Constructor
+	template <typename Iter>
+	random_access_iterator(const random_access_iterator<Iter> &i) : current(i.base()) {}
+
+	// Destructor
+	virtual ~random_access_iterator() {}
+
+	// Member Functions
+	const iterator_type &base() const { return current; }
+
+	// Forward Iterator Member Functions
 	reference operator*() const { return *current; }
 	pointer operator->() const { return current; }
 	random_access_iterator &operator++() { ++current; return *this; }
 	random_access_iterator operator++(int) { return random_access_iterator(current++); }
 	
-	// Bidirectional iterator
+	// Bidirectional Iterator Member Functions
 	random_access_iterator &operator--() { --current; return *this; }
 	random_access_iterator operator--(int) { return random_access_iterator(current--); }
 
-	// RandomAccess iterator
+	// RandomAccess Iterator Member Functions
 	reference operator[](const difference_type &n) const
 	{ return current[n]; }
 	random_access_iterator &operator+=(const difference_type &n)
@@ -60,47 +70,52 @@ public:
 	{ return random_access_iterator(current - n); }
 	difference_type operator-(const random_access_iterator &i) const
 	{ return current - i.current; }
-	const Iterator &base() const
-	{ return current; }
+
 };
 
 // Forward iterator requirements
-template <typename IteratorL, typename IteratorR, typename Container>
-bool operator==(const random_access_iterator<IteratorL, Container> &lhs,
-				const random_access_iterator<IteratorR, Container> &rhs)
+template <typename IteratorL, typename IteratorR>
+bool operator==(const random_access_iterator<IteratorL> &lhs,
+				const random_access_iterator<IteratorR> &rhs)
 { return lhs.base() == rhs.base(); }
 
-template <typename IteratorL, typename IteratorR, typename Container>
-bool operator!=(const random_access_iterator<IteratorL, Container> &lhs,
-				const random_access_iterator<IteratorR, Container> &rhs)
-{ return lhs.base() != rhs.base(); }
+template <typename IteratorL, typename IteratorR>
+bool operator!=(const random_access_iterator<IteratorL> &lhs,
+				const random_access_iterator<IteratorR> &rhs)
+{ return !(lhs == rhs); }
 
 // Random access iterator requirements
-template <typename IteratorL, typename IteratorR, typename Container>
-bool operator<(const random_access_iterator<IteratorL, Container> &lhs,
-				const random_access_iterator<IteratorL, Container> &rhs)
+template <typename IteratorL, typename IteratorR>
+bool operator<(const random_access_iterator<IteratorL> &lhs,
+				const random_access_iterator<IteratorR> &rhs)
 { return lhs.base() < rhs.base(); }
 
-template <typename IteratorL, typename IteratorR, typename Container>
-bool operator>(const random_access_iterator<IteratorL, Container> &lhs,
-				const random_access_iterator<IteratorL, Container> &rhs)
-{ return lhs.base() > rhs.base(); }
+template <typename IteratorL, typename IteratorR>
+bool operator>(const random_access_iterator<IteratorL> &lhs,
+				const random_access_iterator<IteratorR> &rhs)
+{ return rhs < lhs; }
 
-template <typename IteratorL, typename IteratorR, typename Container>
-bool operator<=(const random_access_iterator<IteratorL, Container> &lhs,
-				const random_access_iterator<IteratorL, Container> &rhs)
-{ return lhs.base() <= rhs.base(); }
+template <typename IteratorL, typename IteratorR>
+bool operator<=(const random_access_iterator<IteratorL> &lhs,
+				const random_access_iterator<IteratorR> &rhs)
+{ return !(rhs < lhs); }
 
-template <typename IteratorL, typename IteratorR, typename Container>
-bool operator>=(const random_access_iterator<IteratorL, Container> &lhs,
-				const random_access_iterator<IteratorL, Container> &rhs)
-{ return lhs.base() >= rhs.base(); }
+template <typename IteratorL, typename IteratorR>
+bool operator>=(const random_access_iterator<IteratorL> &lhs,
+				const random_access_iterator<IteratorR> &rhs)
+{ return !(lhs < rhs); }
 
-template <typename Iterator, typename Container>
-random_access_iterator<Iterator, Container> operator+(
-		typename random_access_iterator<Iterator, Container>::difference_type n,
-		const random_access_iterator<Iterator, Container> &i)
-{ return random_access_iterator<Iterator, Container>(n + i.base()); }
-}; // namespace ft
+template <typename Iterator>
+random_access_iterator<Iterator> operator+(
+		typename random_access_iterator<Iterator>::difference_type n,
+		const random_access_iterator<Iterator> &i)
+{ return random_access_iterator<Iterator>(i.base() + n); }
+
+template <typename Iterator1, typename Iterator2>
+typename random_access_iterator<Iterator1>::difference_type operator-(
+				const random_access_iterator<Iterator2> &lhs,
+				const random_access_iterator<Iterator1> &rhs)
+{ return lhs.base() - rhs.base(); }
+} // namespace ft
 
 #endif

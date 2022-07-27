@@ -7,8 +7,15 @@
 #ifndef IS_INTEGRAL_HPP
 # define IS_INTEGRAL_HPP
 
+#include <cstdint>
+
 namespace ft
 {
+/**
+ * @brief Enable type if condition is met
+ * The type T is enabled as member type enable_if::type if bool is true.
+ * Otherwise, enable_if::type is not defined.
+ */
 template <bool, typename T = void>
 struct enable_if { };
 
@@ -27,6 +34,9 @@ struct true_type {
 	static const value_type value = true;
 };
 
+/**
+ * @brief Trait class that identifies whether T is an integral type.
+ */
 template <typename T>
 struct is_integral {
 	typedef false_type Integral;
@@ -78,7 +88,7 @@ struct is_integral<long int> {
 };
 
 template <>
-struct is_integral<long long int> {
+struct is_integral<__int64_t> {
 	typedef true_type Integral;
 };
 
@@ -103,7 +113,7 @@ struct is_integral<unsigned long int> {
 };
 
 template <>
-struct is_integral<unsigned long long int> {
+struct is_integral<__uint64_t> {
 	typedef true_type Integral;
 };
 } // namespace ft
