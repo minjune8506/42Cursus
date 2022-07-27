@@ -1,19 +1,20 @@
 NAME = containers
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -pedantic
 LIBRARIES = 
 INCLUDES = -I ./includes
 
 HEADERS_DIRECTORY = ./includes/
 HEADERS_LIST = type_traits.hpp\
-				iterator_base.hpp\
+				iterator.hpp\
 				random_access_iterator.hpp\
-				reverse_iterator.hpp\
-				ft_vector.hpp
+				algorithm.hpp\
+				utility.hpp\
+				vector.hpp
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./srcs/
-SOURCES_LIST = vector_test.cpp
+SOURCES_LIST = main.cpp
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY = objects/
