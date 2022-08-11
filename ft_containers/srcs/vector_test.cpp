@@ -1,44 +1,84 @@
-#include "../includes/ft_vector.hpp"
-#include <vector>
+#include "container.hpp"
 #include <iostream>
+#include <list>
 
 template <typename T>
-void print_info(std::vector<T> &v) {
-	std::cout << "std_vector size : " << v.size() << std::endl;
-	std::cout << "std_vector capacity : " << v.capacity() << std::endl;
+void print_vector(TESTED_NAMESPACE::vector<T> v) {
+	std::cout << "max_size : " << v.max_size() << std::endl;
+	std::cout << "size : " << v.size() << std::endl;
+	std::cout << "capacity : " << v.capacity() << std::endl;
+	std::cout << "empty : " << v.empty() << std::endl;
+
+	typename TESTED_NAMESPACE::vector<T>::iterator it = v.begin();
+	typename TESTED_NAMESPACE::vector<T>::iterator ite = v.end();
+	while (it != ite) {
+		std::cout << *it << std::endl;
+		it++;
+	}
 }
 
 template <typename T>
-void print_info(ft::vector<T> &v) {
-	std::cout << "ft_vector size : " << v.size() << std::endl;
-	std::cout << "ft_vector capacity : " << v.capacity() << std::endl;
+void print_vector_reverse(TESTED_NAMESPACE::vector<T> v) { // reverse iterator test
+	std::cout << "max_size : " << v.max_size() << std::endl;
+	std::cout << "size : " << v.size() << std::endl;
+	std::cout << "capacity : " << v.capacity() << std::endl;
+	std::cout << "empty : " << v.empty() << std::endl;
+
+	typename TESTED_NAMESPACE::vector<T>::reverse_iterator it = v.rbegin();
+	typename TESTED_NAMESPACE::vector<T>::reverse_iterator ite = v.rend();
+	while (it != ite) {
+		std::cout << *it << std::endl;
+		it++;
+	}
 }
 
-int main(void) {
-	std::vector<int> std_v;
-	ft::vector<int> ft_v;
+void construct_test() {
+	TESTED_NAMESPACE::vector<int> v(100, 42); // fill constructor
+	print_vector(v);
 
-	// ===== vector push_back test =====
-	std::cout << "===== vector push_back test=====" << std::endl;
+	std::list<int> lst;
 	for (int i = 0 ; i < 100 ; i++) {
-		std_v.push_back(i);
-		ft_v.push_back(i);
-		assert(std_v.size() == ft_v.size());
-		assert(std_v.capacity() == ft_v.capacity());
+		lst.push_back(i);
 	}
-	print_info(std_v);
-	print_info(ft_v);
+	TESTED_NAMESPACE::vector<int> range_v(lst.begin(), lst.end()); // range constructor
+	print_vector(range_v);
 
-	// ===== vector pop_back test =====
-	std::cout << "===== vector pop_back test=====" << std::endl;
-	for (int i = 0 ; i < 100 ; i++) { 
-		std_v.pop_back();
-		ft_v.pop_back();
-		assert(std_v.size() == ft_v.size());
-		assert(std_v.capacity() == ft_v.capacity());
+	TESTED_NAMESPACE::vector<int> copy_v(range_v); // copy construct
+	print_vector(copy_v);
+
+	copy_v = v; // assign operator
+	print_vector(copy_v);
+	print_vector_reverse(copy_v); // reverse iterator
+}
+
+template <typename T>
+void resize_test(TESTED_NAMESPACE::vector<T> v) {
+	print_vector(v);
+	v.resize(1000000000000);
+	print_vector(v);
+}
+
+
+template <typename T>
+void big_size_test(TESTED_NAMESPACE::vector<T> v) {
+	std::cout << "max_size : " << v.max_size() << std::endl;
+	try {
+		v.reserve(v.max_size() + 100);
+	} catch (std::exception &e) {
+		// std::cout << e.what() << std::endl;
 	}
-	print_info(std_v);
-	print_info(ft_v);
+}
 
-	return (0);
+int vector_test() {
+	clock_t start = clock();
+
+	TESTED_NAMESPACE::vector<int> v; // empty container constructor
+	print_vector(v);
+	construct_test();
+	resize_test(v);
+	big_size_test(v);
+
+	clock_t end = clock();
+	std::cout << "time : " << (float)(end - start) / CLOCKS_PER_SEC << std::endl;
+	return (EXIT_SUCCESS);
 }
