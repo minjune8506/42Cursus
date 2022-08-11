@@ -768,15 +768,15 @@ inline RB_tree_node<Key, T> *RB_tree<Key, T, Compare, Alloc>::RB_tree_erase_reba
 					s->color = BLACK;
 					x_parent->color = RED;
 					RB_tree_rotate_right(x_parent, root);
-					s = x_parent->right;
+					s = x_parent->left;
 				}
-				if ((s->left == NULL || s->left->color == BLACK) && (s->right == NULL || s->right->color == BLACK)) { // Case 1-1) && 2-1)
+				if ((s->right == NULL || s->right->color == BLACK) && (s->left == NULL || s->left->color == BLACK)) { // Case 1-1) && 2-1)
 					s->color = RED;
 					x = x_parent;
 					x_parent = x_parent->parent;
 				} else {
 					if (s->left == NULL || s->left->color == BLACK) { // Case *-3)
-						if (s->right) s->right->color = RED;
+						if (s->right) s->right->color = BLACK;
 						s->color = RED;
 						RB_tree_rotate_left(s, root);
 						s = x_parent->left;

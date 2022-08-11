@@ -62,7 +62,9 @@ namespace ft
 		map(const map &x) : tree(x.tree) { }
 
 		map &operator=(const map& x) {
-			tree = x.tree;
+			if (x != *this) {
+				tree = x.tree;
+			}
 			return *this;
 		}
 
