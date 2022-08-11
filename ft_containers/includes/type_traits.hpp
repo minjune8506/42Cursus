@@ -22,6 +22,15 @@ struct enable_if { };
 template <typename T>
 struct enable_if<true, T> { typedef T type; };
 
+template <bool B, typename T = void, typename U = void>
+struct conditional { };
+
+template <typename T, typename U>
+struct conditional<true, T, U> { typedef T type; };
+
+template <typename T, typename U>
+struct conditional<false, T, U> { typedef U type; };
+
 struct false_type {
 	typedef bool value_type;
 	typedef false_type type;
