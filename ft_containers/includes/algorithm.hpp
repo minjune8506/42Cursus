@@ -29,8 +29,6 @@ OutputIterator copy(InputIterator first, InputIterator last, OutputIterator resu
 
 /**
  * @brief Returns the largest of a and b. If both are equivalent, a is returned.
- * @param a 
- * @param b 
  * @return The largest of the values passed as arguments.
  */
 template <class T>
@@ -40,8 +38,6 @@ const T &max(const T &a, const T &b) {
 
 /**
  * @brief Exchanges the values of a and b.
- * @param a 
- * @param b 
  */
 template <typename T>
 void swap(T &a, T &b) {

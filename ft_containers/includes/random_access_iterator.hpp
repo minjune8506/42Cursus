@@ -24,10 +24,10 @@ class random_access_iterator : public ft::iterator<typename ft::iterator_traits<
 										typename ft::iterator_traits<Iterator>::reference>
 {
 public:
-	typedef typename ft::iterator_traits<Iterator>::difference_type difference_type;
-	typedef typename ft::iterator_traits<Iterator>::reference reference;
-	typedef typename ft::iterator_traits<Iterator>::pointer pointer;
-	typedef Iterator iterator_type;
+	typedef typename ft::iterator_traits<Iterator>::difference_type	difference_type;
+	typedef typename ft::iterator_traits<Iterator>::reference		reference;
+	typedef typename ft::iterator_traits<Iterator>::pointer			pointer;
+	typedef Iterator												iterator_type;
 
 protected:
 	iterator_type current;

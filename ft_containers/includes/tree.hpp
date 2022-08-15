@@ -27,11 +27,11 @@ struct RB_tree_node {
 	typedef RB_tree_node<Key, T> *	pointer;
 
 	/** Member variables **/
-	pointer parent;
-	pointer left;
-	pointer right;
-	color_type color;
-	data_type data;
+	pointer		parent;
+	pointer		left;
+	pointer		right;
+	color_type	color;
+	data_type	data;
 
 	/** Member functions **/
 	RB_tree_node(const RB_tree_node &x) : data(x.data), color(x.color) { }

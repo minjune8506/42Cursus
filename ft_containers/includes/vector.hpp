@@ -357,39 +357,32 @@ public:
 /** Non-member function overloads **/
 /** relational operators **/
 template <typename T, typename Alloc>
-inline bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	return (lhs.size() == rhs.size()) && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
-  }
+inline bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+{ return (lhs.size() == rhs.size()) && ft::equal(lhs.begin(), lhs.end(), rhs.begin()); }
 
 template <typename T, typename Alloc>
- inline	bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	return !(lhs == rhs);
-  }
+inline	bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+{ return !(lhs == rhs); }
 
 template <typename T, typename Alloc>
- inline	bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
-  }
+inline	bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+{ return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()); }
 
 template <typename T, typename Alloc>
- inline	bool operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	return !(rhs < lhs);
-  }
+inline	bool operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+{ return !(rhs < lhs); }
 
 template <typename T, typename Alloc>
- inline	bool operator>(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	return rhs < lhs;
-  }
+inline	bool operator>(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+{ return rhs < lhs; }
 
 template <typename T, typename Alloc>
- inline	bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	return !(lhs < rhs);
-  }
+inline	bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+{ return !(lhs < rhs); }
 
 template <typename T, typename Alloc>
-inline void swap(vector<T, Alloc>& x, vector<T, Alloc>& y) {
-	x.swap(y);
-  }
+inline void swap(vector<T, Alloc>& x, vector<T, Alloc>& y)
+{ x.swap(y); }
 
 /** auxiliary methods **/
 template <typename T, typename Alloc>
