@@ -1,20 +1,34 @@
+/**
+ * @file map.hpp
+ * @author Minjune (minjune8506@gmail.com)
+ * @brief Map header file
+ * @date 2022-08-14
+ */
 #ifndef MAP_HPP
 # define MAP_HPP
 
-#include <functional>
-#include <memory>
-#include "utility.hpp"
-#include "tree.hpp"
+#include <memory>		// allocator
+#include <functional>	// less
+#include "utility.hpp"	// pair
+#include "tree.hpp"		// tree
 
 namespace ft
 {
-	template <typename Key,                                     		// map::key_type
-			  typename T,                                       		// map::mapped_type
-           	  typename Compare = std::less<Key>,                     	// map::key_compare
-           	  typename Alloc = std::allocator<ft::pair<const Key, T> > >	// map::allocator_type
+	/**
+	 * @brief map
+	 * STL map
+	 * @tparam Key 
+	 * @tparam T 
+	 * @tparam Compare 
+	 * @tparam std::allocator<ft::pair<const Key, T> > 
+	 */
+	template <	typename Key,                                     			// map::key_type
+				typename T,                                       			// map::mapped_type
+           		typename Compare = std::less<Key>,                     		// map::key_compare
+           		typename Alloc = std::allocator<ft::pair<const Key, T> > >	// map::allocator_type
 	class map {
+	/** Member types **/
 	public:
-		/** Member types **/
 		typedef Key											key_type;
 		typedef T											mapped_type;
 		typedef ft::pair<const key_type, mapped_type>		value_type;
@@ -38,29 +52,33 @@ namespace ft
 			Compare comp;
 			value_compare (Compare c) : comp(c) {}  // constructed with map's comparison object
 		public:
-			typedef bool result_type;
-			typedef value_type first_argument_type;
-			typedef value_type second_argument_type;
+			typedef bool		result_type;
+			typedef value_type	first_argument_type;
+			typedef value_type	second_argument_type;
 			bool operator() (const value_type& x, const value_type& y) const
 			{ return comp(x.first, y.first); }
 		};
 
+	/** Member variable **/
 	private:
 		tree_type tree;
 
+	/** Member functions **/
 	public:
+		/** Constructors **/
 		explicit map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type())
 		: tree(comp, alloc) { }
 
 		template <class InputIterator>
-		map(InputIterator first, InputIterator last,
-			const key_compare &comp = key_compare(),
+		map(InputIterator first, InputIterator last, const key_compare &comp = key_compare(),
 			const allocator_type &alloc = allocator_type()) : tree(comp, alloc) {
 			tree.insert(first, last);
 		}
 
+		// Copy Constructor
 		map(const map &x) : tree(x.tree) { }
 
+		// Assign Operator
 		map &operator=(const map& x) {
 			if (x != *this) {
 				tree = x.tree;

@@ -1,8 +1,8 @@
 #include "container.hpp"
 #include <iostream>
+#include <cstdlib>
 #include <string>
 #include <deque>
-#include <stdlib.h>
 
 #define MAX_RAM 4294967296
 #define BUFFER_SIZE 4096
@@ -35,6 +35,7 @@ public:
 };
 
 int intra_test(int argc, char** argv) {
+	clock_t start = clock();
 	if (argc != 2)
 	{
 		std::cerr << "Usage: ./test seed" << std::endl;
@@ -102,5 +103,7 @@ int intra_test(int argc, char** argv) {
 		std::cout << *it;
 	}
 	std::cout << std::endl;
+	clock_t end = clock();
+	std::cout << "time : " << end - start << std::endl;
 	return (EXIT_SUCCESS);
 }

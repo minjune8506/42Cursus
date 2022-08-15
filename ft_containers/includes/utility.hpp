@@ -64,9 +64,8 @@ bool operator>=(const pair<T1,T2> &lhs, const pair<T1,T2> &rhs)
  * @return A pair object whose elements first and second are set to x and y respectivelly.
  */
 template <class T1, class T2>
-pair<T1,T2> make_pair(const T1 &x, const T2 &y) {
-	return pair<T1, T2>(x, y);
-}
+pair<T1,T2> make_pair(const T1 &x, const T2 &y)
+{ return pair<T1, T2>(x, y); }
 } // namespace ft
 
 #endif

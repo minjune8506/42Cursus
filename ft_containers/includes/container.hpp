@@ -28,9 +28,5 @@
 #include <ctime>
 
 int intra_test(int argc, char **argv);
-int vector_test();
-int stack_test();
-int map_test();
-int pair_test();
 
 #endif

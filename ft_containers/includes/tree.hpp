@@ -1,35 +1,42 @@
 #ifndef TREE_HPP
 #define TREE_HPP
 
-#include <functional>
 #include <memory>
 #include <iostream>
-#include "iterator.hpp"
+#include <functional>
 #include "utility.hpp"
-#include "type_traits.hpp"
+#include "iterator.hpp"
 #include "algorithm.hpp"
+#include "type_traits.hpp"
 
 namespace ft
 {
-
+// Red Black Tree Colors
 enum RB_tree_color {RED, BLACK};
 
+/**
+ * @brief Red Black Tree Node
+ * @tparam Key	key
+ * @tparam T	value
+ */
 template <typename Key, typename T>
 struct RB_tree_node {
+	/** Member types **/
 	typedef ft::pair<const Key, T>	data_type;
 	typedef RB_tree_color			color_type;
 	typedef RB_tree_node<Key, T> *	pointer;
 
+	/** Member variables **/
 	pointer parent;
 	pointer left;
 	pointer right;
 	color_type color;
 	data_type data;
 
-	RB_tree_node(data_type data) : data(data), parent(NULL), left(NULL), right(NULL) { }
+	/** Member functions **/
 	RB_tree_node(const RB_tree_node &x) : data(x.data), color(x.color) { }
-	const Key	&getKey() { return data.first; }
-	T			&getValue() { return data.second; }
+	const Key &getKey() { return data.first; }
+	T &getValue() { return data.second; }
 
 	static pointer minimum(const pointer x) {
 		pointer temp = x;
@@ -46,37 +53,37 @@ struct RB_tree_node {
 	}
 };
 
-
+/**
+ * @brief Red Black Tree Iterator
+ * @tparam Key		key
+ * @tparam T		value
+ * @tparam IsConst	is const iterator
+ */
 template <typename Key, typename T, bool IsConst>
 struct RB_tree_iterator {
-	// type definitions
+	/** Member types **/
 	typedef ft::bidirectional_iterator_tag	iterator_category;
 	typedef ptrdiff_t						difference_type;
-
 	typedef T								value_type;
 	typedef Key								key_type;
-	typedef RB_tree_iterator<Key, T, false>	iteartor;
-	typedef RB_tree_iterator<Key, T, true>	const_iterator;
 
 	typedef typename ft::conditional<IsConst, const ft::pair<const Key, T>, ft::pair<const Key, T> >::type	data_type;
 	typedef typename ft::conditional<IsConst, const RB_tree_node<Key, T>, RB_tree_node<Key, T> >::type		node_type;
 
+	typedef RB_tree_iterator<Key, T, false>	iterator;
+	typedef RB_tree_iterator<Key, T, true>	const_iterator;
 	typedef data_type *						pointer;
 	typedef data_type &						reference;
 
-	// member variable
+	/** Member variable **/
 	node_type *node;
 
-	/* member functions */
-	// Constructors
+	/** Member functions **/
 	explicit RB_tree_iterator() : node(NULL) { }
-	
 	RB_tree_iterator(node_type *x) { node = x; }
-	
 	template <bool B>
 	RB_tree_iterator(const RB_tree_iterator<Key, T, B> &x, typename ft::enable_if<!B>::type* = 0) { node = x.node; }
 
-	// Member Functions
 	void increment() {
 		if (node->right != NULL) {
 			node = node->right;
@@ -94,7 +101,7 @@ struct RB_tree_iterator {
   	}
   	
 	void decrement() {
-		if (node->color == RED && node->parent->parent == node) // header
+		if (node->color == RED && node->parent->parent == node) // case header
       		node = node->right;
     	else if (node->left != NULL) {
       		RB_tree_node<Key, T> *y = node->left;
@@ -111,7 +118,7 @@ struct RB_tree_iterator {
   	  	}
   	}
 
-	// Operators
+	// Operator overlaoding
 	// Forward : == != * -> ++
 	reference operator*() const { return node->data; }
 	pointer operator->() const { return &(operator*()); }
@@ -141,43 +148,40 @@ inline bool operator!=(const RB_tree_iterator<Key, T, B1> &x, const RB_tree_iter
 template <typename Key, typename T, typename Compare = std::less<Key>, typename Alloc = std::allocator<ft::pair<const Key, T> > >
 class RB_tree {
 public:
-	class value_compare;
-
-	// type definitions
-	typedef Key							key_type;
-	typedef T							mapped_type;
-	typedef ft::pair<const Key, T>		value_type;
-	typedef Compare						key_comp;
+	/** type definitions **/
+	typedef Key										key_type;
+	typedef T										mapped_type;
+	typedef ft::pair<const Key, T>					value_type;
+	typedef Compare									key_comp;
 
 	typedef std::allocator<RB_tree_node<Key, T> >	allocator_type;
 	typedef size_t									size_type;
 	typedef ptrdiff_t								difference_type;
 
-	typedef RB_tree_node<key_type, mapped_type>	node_type;
-	typedef node_type *							link_type;
-	typedef RB_tree_color						color_type;
+	typedef RB_tree_node<key_type, mapped_type>		node_type;
+	typedef node_type *								link_type;
+	typedef RB_tree_color							color_type;
 	
-	typedef value_type *					pointer;
-	typedef const value_type *				const_pointer;
-	typedef value_type &					reference;
-	typedef const value_type &				const_reference;
+	typedef value_type *							pointer;
+	typedef const value_type *						const_pointer;
+	typedef value_type &							reference;
+	typedef const value_type &						const_reference;
 
 	typedef RB_tree_iterator<Key, T, false>			iterator;
 	typedef RB_tree_iterator<Key, T, true>			const_iterator;
-	typedef ft::reverse_iterator<iterator>		 reverse_iterator;
-	typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
+	typedef ft::reverse_iterator<iterator>			reverse_iterator;
+	typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
-	// member variables
+	/** member variables **/
 	allocator_type	alloc;
 	key_comp		comp;
 	link_type		header;
 	size_type		node_cnt;
 
-	// member functions
+	/** member functions **/
 	link_type &root() const { return header->parent; }
 	link_type &leftmost()  const { return header->left; }
 	link_type &rightmost() const { return header->right; }
-
 	link_type minimum(link_type x) { return node_type::minimum(x); }
 	link_type maximum(link_type x) { return node_type::maximum(x); }
 
@@ -200,22 +204,18 @@ public:
 		ft::swap(comp, t.comp);
 	}
 
-	// rotate & rebalance
+	// rotate && rebalance
 	void RB_tree_rotate_left(node_type *x, node_type *&root);
 	void RB_tree_rotate_right(node_type *x, node_type *&root);
 	void RB_tree_insert_rebalance(node_type *x, node_type *&root);
 	node_type *RB_tree_erase_rebalance(node_type *z,
-											node_type *&root,
-											node_type *&left_most,
-											node_type *&right_most);
+										node_type *&root,
+										node_type *&left_most,
+										node_type *&right_most);
 
-	link_type allocate_node() {
-		return alloc.allocate(1);
-	}
-
-	void deallocate_node(link_type p) {
-		alloc.deallocate(p, 1);
-	}
+	// util functions
+	link_type allocate_node() { return alloc.allocate(1); }
+	void deallocate_node(link_type p) { alloc.deallocate(p, 1); }
 
 	void empty_initialize() {
 		header = allocate_node();
@@ -244,6 +244,7 @@ public:
 		return top;
 	}
 
+	// Constructors
 	RB_tree(): alloc(allocator_type()), node_cnt(0) {
 		empty_initialize();
 	}
@@ -255,8 +256,7 @@ public:
 	}
 
 	// Copy Constructor
-	RB_tree(const RB_tree<Key, T, Compare, Alloc> &x)
-		: alloc(x.alloc), comp(x.comp), node_cnt(x.node_cnt) {
+	RB_tree(const RB_tree<Key, T, Compare, Alloc> &x) : alloc(x.alloc), comp(x.comp), node_cnt(x.node_cnt) {
 		if (x.root() == NULL) {
 			empty_initialize();
 		}
@@ -515,53 +515,29 @@ public:
 };
 
 template <class Key, class T, class Compare, class Alloc>
-inline bool 
-operator==(const RB_tree<Key,T,Compare,Alloc>& x, 
-           const RB_tree<Key,T,Compare,Alloc>& y)
-{
-  return x.size() == y.size() &&
-       ft::equal(x.begin(), x.end(), y.begin());
-}
+inline bool operator==(const RB_tree<Key,T,Compare,Alloc>& x, const RB_tree<Key,T,Compare,Alloc>& y)
+{ return x.size() == y.size() && ft::equal(x.begin(), x.end(), y.begin()); }
 
 template <class Key, class T, class Compare, class Alloc>
-inline bool 
-operator<(const RB_tree<Key,T,Compare,Alloc>& x, 
-          const RB_tree<Key,T,Compare,Alloc>& y)
-{
-  return ft::lexicographical_compare(x.begin(), x.end(),
-                            		y.begin(), y.end());
-}
+inline bool operator<(const RB_tree<Key,T,Compare,Alloc>& x, const RB_tree<Key,T,Compare,Alloc>& y)
+{ return ft::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end()); }
 
 template <class Key, class T, class Compare, class Alloc>
-inline bool 
-operator!=(const RB_tree<Key,T,Compare,Alloc>& x, 
-           const RB_tree<Key,T,Compare,Alloc>& y) {
-  return !(x == y);
-}
+inline bool operator!=(const RB_tree<Key,T,Compare,Alloc>& x, const RB_tree<Key,T,Compare,Alloc>& y)
+{ return !(x == y); }
 
 template <class Key, class T, class Compare, class Alloc>
-inline bool 
-operator>(const RB_tree<Key,T,Compare,Alloc>& x, 
-          const RB_tree<Key,T,Compare,Alloc>& y) {
-  return y < x;
-}
+inline bool operator>(const RB_tree<Key,T,Compare,Alloc>& x, const RB_tree<Key,T,Compare,Alloc>& y)
+{ return y < x; }
 
 template <class Key, class T, class Compare, class Alloc>
-inline bool 
-operator<=(const RB_tree<Key,T,Compare,Alloc>& x, 
-           const RB_tree<Key,T,Compare,Alloc>& y) {
-  return !(y < x);
-}
+inline bool operator<=(const RB_tree<Key,T,Compare,Alloc>& x, const RB_tree<Key,T,Compare,Alloc>& y)
+{ return !(y < x); }
 
 template <class Key, class T, class Compare, class Alloc>
-inline bool 
-operator>=(const RB_tree<Key,T,Compare,Alloc>& x, 
-           const RB_tree<Key,T,Compare,Alloc>& y) {
-  return !(x < y);
-}
+inline bool operator>=(const RB_tree<Key,T,Compare,Alloc>& x, const RB_tree<Key,T,Compare,Alloc>& y)
+{ return !(x < y); }
 
-
-/** functions **/
 /**
  * @brief RB_tree_rotate_left
  * Rotate RB-tree to left
@@ -665,9 +641,9 @@ inline void RB_tree<Key, T, Compare, Alloc>::RB_tree_insert_rebalance(RB_tree_no
 
 template <typename Key, typename T, typename Compare, typename Alloc>
 inline RB_tree_node<Key, T> *RB_tree<Key, T, Compare, Alloc>::RB_tree_erase_rebalance(RB_tree_node<Key, T> *z,
-												RB_tree_node<Key, T> *&root,
-												RB_tree_node<Key, T> *&left_most,
-												RB_tree_node<Key, T> *&right_most) {
+																					RB_tree_node<Key, T> *&root,
+																					RB_tree_node<Key, T> *&left_most,
+																					RB_tree_node<Key, T> *&right_most) {
 	RB_tree_node<Key, T> *y = z;
 	RB_tree_node<Key, T> *x = NULL;
 	RB_tree_node<Key, T> *x_parent = NULL;
@@ -795,5 +771,4 @@ inline RB_tree_node<Key, T> *RB_tree<Key, T, Compare, Alloc>::RB_tree_erase_reba
 	return y;
 }
 }
-
 #endif
