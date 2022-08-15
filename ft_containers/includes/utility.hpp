@@ -4,8 +4,8 @@
  * @brief std::pair reimplementation
  * @date 2022-07-23
  */
-#ifndef PAIR_HPP
-# define PAIR_HPP
+#ifndef UTILITY_HPP
+# define UTILITY_HPP
 
 namespace ft
 {

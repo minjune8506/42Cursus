@@ -4,8 +4,8 @@
  * @brief reimplement type_trais header
  * @date 2022-07-23
  */
-#ifndef IS_INTEGRAL_HPP
-# define IS_INTEGRAL_HPP
+#ifndef TYPE_TRAITS_HPP
+# define TYPE_TRAITS_HPP
 
 #include <cstdint>
 

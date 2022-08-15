@@ -1,8 +1,6 @@
 NAME = containers
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -pedantic -g
-CXXFLAGS_STD = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -pedantic -g -D STD_MODE=1
-LIBRARIES = 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -pedantic
 INCLUDES = -I ./includes
 
 HEADERS_DIRECTORY = ./includes/
@@ -20,9 +18,7 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./srcs/
 SOURCES_LIST = main.cpp\
-				intra_test.cpp\
-				vector_test.cpp\
-				pair_test.cpp
+				intra_test.cpp
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY = objects/
