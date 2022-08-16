@@ -154,6 +154,7 @@ public:
 	typedef ft::pair<const Key, T>					value_type;
 	typedef Compare									key_comp;
 
+	typedef Alloc									data_alloc_type;
 	typedef std::allocator<RB_tree_node<Key, T> >	allocator_type;
 	typedef size_t									size_type;
 	typedef ptrdiff_t								difference_type;
@@ -173,6 +174,7 @@ public:
 	typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
 	/** member variables **/
+	data_alloc_type	data_alloc;
 	allocator_type	alloc;
 	key_comp		comp;
 	link_type		header;
@@ -295,7 +297,7 @@ public:
 
 	link_type create_node(const value_type &x) {
 		link_type node = allocate_node();
-		alloc.construct(&node->data, x);
+		data_alloc.construct(&node->data, x);
 		return node;
 	}
 

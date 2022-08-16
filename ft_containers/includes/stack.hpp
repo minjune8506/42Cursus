@@ -16,6 +16,7 @@ namespace ft
 		typedef T			value_type;
 		typedef Container	container_type;
 		typedef size_t		size_type;
+	protected:
 		container_type c;
 	public:
 		/** Member functions **/
