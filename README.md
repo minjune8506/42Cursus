@@ -19,7 +19,7 @@
 | 02 | [push_swap](./push_swap) | C | `Algorithm` | 1855 XP| ![minjkim2's 42 Push_swap Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2258541)  | 2021-08-09 |
 | 02 | [pipex](./pipex) | C | `Redirection` | 1142 XP| [![minjkim2's 42 pipex Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2211968)](https://github.com/JaeSeoKim/badge42) | 2021-07-02 |
 | 02 | [FdF](./fdf) | C | `Graphic` | 1000 XP| [![minjkim2's 42 FdF Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2226122)](https://github.com/JaeSeoKim/badge42) | 2021-07-22 |
-| 03 | [Exam Rank 03]() | C |`Exam` | 0 XP| [![minjkim2's 42 Exam Rank 03 Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2452227)](https://github.com/JaeSeoKim/badge42) | 2022-??-?? |
+| 03 | [Exam Rank 03]() | C |`Exam` | 0 XP| [![minjkim2's 42 Exam Rank 03 Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2452227)](https://github.com/JaeSeoKim/badge42) | 2022-07-15 |
 | 03 | [minishell](./minishell) | C | `pipe` `bash` | 2814 XP | [![minjkim2's 42 Philosophers Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2392665)](https://github.com/JaeSeoKim/badge42) | 2021-09-23 |
 | 03 | [philosophers](./philo) | C | `dining philosophers` | 3360 XP | [![minjkim2's 42 Philosophers Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2392665)](https://github.com/JaeSeoKim/badge42) | 2022-01-04 |
 | 04 | [Exam Rank 04]() | C | `Exam` | 0 XP | [![minjkim2's 42 Exam Rank 04 Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2452230)](https://github.com/JaeSeoKim/badge42) | 2022-08-16 |
