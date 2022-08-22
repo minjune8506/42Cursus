@@ -27,31 +27,36 @@ namespace ft
 		const value_type &top() const { return c.back(); }
 		void push (const value_type &val) { c.push_back(val); }
 		void pop() { c.pop_back(); }
+
+	    template<typename T_, typename Container_>
+		friend bool operator==	(const stack<T_, Container_> &lhs, const stack<T_, Container_> &rhs);
+		template<typename T_, typename Container_>
+		friend bool operator<	(const stack<T_, Container_> &lhs, const stack<T_, Container_> &rhs);
 	};
 
 	/** Non-member function overloads **/
 	template <typename T, typename Container>
-	bool operator== (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
+	inline bool operator== (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
 	{ return lhs.c == rhs.c; }
 
 	template <typename T, typename Container>
-	bool operator<  (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
+	inline bool operator<  (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
 	{ return lhs.c < rhs.c; }
 
 	template <typename T, typename Container>
-	bool operator!= (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
+	inline bool operator!= (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
 	{ return !(lhs == rhs); }
 
 	template <typename T, typename Container>
-	bool operator<= (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
+	inline bool operator<= (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
 	{ return !(rhs < lhs); }
 
 	template <typename T, typename Container>
-	bool operator>  (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
+	inline bool operator>  (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
 	{ return rhs < lhs; }
 
 	template <typename T, typename Container>
-	bool operator>= (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
+	inline bool operator>= (const stack<T, Container> &lhs, const stack<T, Container> &rhs)
 	{ return !(lhs < rhs); }
 } // namespace ft
 #endif
