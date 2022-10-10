@@ -23,11 +23,14 @@ create_config()
 		echo "${GREEN}Wordpress config file exist!${RESET}"
 	else
 		echo "${RED}Create wordpress config file${RESET}"
-		wp config create --dbname=$DB_NAME \
+		until wp config create --dbname=$DB_NAME \
 					--dbuser=$MARIADB_USER \
 					--dbpass=$MARIADB_PASSWORD \
 					--dbhost=$DB_HOST \
-					--allow-root
+					--allow-root;
+		do
+			echo "${RED}try again${RESET}"
+		done
 	fi
 }
 
