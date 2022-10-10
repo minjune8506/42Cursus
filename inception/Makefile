@@ -12,12 +12,12 @@ VOLUMES = srcs_data srcs_www
 # docker-compose up
 up:
 	@echo "$(GREEN)docker-compose up...$(RESET)"
-	@docker-compose -f $(COMPOSE_FILE) up -d
+	@docker compose -f $(COMPOSE_FILE) up -d
 
 # docker-compose down
 down:
 	@echo "$(RED)docker-compose down...$(RESET)"
-	@docker-compose -f $(COMPOSE_FILE) down
+	@docker compose -f $(COMPOSE_FILE) down
 
 # container ps
 container_list:
