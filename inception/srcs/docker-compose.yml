@@ -73,4 +73,14 @@ networks:
 
 volumes:
   www:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/minjkim2/www'
   data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/minjkim2/data'
