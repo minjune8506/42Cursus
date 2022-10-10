@@ -1,0 +1,76 @@
+version: "3"
+
+services:
+  server:
+    depends_on:
+      - wordpress
+    build:
+      context: ./requirements/nginx
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - EMAIL=${ADMIN_EMAIL}
+    ports:
+      - 443:443
+    networks:
+      - intra_net
+    volumes:
+      - www:/www
+    restart: on-failure
+  
+  database:
+    build:
+      context: ./requirements/mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    networks:
+      - intra_net
+    volumes:
+      - data:/var/lib/mysql
+    restart: on-failure
+  
+  wordpress:
+    depends_on:
+      - database
+    build:
+      context: ./requirements/wordpress
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - DB_NAME=${DB_NAME}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - ADMIN_USER=${ADMIN_USER}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - WP_HOME=${WP_HOME}
+      - WP_SITEURL=${WP_SITEURL}
+      - USER_NAME=${USER_NAME}
+      - USER_PASS=${USER_PASS}
+      - USER_EMAIL=${USER_EMAIL}
+    networks:
+      - intra_net
+    volumes:
+      - www:/www
+    restart: on-failure
+
+  php-myadmin:
+    depends_on:
+      - database
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    networks:
+      - intra_net
+    environment:
+      - PMA_HOST=database
+    restart: on-failure
+
+networks:
+  intra_net:
+
+volumes:
+  www:
+  data:
