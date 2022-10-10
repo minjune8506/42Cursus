@@ -77,10 +77,10 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/Users/minjune/www'
+      device: /Users/minjune/www
   data:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/Users/minjune/data'
+      device: /Users/minjune/data

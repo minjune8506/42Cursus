@@ -12,7 +12,7 @@ IMAGES = srcs-server srcs-database srcs-wordpress
 up:
 	@echo "$(GREEN)docker-compose up...$(RESET)"
 	@echo "$(GREEN)create volume...$(RESET)"
-	@mkdir -p /Users/minjune/www Users/minjune/data
+	@mkdir -p /Users/minjune/www /Users/minjune/data
 	@docker-compose -f $(COMPOSE_FILE) up -d
 
 # docker-compose down

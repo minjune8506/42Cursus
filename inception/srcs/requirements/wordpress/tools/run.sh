@@ -30,6 +30,7 @@ create_config()
 					--allow-root;
 		do
 			echo "${RED}try again${RESET}"
+			sleep 0.5s
 		done
 	fi
 }
