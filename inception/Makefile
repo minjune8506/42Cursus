@@ -5,7 +5,7 @@ RESET = \033[0m
 
 # Docker Components
 COMPOSE_FILE = ./srcs/docker-compose.yml
-IMAGES = srcs-server srcs-database srcs-wordpress
+IMAGES = nginx:42Seoul mariadb:42Seoul wordpress:42Seoul
 VOLUMES = srcs_data srcs_www
 
 # docker-compose up

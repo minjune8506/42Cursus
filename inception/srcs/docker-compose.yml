@@ -1,11 +1,13 @@
 version: "3"
 
 services:
-  server:
+  nginx:
     depends_on:
       - wordpress
+    image: nginx:42Seoul
     build:
       context: ./requirements/nginx
+    container_name: nginx_container
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME}
       - EMAIL=${ADMIN_EMAIL}
@@ -14,12 +16,14 @@ services:
     networks:
       - intra_net
     volumes:
-      - www:/www
+      - /Users/minjune/www:/www
     restart: on-failure
   
-  database:
+  mariadb:
+    image: mariadb:42Seoul
     build:
       context: ./requirements/mariadb
+    container_name: mariadb_container
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       - MARIADB_USER=${MARIADB_USER}
@@ -28,14 +32,16 @@ services:
     networks:
       - intra_net
     volumes:
-      - data:/var/lib/mysql
+      - /Users/minjune/data:/var/lib/mysql
     restart: on-failure
   
   wordpress:
     depends_on:
-      - database
+      - mariadb
+    image: wordpress:42Seoul
     build:
       context: ./requirements/wordpress
+    container_name: wordpress_container
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME}
       - DB_NAME=${DB_NAME}
@@ -53,19 +59,19 @@ services:
     networks:
       - intra_net
     volumes:
-      - www:/www
+      - /Users/minjune/www:/www
     restart: on-failure
 
   php-myadmin:
     depends_on:
-      - database
+      - mariadb
     image: phpmyadmin/phpmyadmin
     ports:
       - 8080:80
     networks:
       - intra_net
     environment:
-      - PMA_HOST=database
+      - PMA_HOST=mariadb
     restart: on-failure
 
 networks:
