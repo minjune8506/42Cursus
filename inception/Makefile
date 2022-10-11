@@ -7,13 +7,15 @@ RESET = \033[0m
 COMPOSE_FILE = ./srcs/docker-compose.yml
 IMAGES = nginx:42Seoul mariadb:42Seoul wordpress:42Seoul
 VOLUMES = srcs_data srcs_www
+DATA = /home/minjkim2/data
+WWW = /home/minjkim2/www
 
 # docker-compose up
 up:
 	@echo "$(GREEN)create directory...$(RESET)"
-	@mkdir -p /home/minjkim2/www /home/minjkim2/data
+	@mkdir -p $(WWW) $(DATA)
 	@echo "$(GREEN)docker-compose up...$(RESET)"
-	@docker compose -f $(COMPOSE_FILE) up
+	@docker compose -f $(COMPOSE_FILE) up -d
 
 # docker-compose down
 down:
@@ -39,3 +41,4 @@ fclean:
 	@docker image rm -f $(IMAGES)
 	@echo "$(RED)cleanup volumes$(RESET)"
 	@docker volume rm -f $(VOLUMES)
+	@sudo rm -rf $(DATA) $(WWW)
