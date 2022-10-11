@@ -7,4 +7,4 @@ GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$MARIADB_USER'@'%' IDENTIFIED BY '$MARIAD
 FLUSH PRIVILEGES;
 EOF
 
-service mysql start && mysql < config.sql && sleep 2 && service mysql stop && mysqld_safe
+service mysql start && sleep 2 && mysql < config.sql && service mysql stop && mysqld_safe

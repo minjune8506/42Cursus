@@ -13,7 +13,7 @@ up:
 	@echo "$(GREEN)create directory...$(RESET)"
 	@mkdir -p /home/minjkim2/www /home/minjkim2/data
 	@echo "$(GREEN)docker-compose up...$(RESET)"
-	@docker compose -f $(COMPOSE_FILE) up -d
+	@docker compose -f $(COMPOSE_FILE) up
 
 # docker-compose down
 down:
