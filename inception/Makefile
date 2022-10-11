@@ -4,17 +4,16 @@ GREEN = \033[0;32m
 RESET = \033[0m
 
 # Docker Components
-COMPOSE_FILE=./srcs/docker-compose.yml
-CONTAINERS = srcs-server srcs-wordpress srcs-database
-IMAGES = srcs-server srcs-database srcs-wordpress
-VOLUMES= srcs_data srcs_www
+COMPOSE_FILE = ./srcs/docker-compose.yml
+IMAGES = nginx:42Seoul mariadb:42Seoul wordpress:42Seoul
+VOLUMES = srcs_data srcs_www
 
 # docker-compose up
 up:
-	@echo "$(GREEN)docker compose up...$(RESET)"
-	@echo "$(GREEN)create volume...$(RESET)"
+	@echo "$(GREEN)create directory...$(RESET)"
 	@mkdir -p /home/minjkim2/www /home/minjkim2/data
-	@docker compose -f $(COMPOSE_FILE) up
+	@echo "$(GREEN)docker-compose up...$(RESET)"
+	@docker compose -f $(COMPOSE_FILE) up -d
 
 # docker-compose down
 down:
@@ -37,6 +36,6 @@ network_list:
 fclean:
 	$(MAKE) down
 	@echo "$(RED)cleanup images$(RESET)"
-	@docker image rm $(IMAGES)
+	@docker image rm -f $(IMAGES)
 	@echo "$(RED)cleanup volumes$(RESET)"
-	@docker volume rm $(VOLUMES)
+	@docker volume rm -f $(VOLUMES)
