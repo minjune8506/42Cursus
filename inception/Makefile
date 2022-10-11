@@ -7,6 +7,7 @@ RESET = \033[0m
 COMPOSE_FILE=./srcs/docker-compose.yml
 CONTAINERS = srcs-server srcs-wordpress srcs-database
 IMAGES = srcs-server srcs-database srcs-wordpress
+VOLUMES= srcs_data srcs_www
 
 # docker-compose up
 up:
@@ -37,3 +38,5 @@ fclean:
 	$(MAKE) down
 	@echo "$(RED)cleanup images$(RESET)"
 	@docker image rm $(IMAGES)
+	@echo "$(RED)cleanup volumes$(RESET)"
+	@docker volume rm $(VOLUMES)
