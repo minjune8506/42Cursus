@@ -1,9 +1,5 @@
 # **42_Cursus**
 
-**Cadet** : 2021.05.03 ~
-
-## **Inner Circle**
-
 | CIRCLE | PROJECT | LANGUAGE | TOPICS | EXPERIENCE | STATUS | Date of Completion |
 |:--:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 00 | [Libft](./libft) | C | `Library` | 462 XP | [![minjkim2's 42 Libft Score](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/project/2166502)](https://github.com/JaeSeoKim/badge42) | 2021-05-13 |
