@@ -2,10 +2,6 @@
 
 **Cadet** : 2021.05.03 ~
 
-<a href="https://42seoul.kr/seoul42/contents/view?contentsNo=13&level=2&menuNo=28&gclid=Cj0KCQiAwqCOBhCdARIsAEPyW9mEZno3M1OMooYEtrDmNdJ1on0RROdIJgbODp5RAtxfLtZMRvXhk3IaAoqeEALw_wcB" target="_blank"><img src="https://img.shields.io/badge/42Seoul-caa6fe?style=flat&logo=42&logoColor=000000"/></a>
-
-[![minjkim2's 42 stats](https://badge42.vercel.app/api/v2/cl233k6zu002509mbdxlhzh09/stats?cursusId=21&coalitionId=85)](https://github.com/JaeSeoKim/badge42)
-
 ## **Inner Circle**
 
 | CIRCLE | PROJECT | LANGUAGE | TOPICS | EXPERIENCE | STATUS | Date of Completion |
