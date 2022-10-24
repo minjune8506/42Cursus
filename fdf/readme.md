@@ -27,7 +27,7 @@ fdf 파일 생성 && 하위 라이브러리 make
 
     make
 
-*.o 파일 삭제
+오브젝트 파일 삭제
 
     make clean
 
