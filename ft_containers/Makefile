@@ -47,7 +47,7 @@ $(OBJECTS_DIRECTORY):
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp $(HEADERS)
 	@$(CXX) $(CXXFLAGS) -c $(INCLUDES) $< -o $@
 	@echo "$(BLUE).$(RESET)\c"
-	   
+
 clean:
 	@rm -rf $(OBJECTS_DIRECTORY)
 	@echo "$(RED)$(NAME) : $(OBJECTS_DIRECTORY) deleted$(RESET)"
