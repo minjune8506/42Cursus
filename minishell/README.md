@@ -37,10 +37,6 @@
 
 ### **Makefile**
 ---
-Readline 라이브러리 설치
-
-	brew install readline
-
 minishell 파일 생성 & 하위 라이브러리 make
 
     make
